@@ -1,0 +1,20 @@
+.menu-link {
+  /* width: 77px; */
+  height: 27px;
+
+  font-family: 'Glacial Indifference';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 150%;
+
+  color: #605E67;
+
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+
+  text-decoration: none;
+  cursor: pointer;
+}
+

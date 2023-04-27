@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: auto;
+  padding: 0;
+}
+
+.nft-card {
+  /* width: 20%; */
+  margin: 2%;
+  line-height: 180px;
+  text-align: center;
+}

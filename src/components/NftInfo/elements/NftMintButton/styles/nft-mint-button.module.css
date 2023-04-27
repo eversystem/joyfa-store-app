@@ -1,0 +1,26 @@
+.available {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0px;
+  gap: 16px;
+  width: 92.6px;
+  height: 75px;
+  border: 1px solid #DBDBDA;
+  cursor: pointer;
+}
+
+.disable {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0px;
+  gap: 16px;
+  width: 92.6px;
+  height: 75px;
+  border: 1px solid #DBDBDA;
+}

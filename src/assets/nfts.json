@@ -1,0 +1,50 @@
+{
+	"nfts": [
+		{
+			"contract": {
+				"address": "0x672ee4ab48a6823559e4600b22ccdeef1c031ca5"
+			},
+			"id": {
+				"tokenId": "0x000000000000000000000000000000000000000000000000000000000000000c",
+				"tokenMetadata": {
+					"tokenType": "ERC721"
+				}
+			},
+			"balance": "1",
+			"title": "Freedom x Axolotl-Origin #10970",
+			"description": "This sneaker is generated from Axolotl-Origin #10970 issued at the contract address, 0xcfe50e49ec3e5eb24cc5bbce524166424563dd4e on Ethereum.",
+			"tokenUri": {
+				"gateway": "https://alchemy.mypinata.cloud/ipfs/QmRQAtr1wyKocC8qNXDVomzyTeqzMRJYHYEYLLXdpUP9JW",
+				"raw": "ipfs://QmRQAtr1wyKocC8qNXDVomzyTeqzMRJYHYEYLLXdpUP9JW"
+			},
+			"media": [
+				{
+					"gateway": "https://nft-cdn.alchemy.com/matic-mainnet/41fbd7fc9a0f91fca4063ceacac23717",
+					"thumbnail": "https://res.cloudinary.com/alchemyapi/image/upload/thumbnailv2/matic-mainnet/41fbd7fc9a0f91fca4063ceacac23717",
+					"raw": "ipfs://QmZ7mLiGa6fUSZxKUtwjWMrKSJLnvhgeMjtktd4n9URxB9",
+					"format": "png",
+					"bytes": 4318168
+				}
+			],
+			"metadata": {
+				"name": "Freedom x Axolotl-Origin #10970",
+				"description": "This sneaker is generated from Axolotl-Origin #10970 issued at the contract address, 0xcfe50e49ec3e5eb24cc5bbce524166424563dd4e on Ethereum.",
+				"image": "ipfs://QmZ7mLiGa6fUSZxKUtwjWMrKSJLnvhgeMjtktd4n9URxB9",
+				"external_url": "https://www.joyfa.io/freedom",
+				"usdz": "ipfs://QmRxdE18qTik5FHsNQZUEFP68X3XKamArYS1Su7SDe6Tat"
+			},
+			"timeLastUpdated": "2023-01-16T07:14:37.315Z",
+			"contractMetadata": {
+				"name": "FreedomByJoyfa",
+				"symbol": "JOYFA",
+				"totalSupply": "1199",
+				"tokenType": "ERC721",
+				"contractDeployer": "0xb1fb962db3a75df3bdeac7cfbe72dfd544f86e78",
+				"deployedBlockNumber": 31220226,
+				"openSea": {
+					"lastIngestedAt": "2023-03-07T23:29:21.000Z"
+				}
+			}
+		}
+	]
+}

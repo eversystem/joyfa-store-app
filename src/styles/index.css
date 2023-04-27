@@ -1,0 +1,40 @@
+@font-face {
+  /* font-family: 'GlacialIndifference-Regular'; */
+  font-family: 'Glacial Indifference';
+  src: url('../assets/glacial-indifference/GlacialIndifference-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'GlacialIndifference-Bold';
+  src: url('../assets/glacial-indifference/GlacialIndifference-Bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('../assets/mont_regular_macroman/mont-regular-webfont.woff2') format('woff2'),
+    url('../assets/mont_regular_macroman/mont-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  font-family: 'GlacialIndifference-Regular', 'Mont webfont', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  position: relative;
+  background: #FFFFFF;
+}

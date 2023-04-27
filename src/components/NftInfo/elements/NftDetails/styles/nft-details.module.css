@@ -1,0 +1,74 @@
+.wrapper {
+  border-radius: 4px;
+  border: 1px solid #F3F3F3;
+  display: flex;
+  flex-direction: row;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+  background-color: rgb(193, 193, 193);
+  border: 1px solid #DBDBDA;
+}
+
+.image {
+  width: 400px;
+}
+
+.name {
+  font-family: 'Mont';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 48px;
+  line-height: 120%;
+
+  color: #0D0F08;
+}
+
+.creator {
+  font-family: 'Glacial Indifference';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 150%;
+  letter-spacing: 0.01em;
+  color: #0D0F08;
+}
+
+.price {
+  display: flex;
+  flex-direction: row;
+}
+
+.price-prefix {
+  font-family: 'Glacial Indifference';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 150%;
+  letter-spacing: 0.01em;
+  color: #605E67;
+}
+
+.price-content {
+  font-family: 'Mont';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 120%;
+  color: #0D0F08;
+}
+
+.description {
+  font-family: 'Glacial Indifference';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 150%;
+  color: #605E67;
+}

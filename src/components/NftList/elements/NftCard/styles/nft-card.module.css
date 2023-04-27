@@ -1,0 +1,134 @@
+.wrapper {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  /* gap: 24px; */
+
+  width: 245px;
+  height: 386px;
+
+  background: #FFFFFF;
+
+  border: 1px solid #F3F3F3;
+
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+  text-decoration: none;
+}
+
+.nft-image-wrapper {
+  width: 245px;
+  height: 240px;
+  overflow: hidden;
+  background-color: #F3F3F3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nft-image {
+  width: 245px;
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  object-fit: cover;
+}
+
+.nft-details {
+  font-family: 'Mont';
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* padding: 0px 24px 24px; */
+  /* gap: 16px; */
+
+  width: 245px;
+  height: 122px;
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+
+}
+
+.nft-name {
+  /* width: 197px; */
+  /* height: 58px; */
+
+  font-family: 'Mont';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 120%;
+  text-align: left;
+
+  color: #0D0F08;
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+
+}
+
+.sales-info {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  /* gap: 8px; */
+
+  /* width: 197px; */
+  /* height: 24px; */
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.sold-for {
+  width: 100px;
+  height: 22px;
+
+  font-family: 'Glacial Indifference';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 140%;
+  text-align: left;
+
+  color: #605E67;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.nft-price {
+  width: 89px;
+  height: 24px;
+
+  font-family: 'Glacial Indifference';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: left;
+
+  letter-spacing: 0.01em;
+
+  color: #605E67;
+
+  flex: none;
+  order: 1;
+  flex-grow: 1;
+}
