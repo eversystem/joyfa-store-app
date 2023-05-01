@@ -69,6 +69,26 @@
   flex-grow: 0;
 }
 
+.input-textarea {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+
+  width: 520px;
+  /* height: 86px; */
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+
+}
+
 .input-file {
   /* Input Field Wrap */
 

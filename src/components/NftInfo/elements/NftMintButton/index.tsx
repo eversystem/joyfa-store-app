@@ -4,10 +4,18 @@ import { NftEntity } from 'src/utils/data';
 import { NFT_COLLECTION_ADDRESS } from 'src/utils/env';
 import styles from './styles/nft-mint-button.module.css';
 
+// export enum NftMintStatus {
+//   loading,
+//   mintable,
+//   minted,
+// }
+
 export type AvailableNftProps = {
   nft: NftEntity;
   mintable?: boolean;
+  // status: NftMintStatus;
 };
+
 export const NftMintButton: React.FC<AvailableNftProps> = (props) => {
   const { nft, mintable } = props;
   const address = useAddress();
@@ -28,7 +36,9 @@ export const NftMintButton: React.FC<AvailableNftProps> = (props) => {
   return (
     <button
       disabled={!mintable}
-      className={mintable ? styles['available'] : styles['disable']}
+      className={`${styles['button']} ${
+        mintable ? styles['available'] : styles['disable']
+      }`}
       onClick={onMint}
     >
       #{nft.sequence}

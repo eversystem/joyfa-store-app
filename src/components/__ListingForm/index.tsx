@@ -71,11 +71,12 @@ export const ListingForm: React.FC = () => {
           </label>
         </div>
         {/* description */}
-        <div className={styles['input-text']}>
+        <div className={styles['input-textarea']}>
           <label>
             Description:
-            <input
-              type="text"
+            <textarea
+              // type="text"
+              rows={5}
               name="description"
               value={description}
               onChange={(e) => {

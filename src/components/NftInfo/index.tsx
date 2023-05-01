@@ -46,13 +46,15 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
         <>
           <NftDetails {...nfts[0].metadata} />
           <div className={styles['available-ids']}>Available IDs</div>
-          {nfts.map((nft) => (
-            <NftMintButton
-              key={nft.sequence}
-              nft={nft}
-              mintable={isMintable(nft)}
-            />
-          ))}
+          <div className={styles['mint-button-list']}>
+            {nfts.map((nft) => (
+              <NftMintButton
+                key={nft.sequence}
+                nft={nft}
+                mintable={isMintable(nft)}
+              />
+            ))}
+          </div>
         </>
       )}
     </div>

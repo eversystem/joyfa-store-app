@@ -14,13 +14,9 @@ export const NftList: React.FC = () => {
     });
   }, [metadatas]);
   return (
-    <ul className={styles['wrapper']}>
+    <div className={styles['wrapper']}>
       {metadatas &&
-        metadatas.map((metadata, i) => (
-          <li className={styles['nft-card']} key={i}>
-            <NftCard {...metadata} />
-          </li>
-        ))}
-    </ul>
+        metadatas.map((metadata, i) => <NftCard key={i} {...metadata} />)}
+    </div>
   );
 };

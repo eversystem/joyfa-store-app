@@ -4,6 +4,7 @@ import { listing } from 'src/api';
 import { TextInput } from './elements/TextInput';
 import { FileInput } from './elements/FileInput';
 import styles from './styles/create-form.module.css';
+import { TextareaInput } from './elements/TextareaInput';
 
 export const CreateForm: React.FC = () => {
   const sdk = useSDK();
@@ -57,7 +58,7 @@ export const CreateForm: React.FC = () => {
         {/* name */}
         <TextInput label="Name" name="name" value={name} setValue={setName} />
         {/* description */}
-        <TextInput
+        <TextareaInput
           label="Description"
           name="description"
           value={description}
