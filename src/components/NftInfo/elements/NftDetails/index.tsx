@@ -3,7 +3,6 @@ import { MetadataEntity } from 'src/utils/data';
 import styles from './styles/nft-details.module.css';
 
 export const NftDetails: React.FC<MetadataEntity> = (props) => {
-  console.log(props);
   return (
     <div className={styles['wrapper']}>
       <div className={styles['image-wrapper']}>

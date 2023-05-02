@@ -45,11 +45,10 @@ export const CreateForm: React.FC = () => {
     if (!signature) {
       throw new Error('sign rejected');
     }
-    const res = await listing({
+    await listing({
       ...metadata,
       signature,
     });
-    console.log(res);
   };
 
   return (

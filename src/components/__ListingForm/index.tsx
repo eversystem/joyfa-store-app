@@ -51,7 +51,6 @@ export const ListingForm: React.FC = () => {
       supply: Number(supply),
       signature,
     });
-    console.log(res);
   };
   return (
     <div className={styles['wrapper']}>

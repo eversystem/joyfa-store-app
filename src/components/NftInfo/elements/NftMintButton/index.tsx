@@ -29,7 +29,6 @@ export const NftMintButton: React.FC<AvailableNftProps> = (props) => {
     if (!address) return;
     console.log('mint');
     const res = await mint(nft.uid, address);
-    console.log(res.data);
     await nftCollection?.signature.mint(res.data);
   };
 

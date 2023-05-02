@@ -12,7 +12,6 @@ export const Nft: React.FC = () => {
     if (!nfts) {
       setNfts([]);
       void getNftsByMetadataId(Number(id)).then((nfts) => {
-        console.log(nfts);
         setNfts(nfts);
       });
     }
