@@ -7,56 +7,65 @@ import { NFT_COLLECTION_ADDRESS } from 'src/utils/env';
 import { useEffect, useState } from 'react';
 
 export type NftInfoProps = {
-  nfts: NftEntity[];
+  nft: NftEntity;
 };
 
+type NftInfoStatus = 'init' | 'loading' | 'fetched';
+
 export const NftInfo: React.FC<NftInfoProps> = (props) => {
-  const { nfts } = props;
+  const { nft } = props;
+  const [status, setStatus] = useState<NftInfoStatus>('init');
   const [mintedNfts, setMintedNfts] = useState<NFT[]>([]);
   const { data: nftCollection } = useContract(
     NFT_COLLECTION_ADDRESS,
     'nft-collection',
   );
   useEffect(() => {
-    if (nftCollection) {
+    if (nftCollection && status === 'init') {
+      setStatus('loading');
       void nftCollection.getAll().then((res) => {
         setMintedNfts(res);
+        setStatus('fetched');
       });
     }
-  }, [nftCollection]);
-  const isMintable = (nft: NftEntity) => {
+  }, [nftCollection, status]);
+  const isMintable = (nft_id: number, token_id: number) => {
+    const uid = `${nft_id}#${token_id}`;
     const mintedNftHasSameExternalUrl = mintedNfts.filter(
       (mintedNft) =>
         mintedNft.metadata.external_url ===
         `https://store.joyfa.io/nft/${nft.metadata.id}`,
     );
-    const mintedNftHasSameId = mintedNftHasSameExternalUrl.filter(
+    const mintedNftHasSameUid = mintedNftHasSameExternalUrl.filter(
       (mintedNft) => {
         const attribute = (
           mintedNft.metadata.attributes as { trait_type: string; value: any }[]
-        ).find((attr) => attr.trait_type === 'id');
-        return attribute?.value === nft.sequence;
+        ).find((attr) => attr.trait_type === 'uid');
+        return attribute?.value === uid;
       },
     );
-    return mintedNftHasSameId.length === 0;
+    return mintedNftHasSameUid.length === 0;
   };
   return (
     <div className={styles['nft-info']}>
-      {!!nfts.length && (
-        <>
-          <NftDetails {...nfts[0].metadata} />
-          <div className={styles['available-ids']}>Available IDs</div>
-          <div className={styles['mint-button-list']}>
-            {nfts.map((nft) => (
-              <NftMintButton
-                key={nft.sequence}
-                nft={nft}
-                mintable={isMintable(nft)}
-              />
-            ))}
-          </div>
-        </>
-      )}
+      <NftDetails {...nft} />
+      <div className={styles['available-ids']}>Available IDs</div>
+      <div className={styles['mint-button-list']}>
+        {[...new Array(nft.supply.amount)].map((_, token_id) => (
+          <NftMintButton
+            key={`${nft.id}#${token_id}`}
+            nft_id={nft.id}
+            token_id={token_id}
+            status={
+              status !== 'fetched'
+                ? 'loading'
+                : isMintable(nft.id, token_id)
+                ? 'mintable'
+                : 'minted'
+            }
+          />
+        ))}
+      </div>
     </div>
   );
 };

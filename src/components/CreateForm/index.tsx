@@ -6,9 +6,12 @@ import { FileInput } from './elements/FileInput';
 import styles from './styles/create-form.module.css';
 import { TextareaInput } from './elements/TextareaInput';
 
+type ListingStatus = 'input' | 'loading' | 'completed' | 'error';
+
 export const CreateForm: React.FC = () => {
   const sdk = useSDK();
   const address = useAddress();
+  const [status, setStatus] = useState<ListingStatus>('input');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState<File | null>(null);
@@ -18,37 +21,62 @@ export const CreateForm: React.FC = () => {
   const [price, setPrice] = useState('0');
   const [supply, setSupply] = useState('1');
 
+  const clear = () => {
+    setStatus('input');
+    setName('');
+    setDescription('');
+    setImage(null);
+    setAnimation(null);
+    setGLBL(null);
+    setGLBR(null);
+    setPrice('0');
+    setSupply('1');
+  };
+
   const onSubmit = async () => {
-    console.log('submit');
-    if (!address) return;
-    if (!sdk) return;
-    console.log('upload_file');
-    const [_image, _animation_url, _glb_l, _glb_r] =
-      await sdk.storage.uploadBatch([image, animation, glbL, glbR]);
-    console.log('listing');
-    const metadata = {
-      creator: address,
-      name,
-      description,
-      image: _image,
-      animation_url: _animation_url,
-      glb_r: _glb_r,
-      glb_l: _glb_l,
-      price: Number(price),
-      supply: Number(supply),
-    };
-    const signer = sdk.getSigner();
-    if (!signer) {
-      throw new Error('signer not found');
+    try {
+      if (status !== 'input') {
+        throw new Error('invalid_status');
+      }
+      console.log('submit');
+      setStatus('loading');
+      if (!address) {
+        throw new Error('wallet_not_connected');
+      }
+      if (!sdk) {
+        throw new Error('sdk_not_connected');
+      }
+      console.log('upload_file');
+      const [_image, _animation_url, _glb_l, _glb_r] =
+        await sdk.storage.uploadBatch([image, animation, glbL, glbR]);
+      console.log('listing');
+      const metadata = {
+        creator: address,
+        name,
+        description,
+        image: _image,
+        animation_url: _animation_url,
+        glb_r: _glb_r,
+        glb_l: _glb_l,
+        price: Number(price),
+        supply: Number(supply),
+      };
+      const signer = sdk.getSigner();
+      if (!signer) {
+        throw new Error('signer not found');
+      }
+      const signature = await signer.signMessage(JSON.stringify(metadata));
+      if (!signature) {
+        throw new Error('sign rejected');
+      }
+      await listing({
+        ...metadata,
+        signature,
+      });
+      setStatus('completed');
+    } catch (error) {
+      setStatus('error');
     }
-    const signature = await signer.signMessage(JSON.stringify(metadata));
-    if (!signature) {
-      throw new Error('sign rejected');
-    }
-    await listing({
-      ...metadata,
-      signature,
-    });
   };
 
   return (
@@ -100,7 +128,12 @@ export const CreateForm: React.FC = () => {
           setValue={setSupply}
         />
       </div>
-      <button onClick={onSubmit}>submit</button>
+      <button onClick={clear} disabled={status === 'loading'}>
+        clear
+      </button>
+      <button onClick={onSubmit} disabled={status !== 'input'}>
+        submit
+      </button>
     </div>
   );
 };

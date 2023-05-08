@@ -14,7 +14,12 @@ export type ListingRequest = {
 export type CreatorEntity = {
   address: string;
   name: string;
-  icon: string;
+  icon?: string;
+  cover?: string;
+  description?: string;
+  twitter?: string;
+  instagram?: string;
+  website?: string;
 };
 
 export type MetadataEntity = {
@@ -25,24 +30,21 @@ export type MetadataEntity = {
   animation_url: string;
   glb_r: string;
   glb_l: string;
-  creator: CreatorEntity;
-  sale: SaleEntity;
-  createdAt: Date | string;
-  updatedAt: Date | string;
 };
 
-export type SaleEntity = {
+export type SupplyEntity = {
   id: number;
   price: number;
-  supply: number;
+  amount: number;
   createdAt: Date | string;
   updatedAt: Date | string;
 };
 
 export type NftEntity = {
-  uid: number;
+  id: number;
   metadata: MetadataEntity;
-  sequence: number;
+  creator: CreatorEntity;
+  supply: SupplyEntity;
   createdAt: Date | string;
   updatedAt: Date | string;
 };

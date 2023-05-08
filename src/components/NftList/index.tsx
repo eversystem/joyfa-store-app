@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { getAllMetadatas } from 'src/api';
-import { MetadataEntity } from 'src/utils/data';
+import { getAllNfts } from 'src/api';
+import { NftEntity } from 'src/utils/data';
 import { NftCard } from './elements/NftCard';
 import styles from './styles/nft-list.module.css';
 
+type NftListStatus = 'init' | 'loading' | 'fetched' | 'error';
+
 export const NftList: React.FC = () => {
-  const [metadatas, setMetadatas] = useState<MetadataEntity[] | null>(null);
+  const [status, setStatus] = useState<NftListStatus>('init');
+  const [nfts, setNfts] = useState<NftEntity[] | null>(null);
   useEffect(() => {
-    if (metadatas) return;
-    setMetadatas([]);
-    void getAllMetadatas().then((metadatas) => {
-      setMetadatas(metadatas);
-    });
-  }, [metadatas]);
+    if (status !== 'init') return;
+    setStatus('loading');
+    void getAllNfts()
+      .then((nfts) => {
+        setStatus('fetched');
+        setNfts(nfts);
+      })
+      .catch(() => {
+        setStatus('error');
+      });
+  }, [status]);
   return (
     <div className={styles['wrapper']}>
-      {metadatas &&
-        metadatas.map((metadata, i) => <NftCard key={i} {...metadata} />)}
+      {nfts && nfts.map((nft, i) => <NftCard key={i} {...nft} />)}
     </div>
   );
 };

@@ -1,23 +1,18 @@
 import { useContract, useAddress } from '@thirdweb-dev/react';
 import { mint } from 'src/api';
-import { NftEntity } from 'src/utils/data';
 import { NFT_COLLECTION_ADDRESS } from 'src/utils/env';
 import styles from './styles/nft-mint-button.module.css';
 
-// export enum NftMintStatus {
-//   loading,
-//   mintable,
-//   minted,
-// }
+export type NftMintStatus = 'loading' | 'mintable' | 'minted';
 
 export type AvailableNftProps = {
-  nft: NftEntity;
-  mintable?: boolean;
-  // status: NftMintStatus;
+  nft_id: number;
+  token_id: number;
+  status: NftMintStatus;
 };
 
 export const NftMintButton: React.FC<AvailableNftProps> = (props) => {
-  const { nft, mintable } = props;
+  const { nft_id, token_id, status } = props;
   const address = useAddress();
   const { data: nftCollection } = useContract(
     NFT_COLLECTION_ADDRESS,
@@ -28,19 +23,19 @@ export const NftMintButton: React.FC<AvailableNftProps> = (props) => {
     console.log('mint-button-clicked');
     if (!address) return;
     console.log('mint');
-    const res = await mint(nft.uid, address);
+    const res = await mint(nft_id, token_id, address);
     await nftCollection?.signature.mint(res.data);
   };
 
   return (
     <button
-      disabled={!mintable}
+      disabled={status !== 'mintable'}
       className={`${styles['button']} ${
-        mintable ? styles['available'] : styles['disable']
+        status === 'mintable' ? styles['available'] : styles['disable']
       }`}
       onClick={onMint}
     >
-      #{nft.sequence}
+      #{token_id}
     </button>
   );
 };

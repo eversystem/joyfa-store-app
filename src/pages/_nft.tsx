@@ -2,24 +2,31 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Header } from 'src/components/Header';
 import { NftInfo } from 'src/components/NftInfo';
-import { getNftsByMetadataId } from 'src/api';
+import { getNft } from 'src/api';
 import { NftEntity } from 'src/utils/data';
 
+type NftPageStatus = 'init' | 'loading' | 'fetched' | 'error';
+
 export const Nft: React.FC = () => {
-  const [nfts, setNfts] = useState<NftEntity[] | null>(null);
+  const [status, setStatus] = useState<NftPageStatus>('init');
+  const [nft, setNft] = useState<NftEntity | null>(null);
   const { id } = useParams();
   useEffect(() => {
-    if (!nfts) {
-      setNfts([]);
-      void getNftsByMetadataId(Number(id)).then((nfts) => {
-        setNfts(nfts);
+    if (status !== 'init') return;
+    setStatus('loading');
+    void getNft(Number(id))
+      .then((nft) => {
+        setStatus('fetched');
+        setNft(nft);
+      })
+      .catch(() => {
+        setStatus('error');
       });
-    }
-  }, [nfts, id]);
+  }, [id, status]);
   return (
     <>
       <Header />
-      <main>{nfts && <NftInfo nfts={nfts} />}</main>
+      <main>{nft && <NftInfo nft={nft} />}</main>
     </>
   );
 };
