@@ -170,13 +170,13 @@ export const CreateForm: React.FC = () => {
           />
         </div>
       </div>
-      {/* <button
+      <button
         className={styles['clear-button']}
         onClick={clear}
         disabled={status === 'loading'}
       >
         <a className={styles['button-text']}>CLEAR</a>
-      </button> */}
+      </button>
       <button
         className={styles['create-button']}
         onClick={onSubmit}
