@@ -11,15 +11,13 @@ export type FileInputProps = {
 export const FileInput: React.FC<FileInputProps> = (props) => {
   return (
     <div className={styles['wrapper']}>
-      <label className={styles['label']}>
-        {props.label}
-        <input
-          className={styles['input']}
-          type="file"
-          name={props.name}
-          onChange={handleFile(props.setValue)}
-        />
-      </label>
+      <div className={styles['label']}>{props.label}</div>
+      <input
+        className={styles['input']}
+        type="file"
+        name={props.name}
+        onChange={handleFile(props.setValue)}
+      />
     </div>
   );
 };

@@ -81,58 +81,108 @@ export const CreateForm: React.FC = () => {
 
   return (
     <div className={styles['wrapper']}>
+      <div className={styles['title']}>CREATE</div>
+      <div className={styles['message']}>
+        The ambassador program is an important step in becoming a community
+        empowered and curated platform.
+      </div>
       <div className={styles['form-row']}>
-        {/* name */}
-        <TextInput label="Name" name="name" value={name} setValue={setName} />
-        {/* description */}
-        <TextareaInput
-          label="Description"
-          name="description"
-          value={description}
-          setValue={setDescription}
-        />
+        <div className={styles['name-and-description']}>
+          {/* name */}
+          <TextInput
+            type="text"
+            label="Name"
+            name="name"
+            value={name}
+            setValue={setName}
+          />
+          {/* description */}
+          <TextareaInput
+            label="Description"
+            name="description"
+            value={description}
+            setValue={setDescription}
+          />
+        </div>
         {/* image */}
-        <FileInput
-          label="Upload Image"
-          name="image"
-          value={image}
-          setValue={setImage}
-        />
+        <div className={styles['image-uploader']}>
+          <FileInput
+            label="Upload Image"
+            name="image"
+            value={image}
+            setValue={setImage}
+          />
+        </div>
       </div>
       <div className={styles['form-row']}>
-        {/* animation */}
-        <FileInput
-          label="Animation URL"
-          name="animation_url"
-          value={animation}
-          setValue={setAnimation}
-        />
-        {/* glb_l */}
-        <FileInput label="GLB_L" name="glb_l" value={glbL} setValue={setGLBL} />
-        {/* gln_r */}
-        <FileInput label="GLB_R" name="glb_r" value={glbR} setValue={setGLBR} />
+        <div className={styles['animation-and-glbs-uploader']}>
+          {/* animation */}
+          <FileInput
+            label="Animation URL"
+            name="animation_url"
+            value={animation}
+            setValue={setAnimation}
+          />
+          {/* glb_l */}
+          <FileInput
+            label="GLB_L"
+            name="glb_l"
+            value={glbL}
+            setValue={setGLBL}
+          />
+          {/* gln_r */}
+          <FileInput
+            label="GLB_R"
+            name="glb_r"
+            value={glbR}
+            setValue={setGLBR}
+          />
+        </div>
       </div>
       <div className={styles['form-row']}>
-        {/* price */}
-        <TextInput
-          label="Price"
-          name="price"
-          value={price}
-          setValue={setPrice}
-        />
-        {/* supply */}
-        <TextInput
-          label="Supply"
-          name="supply"
-          value={supply}
-          setValue={setSupply}
-        />
+        <div className={styles['price-and-supply']}>
+          {/* price */}
+          <TextInput
+            type="number"
+            label="Price"
+            name="price"
+            value={price}
+            setValue={(value) => {
+              // validate
+              if (!Number.isNaN(value) && 0 < Number(value)) {
+                setPrice(Number(value).toString());
+              }
+            }}
+          />
+          {/* supply */}
+          <TextInput
+            type="number"
+            label="Supply"
+            name="supply"
+            value={supply}
+            setValue={(value) => {
+              // validate
+              console.log(value);
+              if (Number.isInteger(Number(value)) && 0 < Number(value)) {
+                setSupply(Number(value).toString());
+              }
+            }}
+          />
+        </div>
       </div>
-      <button onClick={clear} disabled={status === 'loading'}>
-        clear
-      </button>
-      <button onClick={onSubmit} disabled={status !== 'input'}>
-        submit
+      {/* <button
+        className={styles['clear-button']}
+        onClick={clear}
+        disabled={status === 'loading'}
+      >
+        <a className={styles['button-text']}>CLEAR</a>
+      </button> */}
+      <button
+        className={styles['create-button']}
+        onClick={onSubmit}
+        disabled={status !== 'input'}
+      >
+        <a className={styles['button-text']}>CREATE</a>
       </button>
     </div>
   );

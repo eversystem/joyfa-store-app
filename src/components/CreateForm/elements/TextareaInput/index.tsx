@@ -10,16 +10,14 @@ export type TextareaInputProps = {
 export const TextareaInput: React.FC<TextareaInputProps> = (props) => {
   return (
     <div className={styles['wrapper']}>
-      <label className={styles['label']}>
-        {props.label}
-        <textarea
-          className={styles['input']}
-          rows={5}
-          name={props.name}
-          value={props.value}
-          onChange={(e) => props.setValue(e.target.value)}
-        />
-      </label>
+      <div className={styles['label']}>{props.label}</div>
+      <textarea
+        className={styles['input']}
+        rows={5}
+        name={props.name}
+        value={props.value}
+        onChange={(e) => props.setValue(e.target.value)}
+      />
     </div>
   );
 };
