@@ -5,6 +5,7 @@ export type TextareaInputProps = {
   name: string;
   value: string;
   setValue: (value: string) => void;
+  disabled?: boolean;
 };
 
 export const TextareaInput: React.FC<TextareaInputProps> = (props) => {
@@ -12,6 +13,7 @@ export const TextareaInput: React.FC<TextareaInputProps> = (props) => {
     <div className={styles['wrapper']}>
       <div className={styles['label']}>{props.label}</div>
       <textarea
+        disabled={!!props.disabled}
         className={styles['input']}
         rows={5}
         name={props.name}

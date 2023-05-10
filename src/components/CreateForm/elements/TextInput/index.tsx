@@ -6,6 +6,7 @@ export type TextInputProps = {
   value: string;
   type: React.InputHTMLAttributes<HTMLInputElement>['type'];
   setValue: (value: string) => void;
+  disabled?: boolean;
 };
 
 export const TextInput: React.FC<TextInputProps> = (props) => {
@@ -13,6 +14,7 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
     <div className={styles['wrapper']}>
       <div className={styles['label']}>{props.label}</div>
       <input
+        disabled={!!props.disabled}
         className={styles['input']}
         type={props.type || 'text'}
         name={props.name}

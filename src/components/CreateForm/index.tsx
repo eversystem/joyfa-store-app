@@ -95,6 +95,7 @@ export const CreateForm: React.FC = () => {
             name="name"
             value={name}
             setValue={setName}
+            disabled={status !== 'input'}
           />
           {/* description */}
           <TextareaInput
@@ -102,6 +103,7 @@ export const CreateForm: React.FC = () => {
             name="description"
             value={description}
             setValue={setDescription}
+            disabled={status !== 'input'}
           />
         </div>
         {/* image */}
@@ -111,6 +113,7 @@ export const CreateForm: React.FC = () => {
             name="image"
             value={image}
             setValue={setImage}
+            disabled={status !== 'input'}
           />
         </div>
       </div>
@@ -122,6 +125,7 @@ export const CreateForm: React.FC = () => {
             name="animation_url"
             value={animation}
             setValue={setAnimation}
+            disabled={status !== 'input'}
           />
           {/* glb_l */}
           <FileInput
@@ -129,6 +133,7 @@ export const CreateForm: React.FC = () => {
             name="glb_l"
             value={glbL}
             setValue={setGLBL}
+            disabled={status !== 'input'}
           />
           {/* gln_r */}
           <FileInput
@@ -136,6 +141,7 @@ export const CreateForm: React.FC = () => {
             name="glb_r"
             value={glbR}
             setValue={setGLBR}
+            disabled={status !== 'input'}
           />
         </div>
       </div>
@@ -153,6 +159,7 @@ export const CreateForm: React.FC = () => {
                 setPrice(Number(value).toString());
               }
             }}
+            disabled={status !== 'input'}
           />
           {/* supply */}
           <TextInput
@@ -167,6 +174,7 @@ export const CreateForm: React.FC = () => {
                 setSupply(Number(value).toString());
               }
             }}
+            disabled={status !== 'input'}
           />
         </div>
       </div>

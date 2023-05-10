@@ -48,7 +48,9 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
   };
   return (
     <div className={styles['nft-info']}>
-      <NftDetails {...nft} />
+      <div className={styles['nft-details']}>
+        <NftDetails {...nft} />
+      </div>
       <div className={styles['available-ids']}>Available IDs</div>
       <div className={styles['mint-button-list']}>
         {[...new Array(nft.supply.amount)].map((_, token_id) => (

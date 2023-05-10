@@ -6,7 +6,7 @@ export const Menu: React.FC = () => {
   return (
     <div className={styles['menu']}>
       <MenuLink text="Home" link="/" />
-      <MenuLink text="Store" link="/store" />
+      <MenuLink text="Store" link="/drops" />
       <MenuLink text="My Studio" link="/create" />
       <MenuLink text="Contact" link="" />
       <WalletButton />

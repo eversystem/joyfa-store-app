@@ -12,7 +12,7 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
           src={resolveIpfsUri(props.metadata.image)}
         />
       </div>
-      <div className={styles['']}>
+      <div className={styles['info']}>
         <div className={styles['name']}>{props.metadata.name}</div>
         <div className={styles['creator']}>{props.creator.name}</div>
         <div className={styles['price']}>
@@ -21,7 +21,13 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
             {props.supply.price} ETH
           </div>
         </div>
-        <p className={styles['description']}>{props.metadata.description}</p>
+        <div className={styles['description']}>
+          {props.metadata.description.split('\n').map((paragraph, i) => (
+            <div key={i} className={styles['description-text']}>
+              {paragraph}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

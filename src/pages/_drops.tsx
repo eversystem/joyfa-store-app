@@ -1,7 +1,7 @@
 import { Header } from 'src/components/Header';
 import { NftList } from 'src/components/NftList';
 
-export const Store: React.FC = () => {
+export const Drops: React.FC = () => {
   return (
     <>
       <Header />
