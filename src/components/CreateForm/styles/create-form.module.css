@@ -62,7 +62,6 @@
   flex: none;
   order: 0;
   flex-grow: 0;
-  cursor: pointer;
 }
 
 .create-button {
@@ -78,6 +77,9 @@
   flex: none;
   order: 0;
   flex-grow: 0;
+}
+
+.button-available {
   cursor: pointer;
 }
 

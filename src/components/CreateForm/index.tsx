@@ -178,15 +178,20 @@ export const CreateForm: React.FC = () => {
           />
         </div>
       </div>
+      {/* button-available */}
       <button
-        className={styles['clear-button']}
+        className={`${styles['clear-button']} ${
+          status !== 'loading' ? styles['button-available'] : ''
+        }`}
         onClick={clear}
         disabled={status === 'loading'}
       >
         <a className={styles['button-text']}>CLEAR</a>
       </button>
       <button
-        className={styles['create-button']}
+        className={`${styles['create-button']} ${
+          status === 'input' ? styles['button-available'] : ''
+        }`}
         onClick={onSubmit}
         disabled={status !== 'input'}
       >

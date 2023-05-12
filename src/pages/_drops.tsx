@@ -1,12 +1,12 @@
 import { Header } from 'src/components/Header';
-import { NftList } from 'src/components/NftList';
+import { RecentDrops } from 'src/components/RecentDrops';
 
 export const Drops: React.FC = () => {
   return (
     <>
       <Header />
       <main>
-        <NftList />
+        <RecentDrops />
       </main>
     </>
   );
