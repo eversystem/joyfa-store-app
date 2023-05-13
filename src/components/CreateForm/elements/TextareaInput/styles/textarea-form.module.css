@@ -1,7 +1,5 @@
 .label {
-  font-size: 16px;
   font-weight: 700;
-  font-size: 16px;
   line-height: 140%;
   color: #605E67;
 }
@@ -18,7 +16,6 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   resize: none;
-  font-size: 16px;
 }
 
 .input:focus {
