@@ -4,15 +4,12 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 24px 0px;
-  gap: 16px;
-  width: 92.6px;
-  height: 75px;
   border: 1px solid #DBDBDA;
-  margin: 10px;
-  font-weight: 700;
+  margin: 8px;
   font-size: 18px;
-  line-height: 150%;
+  width:65px;
+  height:65px;
+  border-radius: 100%;
   /* identical to box height, or 27px */
 
   text-align: center;

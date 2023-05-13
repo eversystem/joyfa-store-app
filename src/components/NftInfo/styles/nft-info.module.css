@@ -26,5 +26,18 @@
   flex-flow: row wrap;
   justify-content: center;
   width: 100%;
+  max-width:650px;
+  height:350px;
+  overflow-y: scroll;
   margin: 0px auto;
+}
+.mint-button-list::-webkit-scrollbar {
+  width: 20px;
+}
+.mint-button-list::-webkit-scrollbar-track {
+  background-color: #fafafa;
+}
+
+.mint-button-list::-webkit-scrollbar-thumb {
+  background-color: #0d0f08;
 }

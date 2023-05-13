@@ -26,12 +26,13 @@ body {
   font-style:normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url('https://uploads-ssl.webflow.com/623b48aca4d6403c00f8c106/645ffc858d05c01821424162_background.png');
+  background: #ffffff;
 }
 
 main{
   width:1070px;
   max-width:100%;
+  margin:100px 0;
 }
 
 code {
