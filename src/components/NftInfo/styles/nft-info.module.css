@@ -1,7 +1,6 @@
 .nft-info {
   margin: 0 auto;
   justify-content: center;
-  max-width: 1400px;
 }
 
 .nft-details {
@@ -15,8 +14,6 @@
   flex-direction: row;
   justify-content: center;
   height: 43px;
-  font-family: 'Glacial Indifference';
-  font-style: normal;
   font-weight: 700;
   font-size: 36px;
   line-height: 120%;
