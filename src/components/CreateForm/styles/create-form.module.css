@@ -21,32 +21,56 @@
 }
 
 .form-row {
-  display: flex;
-  justify-content: center;
+  display: block;
+  clear:both;
 }
 
 .name-and-description {
-  width: 320px;
+  width: 500px;
+  float:left;
 }
 
 .image-uploader {
-  width: 320px;
+  width:500px;
+  float:right;
 }
 
 .animation-and-glbs-uploader {
-  display: flex;
-  justify-content: center;
-  width: 640px;
+  display: block;
+  clear:both;
+}
+.animation-and-glbs-uploader > div{
+  width:30%;
+  float:left;
+}
+.animation-and-glbs-uploader > div input{
+  box-shadow: 0 0 0 1px #ccc inset;
+  padding:12px;
+  width:100%;
+  border-radius: 4px;
+  cursor:pointer;
+}
+.animation-and-glbs-uploader > div:first-child{
+  margin-right:5%;
+}
+.animation-and-glbs-uploader > div:last-child{
+  margin-left:5%;
+}
+.price-and-supply {
+  display: block;
+}
+.price-and-supply > div {
+  width:47%;
+  float:left;
 }
 
-.price-and-supply {
-  display: flex;
-  justify-content: center;
-  width: 640px;
+.price-and-supply > div:first-child {
+  margin-right:6%;
 }
 
 .clear-button {
-  display: flex;
+  display:none;
+  /* display: flex; */
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -61,18 +85,12 @@
 }
 
 .create-button {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  display: block;
   padding: 16px;
   width: 160px;
-  height: 40px;
   background: #0D0F08;
   border-radius: 8px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+  margin: 20px auto;
 }
 
 .button-available {

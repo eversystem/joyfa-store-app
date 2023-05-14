@@ -1,12 +1,13 @@
 .label {
   font-weight: 700;
   line-height: 140%;
+  margin:20px 0 5px 0;
   color: #605E67;
 }
 
 .input {
   display: block;
-  /* width: 100%; */
+  width: 100%;
   height: 100%;
   padding: 4px 16px;
   border-radius: 4px;
