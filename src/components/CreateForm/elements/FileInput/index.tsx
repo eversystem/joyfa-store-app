@@ -13,13 +13,33 @@ export const FileInput: React.FC<FileInputProps> = (props) => {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['label']}>{props.label}</div>
-      <input
+      <div className={styles['uploader']}>
+        <label className={styles['upload-file']}>
+          <input
+            type="file"
+            disabled={!!props.disabled}
+            className={styles['input']}
+            name={props.name}
+            onChange={handleFile(props.setValue)}
+          />
+          Upload File
+        </label>
+        <div className={styles['filename']}>
+          {props.value
+            ? props.value.name.length < 21
+              ? props.value.name
+              : `${props.value.name.slice(0, 20)}...`
+            : ''}
+        </div>
+      </div>
+      {/* <div className={styles['label']}>{props.label}</div> */}
+      {/* <input
         disabled={!!props.disabled}
         className={styles['input']}
         type="file"
         name={props.name}
         onChange={handleFile(props.setValue)}
-      />
+      /> */}
     </div>
   );
 };
