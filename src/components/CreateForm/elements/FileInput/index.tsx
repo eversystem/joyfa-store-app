@@ -29,17 +29,9 @@ export const FileInput: React.FC<FileInputProps> = (props) => {
             ? props.value.name.length < 21
               ? props.value.name
               : `${props.value.name.slice(0, 20)}...`
-            : ''}
+            : 'File Not Selected'}
         </div>
       </div>
-      {/* <div className={styles['label']}>{props.label}</div> */}
-      {/* <input
-        disabled={!!props.disabled}
-        className={styles['input']}
-        type="file"
-        name={props.name}
-        onChange={handleFile(props.setValue)}
-      /> */}
     </div>
   );
 };

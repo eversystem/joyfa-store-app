@@ -21,7 +21,17 @@ export const CreateForm: React.FC = () => {
   const [price, setPrice] = useState('0');
   const [supply, setSupply] = useState('1');
 
-  const clear = () => {
+  const mintable =
+    status === 'input' &&
+    !!name &&
+    !!description &&
+    !!image &&
+    !!animation &&
+    !!glbL &&
+    !!glbR;
+  const clearable = status !== 'loading';
+
+  const onClear = () => {
     setStatus('input');
     setName('');
     setDescription('');
@@ -178,25 +188,28 @@ export const CreateForm: React.FC = () => {
           />
         </div>
       </div>
-      {/* button-available */}
-      <button
-        className={`${styles['clear-button']} ${
-          status !== 'loading' ? styles['button-available'] : ''
-        }`}
-        onClick={clear}
-        disabled={status === 'loading'}
-      >
-        <a className={styles['button-text']}>CLEAR</a>
-      </button>
-      <button
-        className={`${styles['create-button']} ${
-          status === 'input' ? styles['button-available'] : ''
-        }`}
-        onClick={onSubmit}
-        disabled={status !== 'input'}
-      >
-        <a className={styles['button-text']}>CREATE</a>
-      </button>
+      <div className={styles['form-row']}>
+        <button
+          className={`${styles['button']} ${
+            clearable ? styles['button-available'] : styles['button-disabled']
+          }`}
+          onClick={onClear}
+          disabled={!clearable}
+        >
+          CLEAR
+          {/* <a className={styles['button-text']}>CLEAR</a> */}
+        </button>
+        <button
+          className={`${styles['button']} ${
+            mintable ? styles['button-available'] : styles['button-disabled']
+          }`}
+          onClick={onSubmit}
+          disabled={!mintable}
+        >
+          CREATE
+          {/* <a className={styles['button-text']}>CREATE</a> */}
+        </button>
+      </div>
     </div>
   );
 };
