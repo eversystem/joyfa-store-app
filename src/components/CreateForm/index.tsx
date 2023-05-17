@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useSDK, useAddress } from '@thirdweb-dev/react';
-import { getAllCreators, listing } from 'src/api';
+import { isCreatorAddress, listing } from 'src/api';
 import { TextInput } from './elements/TextInput';
 import { FileInput } from './elements/FileInput';
 import styles from './styles/create-form.module.css';
 import { TextareaInput } from './elements/TextareaInput';
-import { UserEntity } from 'src/utils/data';
 
 type ListingStatus = 'input' | 'loading' | 'completed' | 'error';
 
 export const CreateForm: React.FC = () => {
   const sdk = useSDK();
   const address = useAddress();
-  const [creators, setCreators] = useState<UserEntity[]>([]);
+  const [isCreator, setIsCretor] = useState<boolean>(false);
   const [status, setStatus] = useState<ListingStatus>('input');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -24,12 +23,13 @@ export const CreateForm: React.FC = () => {
   const [supply, setSupply] = useState('1');
 
   useEffect(() => {
-    if (!creators.length) {
-      void getAllCreators().then((creators) => {
-        setCreators(creators);
+    if (address) {
+      void isCreatorAddress(address).then((res) => {
+        console.log(res);
+        setIsCretor(res);
       });
     }
-  }, [creators]);
+  }, [address]);
 
   const mintable =
     status === 'input' &&
@@ -106,120 +106,128 @@ export const CreateForm: React.FC = () => {
         The ambassador program is an important step in becoming a community
         empowered and curated platform.
       </div>
-      <div className={styles['form-row']}>
-        <div className={styles['name-and-description']}>
-          {/* name */}
-          <TextInput
-            type="text"
-            label="Name"
-            name="name"
-            value={name}
-            setValue={setName}
-            disabled={status !== 'input'}
-          />
-          {/* description */}
-          <TextareaInput
-            label="Description"
-            name="description"
-            value={description}
-            setValue={setDescription}
-            disabled={status !== 'input'}
-          />
+      {isCreator && (
+        <div>
+          <div className={styles['form-row']}>
+            <div className={styles['name-and-description']}>
+              {/* name */}
+              <TextInput
+                type="text"
+                label="Name"
+                name="name"
+                value={name}
+                setValue={setName}
+                disabled={status !== 'input'}
+              />
+              {/* description */}
+              <TextareaInput
+                label="Description"
+                name="description"
+                value={description}
+                setValue={setDescription}
+                disabled={status !== 'input'}
+              />
+            </div>
+            {/* image */}
+            <div className={styles['image-uploader']}>
+              <FileInput
+                label="Upload Image"
+                name="image"
+                value={image}
+                setValue={setImage}
+                disabled={status !== 'input'}
+              />
+            </div>
+          </div>
+          <div className={styles['form-row']}>
+            <div className={styles['animation-and-glbs-uploader']}>
+              {/* animation */}
+              <FileInput
+                label="Animation URL"
+                name="animation_url"
+                value={animation}
+                setValue={setAnimation}
+                disabled={status !== 'input'}
+              />
+              {/* glb_l */}
+              <FileInput
+                label="GLB_L"
+                name="glb_l"
+                value={glbL}
+                setValue={setGLBL}
+                disabled={status !== 'input'}
+              />
+              {/* gln_r */}
+              <FileInput
+                label="GLB_R"
+                name="glb_r"
+                value={glbR}
+                setValue={setGLBR}
+                disabled={status !== 'input'}
+              />
+            </div>
+          </div>
+          <div className={styles['form-row']}>
+            <div className={styles['price-and-supply']}>
+              {/* price */}
+              <TextInput
+                type="number"
+                label="Price"
+                name="price"
+                value={price}
+                setValue={(value) => {
+                  // validate
+                  if (!Number.isNaN(value) && 0 < Number(value)) {
+                    setPrice(Number(value).toString());
+                  }
+                }}
+                disabled={status !== 'input'}
+              />
+              {/* supply */}
+              <TextInput
+                type="number"
+                label="Supply"
+                name="supply"
+                value={supply}
+                setValue={(value) => {
+                  // validate
+                  console.log(value);
+                  if (Number.isInteger(Number(value)) && 0 < Number(value)) {
+                    setSupply(Number(value).toString());
+                  }
+                }}
+                disabled={status !== 'input'}
+              />
+            </div>
+          </div>
+          <div className={styles['form-row']}>
+            <button
+              className={`${styles['button']} ${
+                clearable
+                  ? styles['button-available']
+                  : styles['button-disabled']
+              }`}
+              onClick={onClear}
+              disabled={!clearable}
+            >
+              CLEAR
+              {/* <a className={styles['button-text']}>CLEAR</a> */}
+            </button>
+            <button
+              className={`${styles['button']} ${
+                mintable
+                  ? styles['button-available']
+                  : styles['button-disabled']
+              }`}
+              onClick={onSubmit}
+              disabled={!mintable}
+            >
+              CREATE
+              {/* <a className={styles['button-text']}>CREATE</a> */}
+            </button>
+          </div>
         </div>
-        {/* image */}
-        <div className={styles['image-uploader']}>
-          <FileInput
-            label="Upload Image"
-            name="image"
-            value={image}
-            setValue={setImage}
-            disabled={status !== 'input'}
-          />
-        </div>
-      </div>
-      <div className={styles['form-row']}>
-        <div className={styles['animation-and-glbs-uploader']}>
-          {/* animation */}
-          <FileInput
-            label="Animation URL"
-            name="animation_url"
-            value={animation}
-            setValue={setAnimation}
-            disabled={status !== 'input'}
-          />
-          {/* glb_l */}
-          <FileInput
-            label="GLB_L"
-            name="glb_l"
-            value={glbL}
-            setValue={setGLBL}
-            disabled={status !== 'input'}
-          />
-          {/* gln_r */}
-          <FileInput
-            label="GLB_R"
-            name="glb_r"
-            value={glbR}
-            setValue={setGLBR}
-            disabled={status !== 'input'}
-          />
-        </div>
-      </div>
-      <div className={styles['form-row']}>
-        <div className={styles['price-and-supply']}>
-          {/* price */}
-          <TextInput
-            type="number"
-            label="Price"
-            name="price"
-            value={price}
-            setValue={(value) => {
-              // validate
-              if (!Number.isNaN(value) && 0 < Number(value)) {
-                setPrice(Number(value).toString());
-              }
-            }}
-            disabled={status !== 'input'}
-          />
-          {/* supply */}
-          <TextInput
-            type="number"
-            label="Supply"
-            name="supply"
-            value={supply}
-            setValue={(value) => {
-              // validate
-              console.log(value);
-              if (Number.isInteger(Number(value)) && 0 < Number(value)) {
-                setSupply(Number(value).toString());
-              }
-            }}
-            disabled={status !== 'input'}
-          />
-        </div>
-      </div>
-      <div className={styles['form-row']}>
-        <button
-          className={`${styles['button']} ${
-            clearable ? styles['button-available'] : styles['button-disabled']
-          }`}
-          onClick={onClear}
-          disabled={!clearable}
-        >
-          CLEAR
-          {/* <a className={styles['button-text']}>CLEAR</a> */}
-        </button>
-        <button
-          className={`${styles['button']} ${
-            mintable ? styles['button-available'] : styles['button-disabled']
-          }`}
-          onClick={onSubmit}
-          disabled={!mintable}
-        >
-          CREATE
-          {/* <a className={styles['button-text']}>CREATE</a> */}
-        </button>
-      </div>
+      )}
     </div>
   );
 };
