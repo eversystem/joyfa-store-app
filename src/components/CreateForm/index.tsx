@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSDK, useAddress } from '@thirdweb-dev/react';
-import { listing } from 'src/api';
+import { getAllCreators, listing } from 'src/api';
 import { TextInput } from './elements/TextInput';
 import { FileInput } from './elements/FileInput';
 import styles from './styles/create-form.module.css';
 import { TextareaInput } from './elements/TextareaInput';
+import { UserEntity } from 'src/utils/data';
 
 type ListingStatus = 'input' | 'loading' | 'completed' | 'error';
 
 export const CreateForm: React.FC = () => {
   const sdk = useSDK();
   const address = useAddress();
+  const [creators, setCreators] = useState<UserEntity[]>([]);
   const [status, setStatus] = useState<ListingStatus>('input');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -20,6 +22,14 @@ export const CreateForm: React.FC = () => {
   const [glbR, setGLBR] = useState<File | null>(null);
   const [price, setPrice] = useState('0');
   const [supply, setSupply] = useState('1');
+
+  useEffect(() => {
+    if (!creators.length) {
+      void getAllCreators().then((creators) => {
+        setCreators(creators);
+      });
+    }
+  }, [creators]);
 
   const mintable =
     status === 'input' &&
