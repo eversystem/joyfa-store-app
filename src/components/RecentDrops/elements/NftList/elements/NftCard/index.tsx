@@ -7,11 +7,11 @@ import { NftEntity } from 'src/utils/data';
 export const NftCard: React.FC<NftEntity> = (props) => {
   const navigate = useNavigate();
   return (
-    <div className={styles['wrapper']}>
-      <div
-        className={styles['nft-image-wrapper']}
-        onClick={() => navigate(`/nft/${props.id}`)}
-      >
+    <div
+      className={styles['wrapper']}
+      onClick={() => navigate(`/nft/${props.id}`)}
+    >
+      <div className={styles['nft-image-wrapper']}>
         <img
           className={styles['nft-image']}
           alt="nft-image"

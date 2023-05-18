@@ -95,13 +95,12 @@
 
 .button-available {
   cursor: pointer;
+  background-color: #7d7d7d;
+  border-color: #7d7d7d;
 }
 
-.button-text {
-  font-weight: 700;
-  line-height: 140%;
-  color: #FFFFFF;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+.button-disabled {
+  cursor: not-allowed;
+  background-color: #dddddd;
+  border-color: #dddddd;
 }

@@ -1,25 +1,20 @@
 @font-face {
-  /* font-family: 'GlacialIndifference-Regular'; */
   font-family: 'Glacial Indifference';
-  src: url('../assets/glacial-indifference/GlacialIndifference-Regular.otf') format('opentype');
-}
-
-@font-face {
-  font-family: 'GlacialIndifference-Bold';
-  src: url('../assets/glacial-indifference/GlacialIndifference-Bold.otf') format('opentype');
+  src: url('../assets/glacial-indifference/GlacialIndifference-Regular.otf') format('opentype'),
+    url('../assets/glacial-indifference/GlacialIndifference-Bold.otf') format('opentype');
 }
 
 @font-face {
   font-family: 'Mont';
-  src: url('../assets/mont_regular_macroman/mont-regular-webfont.woff2') format('woff2'),
-    url('../assets/mont_regular_macroman/mont-regular-webfont.woff') format('woff');
+  src: url('../assets/Mont/Web\ Fonts/mont_regular_macroman/mont-regular-webfont.woff2') format('woff2'),
+    url('../assets/Mont/Web\ Fonts/mont_regular_macroman/mont-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 body {
   margin: 0;
-  font-family: 'GlacialIndifference-Regular','Roboto';
+  font-family: 'Glacial Indifference','Roboto';
   font-size:16px;
   font-weight:400;
   color:#605e67;

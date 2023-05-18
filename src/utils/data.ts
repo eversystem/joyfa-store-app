@@ -11,8 +11,10 @@ export type ListingRequest = {
   signature: string;
 };
 
-export type CreatorEntity = {
+export type UserEntity = {
   address: string;
+  admin: boolean;
+  creator: boolean;
   name: string;
   icon?: string;
   cover?: string;
@@ -43,7 +45,7 @@ export type SupplyEntity = {
 export type NftEntity = {
   id: number;
   metadata: MetadataEntity;
-  creator: CreatorEntity;
+  creator: UserEntity;
   supply: SupplyEntity;
   createdAt: Date | string;
   updatedAt: Date | string;

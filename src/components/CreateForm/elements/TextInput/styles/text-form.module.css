@@ -1,3 +1,8 @@
+.wrapper {
+  width: 100%;
+  margin: 5px;
+}
+
 .label {
   font-weight: 700;
   line-height: 140%;
@@ -15,9 +20,10 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  /* background-color: white; */
 }
 
 .input:focus {
   outline: 0;
-  box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
+  /* box-shadow: 0 0 0 2px rgb(33, 150, 243) inset; */
 }

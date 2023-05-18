@@ -35,7 +35,7 @@ export const NftMintButton: React.FC<AvailableNftProps> = (props) => {
       }`}
       onClick={onMint}
     >
-      #{token_id}
+      {token_id}
     </button>
   );
 };
