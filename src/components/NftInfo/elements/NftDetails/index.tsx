@@ -1,6 +1,8 @@
 import { resolveIpfsUri } from '@thirdweb-dev/react';
 import { NftEntity } from 'src/utils/data';
 import styles from './styles/nft-details.module.css';
+import { Model } from './elements/Model';
+import { Movie } from './elements/Movie';
 
 export const NftDetails: React.FC<NftEntity> = (props) => {
   return (
@@ -11,6 +13,18 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
           alt="nft-image"
           src={resolveIpfsUri(props.metadata.image)}
         />
+      </div>
+      <div className={styles['sub-contents']}>
+        {props.metadata.glb_l.endsWith('.glb') && (
+          <div className={styles['sub-contents-wrapper']}>
+            <Model {...props} />
+          </div>
+        )}
+        {props.metadata.animation_url.endsWith('.mp4') && (
+          <div className={styles['sub-contents-wrapper']}>
+            <Movie {...props} />
+          </div>
+        )}
       </div>
       <div className={styles['info']}>
         <div className={styles['name']}>{props.metadata.name}</div>

@@ -2,10 +2,11 @@
   box-sizing: border-box;
 
   display: block;
-  float:left;
+  float: left;
   margin: 20px;
-  width: 100%;
-  max-width:245px;
+  /* width: 100%; */
+  width: 243px;
+  /* max-width: 245px; */
   /* height: 386px; */
   background: #FFFFFF;
   border: 1px solid #F3F3F3;
@@ -14,7 +15,9 @@
 }
 
 .nft-image-wrapper {
-  width: 100%;
+  /* width: 100%; */
+  width: 243px;
+  height: 243px;
   overflow: hidden;
   background-color: #F3F3F3;
   display: flex;

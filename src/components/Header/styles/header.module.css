@@ -3,7 +3,8 @@
 
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: center;
   align-items: center;
   /* padding: 24px 111px; */
   padding: 0 20px;
@@ -22,4 +23,19 @@
   order: 0;
   align-self: stretch;
   flex-grow: 0;
+}
+
+.title {
+  color: black;
+  text-align: center;
+  font-family: 'Glacial Indifference';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 140%;
+}
+
+.wallet-button {
+  position: absolute;
+  right: 10px;
 }
