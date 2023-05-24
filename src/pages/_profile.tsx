@@ -1,13 +1,13 @@
 import { Header } from 'src/components/Header';
-import { RecentDrops } from 'src/components/RecentDrops';
 import { Footer } from 'src/components/Footer';
+import { ProfileView } from 'src/components/ProfileView';
 
-export const Drops: React.FC = () => {
+export const Profile: React.FC = () => {
   return (
     <>
       <Header />
       <main>
-        <RecentDrops />
+        <ProfileView />
       </main>
       <Footer />
     </>

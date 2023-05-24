@@ -4,6 +4,7 @@ import { Header } from 'src/components/Header';
 import { NftInfo } from 'src/components/NftInfo';
 import { getNft } from 'src/api';
 import { NftEntity } from 'src/utils/data';
+import { Footer } from 'src/components/Footer';
 
 type NftPageStatus = 'init' | 'loading' | 'fetched' | 'error';
 
@@ -27,6 +28,7 @@ export const Nft: React.FC = () => {
     <>
       <Header />
       <main>{nft && <NftInfo nft={nft} />}</main>
+      <Footer />
     </>
   );
 };

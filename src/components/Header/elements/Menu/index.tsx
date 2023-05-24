@@ -8,7 +8,7 @@ export const Menu: React.FC = () => {
       <MenuLink text="Home" link="/" />
       <MenuLink text="Store" link="/drops" />
       <MenuLink text="My Studio" link="/create" />
-      <MenuLink text="Contact" link="" />
+      <MenuLink text="Profile" link="/profile" />
       <WalletButton />
     </div>
   );

@@ -7,6 +7,7 @@ import {
 import { Drops } from './pages/_drops';
 import { Nft } from './pages/_nft';
 import { Create } from './pages/_create';
+import { Profile } from './pages/_profile';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -14,6 +15,7 @@ const router = createBrowserRouter(
       <Route path="" element={<Drops />} />
       <Route path="drops" element={<Drops />} />
       <Route path="create" element={<Create />} />
+      <Route path="profile" element={<Profile />} />
       <Route path="nft">
         <Route path=":id" element={<Nft />} />
       </Route>
