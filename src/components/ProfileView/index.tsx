@@ -1,8 +1,8 @@
-import { UserEntity } from 'src/utils/data';
+import { NftEntity, UserEntity } from 'src/utils/data';
 import styles from './styles/profile-view.module.css';
 import { NFT, useAddress, useContract } from '@thirdweb-dev/react';
 import { useState, useEffect } from 'react';
-import { getUserInfo } from 'src/api';
+import { getNftsByCreator, getUserInfo } from 'src/api';
 import { NFT_COLLECTION_ADDRESS } from 'src/utils/env';
 
 export const ProfileView: React.FC = () => {
@@ -16,6 +16,7 @@ export const ProfileView: React.FC = () => {
   );
   const [userInfo, setuserInfo] = useState<UserEntity | null>(null);
   const [ownedNfts, setOwnedNfts] = useState<NFT[]>([]);
+  const [createdNfts, setCreatedNfts] = useState<NftEntity[]>([]);
   useEffect(() => {
     if (address !== currentAddress) {
       setuserInfo(null);
@@ -27,15 +28,20 @@ export const ProfileView: React.FC = () => {
       currentAddress
     ) {
       console.log('update-user-info');
-      void nftCollection.getOwned(currentAddress).then((res) => {
+      void nftCollection.getOwned(currentAddress).then((nfts) => {
         console.log('owned-nfts');
-        console.log(res);
-        setOwnedNfts(res);
+        console.log(nfts);
+        setOwnedNfts(nfts);
       });
-      void getUserInfo(currentAddress).then((res) => {
+      void getUserInfo(currentAddress).then((user) => {
         console.log('user-info');
-        console.log(res);
-        setuserInfo(res);
+        console.log(user);
+        setuserInfo(user);
+        if (user.creator) {
+          void getNftsByCreator(user.address).then((nfts) => {
+            setCreatedNfts(nfts);
+          });
+        }
       });
     }
   }, [address, currentAddress, userInfo, nftCollection]);
@@ -44,6 +50,19 @@ export const ProfileView: React.FC = () => {
       <div>{address}</div>
       <div>{userInfo?.address}</div>
       <div>{userInfo?.name}</div>
+      Owned NFT
+      {ownedNfts.map((nft) => (
+        <div key={nft.metadata.name}>{nft.metadata.name}</div>
+      ))}
+      <br />
+      {userInfo?.creator && (
+        <div>
+          Created NFT
+          {createdNfts.map((nft) => (
+            <div key={nft.id}>{nft.metadata.name}</div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

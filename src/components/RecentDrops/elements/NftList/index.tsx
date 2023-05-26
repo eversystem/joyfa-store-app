@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllNfts } from 'src/api';
 import { NftEntity } from 'src/utils/data';
-import { NftCard } from './elements/NftCard';
+import { NftCard } from '../../../NftCard';
 import styles from './styles/nft-list.module.css';
 
 type NftListStatus = 'init' | 'loading' | 'fetched' | 'error';

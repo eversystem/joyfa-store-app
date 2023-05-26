@@ -66,6 +66,9 @@ export const CreateForm: React.FC = () => {
       if (!sdk) {
         throw new Error('sdk_not_connected');
       }
+      if (!(image && animation && glbL && glbR)) {
+        throw new Error('file_not_found');
+      }
       console.log('upload_file');
       const [_image, _animation_url, _glb_l, _glb_r] =
         await sdk.storage.uploadBatch([image, animation, glbL, glbR]);
