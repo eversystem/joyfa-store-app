@@ -50,7 +50,7 @@ export const ProfileView: React.FC = () => {
       <div>{address}</div>
       <div>{userInfo?.address}</div>
       <div>{userInfo?.name}</div>
-      Owned NFT
+      {ownedNfts.length && <div>Owned NFT</div>}
       {ownedNfts.map((nft) => (
         <div key={nft.metadata.name}>{nft.metadata.name}</div>
       ))}
