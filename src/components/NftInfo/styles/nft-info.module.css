@@ -27,7 +27,7 @@
   justify-content: center;
   width: 100%;
   max-width:650px;
-  height:350px;
+  max-height:350px;
   overflow-y: scroll;
   margin: 0px auto;
 }

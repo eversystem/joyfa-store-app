@@ -21,12 +21,12 @@
 }
 
 .form-row {
-  display: block;
   clear:both;
+  margin:50px 0;
 }
 
 .name-and-description {
-  width: 500px;
+  width: 400px;
   float:left;
 }
 
@@ -50,17 +50,11 @@
   border-radius: 4px;
   cursor:pointer;
 }
-.animation-and-glbs-uploader > div:first-child{
-  margin-right:5%;
-}
-.animation-and-glbs-uploader > div:last-child{
-  margin-left:5%;
-}
 .price-and-supply {
   display: block;
 }
 .price-and-supply > div {
-  width:47%;
+  width:30%;
   float:left;
 }
 
