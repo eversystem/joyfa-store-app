@@ -105,10 +105,6 @@ export const CreateForm: React.FC = () => {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['title']}>CREATE</div>
-      <div className={styles['message']}>
-        The ambassador program is an important step in becoming a community
-        empowered and curated platform.
-      </div>
       {isCreator && (
         <div>
           <div className={styles['form-row']}>
@@ -134,7 +130,7 @@ export const CreateForm: React.FC = () => {
             {/* image */}
             <div className={styles['image-uploader']}>
               <FileInput
-                label="Upload Image"
+                label="Image"
                 name="image"
                 value={image}
                 setValue={setImage}
@@ -146,7 +142,7 @@ export const CreateForm: React.FC = () => {
             <div className={styles['animation-and-glbs-uploader']}>
               {/* animation */}
               <FileInput
-                label="Animation URL"
+                label="Video"
                 name="animation_url"
                 value={animation}
                 setValue={setAnimation}
@@ -154,7 +150,7 @@ export const CreateForm: React.FC = () => {
               />
               {/* glb_l */}
               <FileInput
-                label="GLB_L"
+                label="GLB Left"
                 name="glb_l"
                 value={glbL}
                 setValue={setGLBL}
@@ -162,7 +158,7 @@ export const CreateForm: React.FC = () => {
               />
               {/* gln_r */}
               <FileInput
-                label="GLB_R"
+                label="GLB Right"
                 name="glb_r"
                 value={glbR}
                 setValue={setGLBR}
