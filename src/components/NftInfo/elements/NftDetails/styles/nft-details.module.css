@@ -4,12 +4,18 @@
   width: 100%;
 }
 
-.image-wrapper {
+.content {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 500px;
   overflow: hidden;
+}
+
+.image-wrapper {
+  width: 100%;
+  height:100%;
 }
 
 .image {
@@ -18,23 +24,46 @@
   object-fit: contain;
 }
 
-.sub-contents {
-  display: flex;
-  flex-direction: column;
+.arrow-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  z-index: 1;
 }
 
-.sub-contents-wrapper {
-  /* width: 150px; */
-  /* width: 120px; */
-  /* height: 90px; */
-  /* border: 1px solid black; */
-  /* border-radius: 5px; */
+.arrow-button-left {
+  left: 0;
 }
 
-/* .video {
-  width: 100%;
-  height: 100%;
-} */
+.arrow-button-left::before {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 8px 6px 0;
+  border-color: transparent #000 transparent transparent;
+}
+
+.arrow-button-right {
+  right: 0;
+}
+
+.arrow-button-right::before {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 0 6px 8px;
+  border-color: transparent transparent transparent #000;
+}
 
 .info {
   margin-left: 64px;
@@ -42,9 +71,9 @@
 
 .name {
   font-family: 'Mont';
-  margin: 48px 0 16px 0;
+  margin: 0px 0 16px 0;
   font-weight: 900;
-  font-size: 48px;
+  font-size: 32px;
   line-height: 120%;
   color: #0D0F08;
 }
