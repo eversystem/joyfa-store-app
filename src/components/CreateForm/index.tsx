@@ -180,6 +180,7 @@ export const CreateForm: React.FC = () => {
                     setPrice(Number(value).toString());
                   }
                 }}
+                suffix="ETH"
                 disabled={status !== 'input'}
               />
               {/* supply */}

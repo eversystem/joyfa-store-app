@@ -6,8 +6,13 @@
 .label {
   font-weight: 700;
   line-height: 140%;
-  margin:20px 0 5px 0;
+  margin: 20px 0 5px 0;
   color: #605E67;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: row;
 }
 
 .input {
@@ -21,7 +26,10 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  /* background-color: white; */
+}
+
+.input-suffix {
+  margin: auto;
 }
 
 .input:focus {

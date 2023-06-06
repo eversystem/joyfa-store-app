@@ -4,6 +4,8 @@ import { NFT, useAddress, useContract } from '@thirdweb-dev/react';
 import { useState, useEffect } from 'react';
 import { getNftsByCreator, getUserInfo } from 'src/api';
 import { NFT_COLLECTION_ADDRESS } from 'src/utils/env';
+import { NftCard } from '../NftCard';
+import { NftCardById } from './elements/NftCardById';
 
 export const ProfileView: React.FC = () => {
   const address = useAddress();
@@ -48,19 +50,25 @@ export const ProfileView: React.FC = () => {
   return (
     <div className={styles['']}>
       <div>{address}</div>
-      <div>{userInfo?.address}</div>
-      <div>{userInfo?.name}</div>
-      {ownedNfts.length && <div>Owned NFT</div>}
-      {ownedNfts.map((nft) => (
-        <div key={nft.metadata.name}>{nft.metadata.name}</div>
-      ))}
+      {ownedNfts.length && (
+        <div>
+          <div className={styles['cntents-label']}>Collection</div>
+          <div className={styles['nft-list']}>
+            {ownedNfts.map((nft) => (
+              <NftCardById key={nft.metadata.id} {...nft} />
+            ))}
+          </div>
+        </div>
+      )}
       <br />
       {userInfo?.creator && (
         <div>
-          Created NFT
-          {createdNfts.map((nft) => (
-            <div key={nft.id}>{nft.metadata.name}</div>
-          ))}
+          <div className={styles['cntents-label']}>Created NFT</div>
+          <div className={styles['nft-list']}>
+            {createdNfts.map((nft) => (
+              <NftCard {...nft} />
+            ))}
+          </div>
         </div>
       )}
     </div>
