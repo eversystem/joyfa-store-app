@@ -59,6 +59,11 @@ export const ProfileEdit: React.FC = () => {
   }, [address, currentAddress, userInfo, nftCollection]);
   return (
     <div className={styles['']}>
+      <div>Profile Edit</div>
+      <div>
+        The ambassador program is an important step in becoming a community
+        empowered and curated platform.
+      </div>
       {userInfo && (
         <div>
           <button
