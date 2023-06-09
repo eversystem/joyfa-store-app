@@ -10,7 +10,7 @@ export const Movie: React.FC<NftEntity> = (props) => {
       // controls={false}
       controls
       className={styles['video']}
-      width={'150px'}
+      width={'100%;'}
     >
       <source
         src={resolveIpfsUri(props.metadata.animation_url)}
