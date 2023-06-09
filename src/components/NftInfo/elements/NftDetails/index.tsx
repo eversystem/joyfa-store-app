@@ -26,8 +26,8 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
       });
     } else if (direction === 'previous') {
       startTransition(() => {
-        setCurrentContentIndex(
-          (prevIndex) => (prevIndex === 0 ? contents.length - 1 : prevIndex - 1),
+        setCurrentContentIndex((prevIndex) =>
+          prevIndex === 0 ? contents.length - 1 : prevIndex - 1,
         );
       });
     }
