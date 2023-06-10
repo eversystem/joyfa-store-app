@@ -53,27 +53,33 @@ export const ProfileView: React.FC = () => {
     <div className={styles['']}>
       {userInfo && (
         <div>
-          <div>
-            <button onClick={() => navigate('/profile/edit')}>edit</button>
-          </div>
           <div className={styles['img-cover']}>
             <img src={userInfo.cover || undefined} />
           </div>
-          <div className={styles['img-icon']}>
-            <img src={userInfo.icon || undefined} />
-          </div>
-          <div className={styles['name']}>Name: {userInfo.name}</div>
-          <div className={styles['address']}>Address: {address}</div>
-          <div className={styles['description']}>
-            Description: {userInfo.description}
-          </div>
-          <div className={styles['socials']}>
-            <div className={styles['twitter']}>Twitter: {userInfo.twitter}</div>
-            <div className={styles['instagram']}>
-              Instagram: {userInfo.instagram}
+          <main>
+            <div>
+              <button onClick={() => navigate('/profile/edit')}>edit</button>
             </div>
-            <div className={styles['website']}>Website: {userInfo.website}</div>
-          </div>
+            <div className={styles['img-icon']}>
+              <img src={userInfo.icon || undefined} />
+            </div>
+            <div className={styles['name']}>Name: {userInfo.name}</div>
+            <div className={styles['address']}>Address: {address}</div>
+            <div className={styles['description']}>
+              Description: {userInfo.description}
+            </div>
+            <div className={styles['socials']}>
+              <div className={styles['twitter']}>
+                Twitter: {userInfo.twitter}
+              </div>
+              <div className={styles['instagram']}>
+                Instagram: {userInfo.instagram}
+              </div>
+              <div className={styles['website']}>
+                Website: {userInfo.website}
+              </div>
+            </div>
+          </main>
           {ownedNfts.length ? (
             <div>
               <div className={styles['cntents-label']}>Collection</div>
@@ -86,14 +92,16 @@ export const ProfileView: React.FC = () => {
           ) : null}
           <br />
           {userInfo?.creator && (
-            <div>
-              <div className={styles['cntents-label']}>Created NFT</div>
-              <div className={styles['nft-list']}>
-                {createdNfts.map((nft, i) => (
-                  <NftCard key={i} {...nft} />
-                ))}
+            <main>
+              <div>
+                <div className={styles['cntents-label']}>Created NFT</div>
+                <div className={styles['nft-list']}>
+                  {createdNfts.map((nft, i) => (
+                    <NftCard key={i} {...nft} />
+                  ))}
+                </div>
               </div>
-            </div>
+            </main>
           )}
         </div>
       )}

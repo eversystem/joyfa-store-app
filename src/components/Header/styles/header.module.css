@@ -10,7 +10,7 @@
   /* gap: 684px; */
 
   width: 100vw;
-  height: 108px;
+  height: 90px;
   padding: 0px 50px;
 
   /* Shades/Dark-15% */
@@ -30,8 +30,8 @@
   text-align: center;
   font-family: 'Glacial Indifference';
   font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
+  font-weight: 400;
+  font-size: 14px;
   line-height: 140%;
 }
 

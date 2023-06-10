@@ -6,9 +6,7 @@ export const Profile: React.FC = () => {
   return (
     <>
       <Header />
-      <main>
-        <ProfileView />
-      </main>
+      <ProfileView />
       <Footer />
     </>
   );

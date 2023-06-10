@@ -13,3 +13,9 @@
   line-height: 180px;
   text-align: center;
 }
+
+.img-cover{
+  width:100vw;
+  overflow: visible;
+  height:250px;
+}
