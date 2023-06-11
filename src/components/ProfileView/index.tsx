@@ -2,11 +2,15 @@ import { NftEntity, UserEntity } from 'src/utils/data';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles/profile-view.module.css';
 import { NFT, useAddress, useContract } from '@thirdweb-dev/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { getNftsByCreator, getUserInfo } from 'src/api';
 import { NFT_COLLECTION_ADDRESS } from 'src/utils/env';
 import { NftCard } from '../NftCard';
 import { NftCardById } from './elements/NftCardById';
+import ProfileTwitterSvg from 'src/assets/profile-twitter.svg';
+import ProfileInstagramSvg from 'src/assets/profile-instagram.svg';
+import ProfileWebsiteSvg from 'src/assets/profile-website.svg';
+import ProfileEtherscanSvg from 'src/assets/profile-etherscan.svg';
 
 export const ProfileView: React.FC = () => {
   const address = useAddress();
@@ -41,7 +45,7 @@ export const ProfileView: React.FC = () => {
         console.log('user-info');
         console.log(user);
         setUserInfo(user);
-        if (user.creator) {
+        if (user?.creator) {
           void getNftsByCreator(user.address).then((nfts) => {
             setCreatedNfts(nfts);
           });
@@ -55,40 +59,54 @@ export const ProfileView: React.FC = () => {
         <div>
           <div className={styles['img-cover']}>
             <img src={userInfo.cover || undefined} />
+            /*<img src="https://uploads-ssl.webflow.com/623b48aca4d6403c00f8c106/6284bd3414beabc8c536453d_EINSTEIN-BLAZE-Background-Image.jpg" />*/
           </div>
           <main>
-            <div>
-              <button onClick={() => navigate('/profile/edit')}>edit</button>
-            </div>
-            <div className={styles['img-icon']}>
-              <img src={userInfo.icon || undefined} />
-            </div>
-            <div className={styles['name']}>Name: {userInfo.name}</div>
-            <div className={styles['address']}>Address: {address}</div>
-            <div className={styles['description']}>
-              Description: {userInfo.description}
-            </div>
-            <div className={styles['socials']}>
-              <div className={styles['twitter']}>
-                Twitter: {userInfo.twitter}
+            <div className={styles['container']}>
+              <div className={styles['img-icon']}>
+                <img src={userInfo.icon || undefined} />
+                /*<img src="https://uploads-ssl.webflow.com/623b48aca4d6403c00f8c106/63579d4a0b897b5b3958f2f8_tubby%20cats.png" />*/
               </div>
-              <div className={styles['instagram']}>
-                Instagram: {userInfo.instagram}
+              <div className={styles['container-left']}>
+                <div className={styles['name']}>{userInfo.name}</div>
+                <div className={styles['description']}>
+                  {userInfo.description}
+                </div>
+                <div className={styles['edit-button']}>
+                  <button onClick={() => navigate('/profile/edit')}>
+                    Edit Profile
+                  </button>
+                </div>
               </div>
-              <div className={styles['website']}>
-                Website: {userInfo.website}
+              <div className={styles['container-right']}>
+                <div className={styles['socials']}>
+                  <a className={styles.twitter} href={userInfo?.twitter} target="_blank">
+                    <img className={styles.image} src={ProfileTwitterSvg} />
+                  </a>
+                  <a className={styles.instagram} href={userInfo?.instagram} target="_blank">
+                    <img className={styles.image} src={ProfileInstagramSvg} />
+                  </a>
+                  <a className={styles.website} href={userInfo?.website} target="_blank">
+                    <img className={styles.image} src={ProfileWebsiteSvg} />
+                  </a>
+                  <a className={styles.etherscan} href={`https://etherscan.io/address/${address || ''}`} target="_blank">
+                    <img className={styles.image} src={ProfileEtherscanSvg} />
+                  </a>
+                </div>
               </div>
             </div>
           </main>
           {ownedNfts.length ? (
-            <div>
-              <div className={styles['cntents-label']}>Collection</div>
-              <div className={styles['nft-list']}>
-                {ownedNfts.map((nft) => (
-                  <NftCardById key={nft.metadata.id} {...nft} />
-                ))}
+            <main>
+              <div>
+                <div className={styles['cntents-label']}>Collection</div>
+                <div className={styles['nft-list']}>
+                  {ownedNfts.map((nft) => (
+                    <NftCardById key={nft.metadata.id} {...nft} />
+                  ))}
+                </div>
               </div>
-            </div>
+            </main>
           ) : null}
           <br />
           {userInfo?.creator && (

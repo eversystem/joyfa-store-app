@@ -14,8 +14,65 @@
   text-align: center;
 }
 
-.img-cover{
+.img-cover img{
   width:100vw;
-  overflow: visible;
   height:250px;
+  object-fit: cover;
+}
+.container{
+  margin-top:-170px;
+}
+.container-left{
+  float:left;
+  width:65%;
+}
+.container-right{
+  float:right;
+  width:30%;
+}
+.img-icon{
+  width:250px;
+}
+.img-icon img{
+  border-radius:100%;
+  width:160px;
+  border: 5px solid #fff;
+}
+.name{
+  font-size:30px;
+  font-weight:600;
+  margin:5px 0;
+  font-family:"Mont";
+}
+.description{
+  margin:20px 0;
+}
+.socials{
+  width:100%;
+}
+.socials a{
+  width:22px;
+  float:left;
+  margin:0 10px;
+  display:block;
+}
+.socials a img{
+  width:100%;
+}
+.edit-button button{
+  background-color:#ffffff;
+  color:#605e67;
+  padding:10px;
+  border-radius:10px;
+  border-width:1px;
+  cursor:pointer;
+}
+.cntents-label{
+  font-family: 'Glacial Indifference';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 120%;
+  color: #0D0F08;
+  margin: 50px 10px 10px 10px;
 }
