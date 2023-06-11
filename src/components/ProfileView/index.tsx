@@ -59,13 +59,13 @@ export const ProfileView: React.FC = () => {
         <div>
           <div className={styles['img-cover']}>
             <img src={userInfo.cover || undefined} />
-            /*<img src="https://uploads-ssl.webflow.com/623b48aca4d6403c00f8c106/6284bd3414beabc8c536453d_EINSTEIN-BLAZE-Background-Image.jpg" />*/
+            {/*<img src="https://uploads-ssl.webflow.com/623b48aca4d6403c00f8c106/6284bd3414beabc8c536453d_EINSTEIN-BLAZE-Background-Image.jpg" />*/}
           </div>
           <main>
             <div className={styles['container']}>
               <div className={styles['img-icon']}>
                 <img src={userInfo.icon || undefined} />
-                /*<img src="https://uploads-ssl.webflow.com/623b48aca4d6403c00f8c106/63579d4a0b897b5b3958f2f8_tubby%20cats.png" />*/
+                {/*<img src="https://uploads-ssl.webflow.com/623b48aca4d6403c00f8c106/63579d4a0b897b5b3958f2f8_tubby%20cats.png" />*/}
               </div>
               <div className={styles['container-left']}>
                 <div className={styles['name']}>{userInfo.name}</div>
