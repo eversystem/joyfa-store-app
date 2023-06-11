@@ -80,16 +80,32 @@ export const ProfileView: React.FC = () => {
               </div>
               <div className={styles['container-right']}>
                 <div className={styles['socials']}>
-                  <a className={styles.twitter} href={userInfo?.twitter} target="_blank">
+                  <a
+                    className={styles.twitter}
+                    href={userInfo?.twitter}
+                    target="_blank"
+                  >
                     <img className={styles.image} src={ProfileTwitterSvg} />
                   </a>
-                  <a className={styles.instagram} href={userInfo?.instagram} target="_blank">
+                  <a
+                    className={styles.instagram}
+                    href={userInfo?.instagram}
+                    target="_blank"
+                  >
                     <img className={styles.image} src={ProfileInstagramSvg} />
                   </a>
-                  <a className={styles.website} href={userInfo?.website} target="_blank">
+                  <a
+                    className={styles.website}
+                    href={userInfo?.website}
+                    target="_blank"
+                  >
                     <img className={styles.image} src={ProfileWebsiteSvg} />
                   </a>
-                  <a className={styles.etherscan} href={`https://etherscan.io/address/${address || ''}`} target="_blank">
+                  <a
+                    className={styles.etherscan}
+                    href={`https://etherscan.io/address/${address || ''}`}
+                    target="_blank"
+                  >
                     <img className={styles.image} src={ProfileEtherscanSvg} />
                   </a>
                 </div>

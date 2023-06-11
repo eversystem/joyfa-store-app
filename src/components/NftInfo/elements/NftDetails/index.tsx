@@ -51,7 +51,7 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
         <div className={styles['name']}>{props.metadata.name}</div>
         <div className={styles['creator']}>{props.creator.name}</div>
         <div className={styles['price']}>
-          <div className={styles['price-prefix']}>Price: </div>
+          <div className={styles['price-prefix']}>Price</div>
           <div className={styles['price-content']}>
             {props.supply.price} ETH
           </div>
