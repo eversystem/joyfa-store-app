@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSDK, useAddress } from '@thirdweb-dev/react';
-import { isCreatorAddress, listing } from 'src/api';
+import { isCreatorAddress, listing, signin } from 'src/api';
 import { TextInput } from './elements/TextInput';
 import { FileInput } from './elements/FileInput';
 import styles from './styles/create-form.module.css';
@@ -55,9 +55,9 @@ export const CreateForm: React.FC = () => {
 
   const onSubmit = async () => {
     try {
-      if (status !== 'input') {
-        throw new Error('invalid_status');
-      }
+      // if (status !== 'input') {
+      //   throw new Error('invalid_status');
+      // }
       console.log('submit');
       setStatus('loading');
       if (!address) {
@@ -88,14 +88,16 @@ export const CreateForm: React.FC = () => {
       if (!signer) {
         throw new Error('signer not found');
       }
-      const signature = await signer.signMessage(JSON.stringify(metadata));
+      const message = `Sign in to Drops. (${new Date().getTime().toString()})`;
+      const signature = await signer.signMessage(message);
       if (!signature) {
         throw new Error('sign rejected');
       }
-      await listing({
-        ...metadata,
-        signature,
-      });
+      const jwt = await signin(
+        address.toLowerCase(),
+        `${message}:${signature}`,
+      );
+      await listing(jwt, { ...metadata });
       setStatus('completed');
     } catch (error) {
       setStatus('error');
@@ -220,7 +222,7 @@ export const CreateForm: React.FC = () => {
                   : styles['button-disabled']
               }`}
               onClick={onSubmit}
-              disabled={!mintable}
+              // disabled={!mintable}
             >
               CREATE
               {/* <a className={styles['button-text']}>CREATE</a> */}

@@ -6,4 +6,5 @@ export * from './get-user-info';
 export * from './is-creator-address';
 export * from './listing';
 export * from './mint';
-export * from './register';
+export * from './register-user';
+export * from './signin';

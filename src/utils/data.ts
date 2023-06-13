@@ -1,5 +1,5 @@
 export type ListingRequest = {
-  creator: string;
+  // creator: string;
   name: string;
   description: string;
   image: string;
@@ -8,7 +8,7 @@ export type ListingRequest = {
   glb_l: string;
   price: number;
   supply: number;
-  signature: string;
+  // signature: string;
 };
 
 export type UserEntity = {
