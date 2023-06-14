@@ -1,15 +1,20 @@
 import { UserEntity } from 'src/utils/data';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles/profile-edit.module.css';
-import { useAddress, useContract } from '@thirdweb-dev/react';
+import { useAddress, useContract, useSDK } from '@thirdweb-dev/react';
 import { useState, useEffect } from 'react';
-import { getUserInfo } from 'src/api';
+import { getUserInfo, signin } from 'src/api';
 import { NFT_COLLECTION_ADDRESS } from 'src/utils/env';
 import { FileInput } from './elements/FileInput';
 import { TextareaInput } from './elements/TextareaInput';
 import { TextInput } from './elements/TextInput';
+import {
+  updateUserProfile,
+  UserEntityUpdatableBySelf,
+} from 'src/api/update-user-profile';
 
 export const ProfileEdit: React.FC = () => {
+  const sdk = useSDK();
   const address = useAddress();
   const navigate = useNavigate();
   const { data: nftCollection } = useContract(
@@ -57,6 +62,33 @@ export const ProfileEdit: React.FC = () => {
       });
     }
   }, [address, currentAddress, userInfo, nftCollection]);
+  const update = async () => {
+    if (userInfo && sdk && address) {
+      const signer = sdk.getSigner();
+      if (!signer) {
+        throw new Error('signer not found');
+      }
+      const message = `Sign in to Drops. (${new Date().getTime().toString()})`;
+      const signature = await signer.signMessage(message);
+      if (!signature) {
+        throw new Error('sign rejected');
+      }
+      const jwt = await signin(
+        address.toLowerCase(),
+        `${message}:${signature}`,
+      );
+      const updateData: UserEntityUpdatableBySelf = {};
+      if (userInfo.name !== name) updateData.name = name;
+      if (userInfo.description !== description)
+        updateData.description = description;
+      if (userInfo.twitter !== twitter) updateData.twitter = twitter;
+      if (userInfo.instagram !== instagram) updateData.instagram = instagram;
+      if (userInfo.website !== website) updateData.website = website;
+      if (icon) updateData.icon = icon;
+      if (cover) updateData.cover = cover;
+      await updateUserProfile(jwt, updateData);
+    }
+  };
   return (
     <div className={styles['']}>
       <div>Profile Edit</div>
@@ -149,10 +181,7 @@ export const ProfileEdit: React.FC = () => {
           </div>
         </div>
       )}
-      <button
-        className={styles['update-btn']}
-        onClick={() => navigate('/profile')}
-      >
+      <button className={styles['update-btn']} onClick={() => update()}>
         update
       </button>
     </div>
