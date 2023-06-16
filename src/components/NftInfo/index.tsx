@@ -90,20 +90,6 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
               />
             ) : null,
           )}
-        {/* {[...new Array(nft.supply.amount)].map((_, token_id) => (
-          <NftMintButton
-            key={token_id}
-            nft_id={nft.id}
-            token_id={token_id}
-            status={
-              status !== 'fetched'
-                ? 'loading'
-                : isMintable(nft.id, token_id)
-                ? 'mintable'
-                : 'minted'
-            }
-          />
-        ))} */}
       </div>
     </div>
   );
