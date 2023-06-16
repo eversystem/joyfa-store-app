@@ -100,7 +100,6 @@ export const ProfileEdit: React.FC = () => {
           >
             back
           </button>
-          <div className={styles['address']}>Address: {address}</div>
           <div className={styles['left']}>
             <div className={styles['name']}>
               <TextInput

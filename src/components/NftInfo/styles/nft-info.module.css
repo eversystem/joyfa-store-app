@@ -40,3 +40,15 @@
 .mint-button-list::-webkit-scrollbar-thumb {
   background-color: #0d0f08;
 }
+.id-filter{
+  text-align:center;
+  margin:20px 0 40px 0;
+}
+.id-filter button{
+  background-color:#F3F3F3;
+  border: none;
+  cursor:pointer;
+  padding:12px 24px;
+  margin:0px 5px;
+  border-radius:5px;
+}

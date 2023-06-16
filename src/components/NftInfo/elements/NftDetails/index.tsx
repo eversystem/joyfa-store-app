@@ -14,22 +14,6 @@ enum ContentsType {
 export const NftDetails: React.FC<NftEntity> = (props) => {
   const { image, glb_l, animation_url } = props.metadata;
   const [contents, setContents] = useState<ContentsType>(ContentsType.IMAGE);
-  // const [currentContentIndex, setCurrentContentIndex] = useState(0);
-  // const handleArrowClick = (direction: string) => {
-  //   if (direction === 'next') {
-  //     startTransition(() => {
-  //       setCurrentContentIndex(
-  //         (prevIndex) => (prevIndex + 1) % contents.length,
-  //       );
-  //     });
-  //   } else if (direction === 'previous') {
-  //     startTransition(() => {
-  //       setCurrentContentIndex((prevIndex) =>
-  //         prevIndex === 0 ? contents.length - 1 : prevIndex - 1,
-  //       );
-  //     });
-  //   }
-  // };
   const ContentsElements = [
     <img
       className={styles['image']}
@@ -42,18 +26,9 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['content']}>
-        {/* TODO */}
-        {/* <button
-          className={`${styles['arrow-button']} ${styles['arrow-button-left']}`}
-          onClick={() => handleArrowClick('previous')}
-        /> */}
         <div className={styles['image-wrapper']}>
-          {ContentsElements[contents]}
+          {ContentsElements[contents] || null}
         </div>
-        {/* <button
-          className={`${styles['arrow-button']} ${styles['arrow-button-right']}`}
-          onClick={() => handleArrowClick('next')}
-        /> */}
       </div>
       <div className={styles['contents-selector']}>
         <button
@@ -62,7 +37,9 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
               ? styles['contents-button-selected']
               : styles['contents-button']
           }
-          onClick={() => setContents(ContentsType.IMAGE)}
+          onClick={() =>
+            startTransition(() => setContents(ContentsType.IMAGE))
+          }
         >
           Image
         </button>
@@ -72,7 +49,9 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
               ? styles['contents-button-selected']
               : styles['contents-button']
           }
-          onClick={() => setContents(ContentsType.MODEL)}
+          onClick={() =>
+            startTransition(() => setContents(ContentsType.MODEL))
+          }
         >
           3D
         </button>
@@ -82,7 +61,9 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
               ? styles['contents-button-selected']
               : styles['contents-button']
           }
-          onClick={() => setContents(ContentsType.VIDEO)}
+          onClick={() =>
+            startTransition(() => setContents(ContentsType.VIDEO))
+          }
         >
           Video
         </button>

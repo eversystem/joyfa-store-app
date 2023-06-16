@@ -7,8 +7,6 @@ export const Movie: React.FC<NftEntity> = (props) => {
     <video
       loop
       autoPlay
-      // controls={false}
-      controls
       className={styles['video']}
       width={'100%;'}
     >
