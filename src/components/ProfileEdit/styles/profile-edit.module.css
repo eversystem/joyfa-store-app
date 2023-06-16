@@ -1,3 +1,22 @@
+.title {
+  font-family: 'Mont';
+  font-size: 32px;
+  line-height: 120%;
+  color: #0D0F08;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.img-cover img{
+  width:100%;
+  max-width:300px;
+}
+.img-icon img{
+  width:100%;
+  max-width:150px;
+}
+
 .nft-list {
   display: flex;
   flex-flow: row wrap;

@@ -39,8 +39,8 @@
   border: 5px solid #fff;
 }
 .name{
-  font-size:30px;
-  font-weight:600;
+  font-size:32px;
+  color: #0D0F08;
   margin:5px 0;
   font-family:"Mont";
 }
@@ -68,11 +68,10 @@
   cursor:pointer;
 }
 .cntents-label{
-  font-family: 'Glacial Indifference';
+  font-family: 'Mont';
   font-style: normal;
-  font-weight: 700;
-  font-size: 36px;
+  font-size: 32px;
   line-height: 120%;
   color: #0D0F08;
-  margin: 50px 10px 10px 10px;
+  margin: 50px 0px 0px 0px;
 }

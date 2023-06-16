@@ -91,7 +91,7 @@ export const ProfileEdit: React.FC = () => {
   };
   return (
     <div className={styles['']}>
-      <div>Profile Edit</div>
+      <div className={styles['title']}>Profile Edit</div>
       {userInfo && (
         <div>
           <button
@@ -101,9 +101,6 @@ export const ProfileEdit: React.FC = () => {
             back
           </button>
           <div className={styles['address']}>Address: {address}</div>
-          <div className={styles['img-cover']}>
-            <img src={userInfo.cover || undefined} />
-          </div>
           <FileInput
             label={'Cover'}
             name={'cover'}
@@ -112,8 +109,8 @@ export const ProfileEdit: React.FC = () => {
               setCover(file);
             }}
           />
-          <div className={styles['img-icon']}>
-            <img src={userInfo.icon || undefined} />
+          <div className={styles['img-cover']}>
+            <img src={userInfo.cover || undefined} />
           </div>
           <FileInput
             label={'Icon'}
@@ -123,6 +120,9 @@ export const ProfileEdit: React.FC = () => {
               setIcon(file);
             }}
           />
+          <div className={styles['img-icon']}>
+            <img src={userInfo.icon || undefined} />
+          </div>
           <div className={styles['name']}>
             <TextInput
               label={'Name'}
