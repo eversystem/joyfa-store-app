@@ -5,10 +5,32 @@ import styles from './styles/nft-details.module.css';
 import { Model } from './elements/Model';
 import { Movie } from './elements/Movie';
 
+enum ContentsType {
+  IMAGE,
+  MODEL,
+  VIDEO,
+}
+
 export const NftDetails: React.FC<NftEntity> = (props) => {
-  const [currentContentIndex, setCurrentContentIndex] = useState(0);
   const { image, glb_l, animation_url } = props.metadata;
-  const contents = [
+  const [contents, setContents] = useState<ContentsType>(ContentsType.IMAGE);
+  // const [currentContentIndex, setCurrentContentIndex] = useState(0);
+  // const handleArrowClick = (direction: string) => {
+  //   if (direction === 'next') {
+  //     startTransition(() => {
+  //       setCurrentContentIndex(
+  //         (prevIndex) => (prevIndex + 1) % contents.length,
+  //       );
+  //     });
+  //   } else if (direction === 'previous') {
+  //     startTransition(() => {
+  //       setCurrentContentIndex((prevIndex) =>
+  //         prevIndex === 0 ? contents.length - 1 : prevIndex - 1,
+  //       );
+  //     });
+  //   }
+  // };
+  const ContentsElements = [
     <img
       className={styles['image']}
       alt="nft-image"
@@ -17,35 +39,53 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
     glb_l.endsWith('.glb') ? <Model {...props} /> : null,
     animation_url.endsWith('.mp4') ? <Movie {...props} /> : null,
   ];
-  const handleArrowClick = (direction: string) => {
-    if (direction === 'next') {
-      startTransition(() => {
-        setCurrentContentIndex(
-          (prevIndex) => (prevIndex + 1) % contents.length,
-        );
-      });
-    } else if (direction === 'previous') {
-      startTransition(() => {
-        setCurrentContentIndex((prevIndex) =>
-          prevIndex === 0 ? contents.length - 1 : prevIndex - 1,
-        );
-      });
-    }
-  };
   return (
     <div className={styles['wrapper']}>
       <div className={styles['content']}>
-        <button
+        {/* TODO */}
+        {/* <button
           className={`${styles['arrow-button']} ${styles['arrow-button-left']}`}
           onClick={() => handleArrowClick('previous')}
-        />
+        /> */}
         <div className={styles['image-wrapper']}>
-          {contents[currentContentIndex]}
+          {ContentsElements[contents]}
         </div>
-        <button
+        {/* <button
           className={`${styles['arrow-button']} ${styles['arrow-button-right']}`}
           onClick={() => handleArrowClick('next')}
-        />
+        /> */}
+      </div>
+      <div className={styles['contents-selector']}>
+        <button
+          className={
+            contents === ContentsType.IMAGE
+              ? styles['contents-button-selected']
+              : styles['contents-button']
+          }
+          onClick={() => setContents(ContentsType.IMAGE)}
+        >
+          Image
+        </button>
+        <button
+          className={
+            contents === ContentsType.MODEL
+              ? styles['contents-button-selected']
+              : styles['contents-button']
+          }
+          onClick={() => setContents(ContentsType.MODEL)}
+        >
+          3D
+        </button>
+        <button
+          className={
+            contents === ContentsType.VIDEO
+              ? styles['contents-button-selected']
+              : styles['contents-button']
+          }
+          onClick={() => setContents(ContentsType.VIDEO)}
+        >
+          Video
+        </button>
       </div>
       <div className={styles['info']}>
         <div className={styles['name']}>{props.metadata.name}</div>

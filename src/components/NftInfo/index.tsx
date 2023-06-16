@@ -52,6 +52,13 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
         <NftDetails {...nft} />
       </div>
       <div className={styles['available-ids']}>Available IDs</div>
+      <div className={styles['id-filter']}>
+        {[...new Array(Math.ceil(nft.supply.amount / 20))].map((_, i) => (
+          <button className={styles['id-filter-button']} key={i}>
+            {1 + i * 20} - {(i + 1) * 20}
+          </button>
+        ))}
+      </div>
       <div className={styles['mint-button-list']}>
         {[...new Array(nft.supply.amount)].map((_, token_id) => (
           <NftMintButton
