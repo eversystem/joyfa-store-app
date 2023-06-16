@@ -8,6 +8,18 @@
   align-self: stretch;
   flex-grow: 0;
 }
+.left{
+  float:left;
+  width:500px;
+}
+.right{
+  float:left;
+  width:250px;
+  margin-left:50px;
+}
+.clear{
+  clear:both;
+}
 .img-cover img{
   width:100%;
   max-width:300px;

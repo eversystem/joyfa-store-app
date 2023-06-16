@@ -101,84 +101,89 @@ export const ProfileEdit: React.FC = () => {
             back
           </button>
           <div className={styles['address']}>Address: {address}</div>
-          <FileInput
-            label={'Cover'}
-            name={'cover'}
-            value={cover}
-            setValue={(file: File | null) => {
-              setCover(file);
-            }}
-          />
-          <div className={styles['img-cover']}>
-            <img src={userInfo.cover || undefined} />
+          <div className={styles['left']}>
+            <div className={styles['name']}>
+              <TextInput
+                label={'Name'}
+                name={'name'}
+                value={name}
+                type={'text'}
+                setValue={(value: string) => {
+                  setName(value);
+                }}
+              />
+            </div>
+            <div className={styles['description']}>
+              <TextareaInput
+                label={'Description'}
+                name={'description'}
+                value={description}
+                setValue={(value: string) => {
+                  setDescription(value);
+                }}
+              />
+            </div>
+            <div className={styles['socials']}>
+              <div className={styles['twitter']}>
+                <TextInput
+                  label={'Twitter'}
+                  name={'twitter'}
+                  value={twitter}
+                  type={'text'}
+                  setValue={(value: string) => {
+                    setTwitter(value);
+                  }}
+                />
+              </div>
+              <div className={styles['instagram']}>
+                <TextInput
+                  label={'Instagram'}
+                  name={'instagram'}
+                  value={instagram}
+                  type={'text'}
+                  setValue={(value: string) => {
+                    setInstagram(value);
+                  }}
+                />
+              </div>
+              <div className={styles['website']}>
+                <TextInput
+                  label={'Website'}
+                  name={'website'}
+                  value={website}
+                  type={'text'}
+                  setValue={(value: string) => {
+                    setWebsite(value);
+                  }}
+                />
+              </div>
+            </div>
           </div>
-          <FileInput
-            label={'Icon'}
-            name={'icon'}
-            value={icon}
-            setValue={(file: File | null) => {
-              setIcon(file);
-            }}
-          />
-          <div className={styles['img-icon']}>
-            <img src={userInfo.icon || undefined} />
-          </div>
-          <div className={styles['name']}>
-            <TextInput
-              label={'Name'}
-              name={'name'}
-              value={name}
-              type={'text'}
-              setValue={(value: string) => {
-                setName(value);
+          <div className={styles['right']}>
+            <FileInput
+              label={'Cover'}
+              name={'cover'}
+              value={cover}
+              setValue={(file: File | null) => {
+                setCover(file);
               }}
             />
-          </div>
-          <div className={styles['description']}>
-            <TextareaInput
-              label={'Description'}
-              name={'description'}
-              value={description}
-              setValue={(value: string) => {
-                setDescription(value);
+            <div className={styles['img-cover']}>
+              <img src={userInfo.cover || undefined} />
+            </div>
+            <FileInput
+              label={'Icon'}
+              name={'icon'}
+              value={icon}
+              setValue={(file: File | null) => {
+                setIcon(file);
               }}
             />
-          </div>
-          <div className={styles['socials']}>
-            <div className={styles['twitter']}>
-              <TextInput
-                label={'Twitter'}
-                name={'twitter'}
-                value={twitter}
-                type={'text'}
-                setValue={(value: string) => {
-                  setTwitter(value);
-                }}
-              />
-            </div>
-            <div className={styles['instagram']}>
-              <TextInput
-                label={'Instagram'}
-                name={'instagram'}
-                value={instagram}
-                type={'text'}
-                setValue={(value: string) => {
-                  setInstagram(value);
-                }}
-              />
-            </div>
-            <div className={styles['website']}>
-              <TextInput
-                label={'Website'}
-                name={'website'}
-                value={website}
-                type={'text'}
-                setValue={(value: string) => {
-                  setWebsite(value);
-                }}
-              />
+            <div className={styles['img-icon']}>
+              <img src={userInfo.icon || undefined} />
             </div>
           </div>
+          <div className={styles['clear']}></div>
         </div>
       )}
       <button className={styles['update-btn']} onClick={() => update()}>
