@@ -107,126 +107,117 @@ export const CreateForm: React.FC = () => {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['title']}>CREATE</div>
+      <div className={styles['message']}>*required</div>
       {isCreator && (
         <div>
-          <div className={styles['form-row']}>
-            <div className={styles['name-and-description']}>
-              {/* name */}
-              <TextInput
-                type="text"
-                label="Name"
-                name="name"
-                value={name}
-                setValue={setName}
-                disabled={status !== 'input'}
-              />
-              {/* description */}
-              <TextareaInput
-                label="Description"
-                name="description"
-                value={description}
-                setValue={setDescription}
-                disabled={status !== 'input'}
-              />
+          <div className={styles['form-left']}>
+            <div className={styles['form-row']}>
+              <div className={styles['name-and-description']}>
+                {/* name */}
+                <TextInput
+                  type="text"
+                  label="Name*"
+                  name="name"
+                  value={name}
+                  setValue={setName}
+                  disabled={status !== 'input'}
+                />
+                {/* description */}
+                <TextareaInput
+                  label="Description*"
+                  name="description"
+                  value={description}
+                  setValue={setDescription}
+                  disabled={status !== 'input'}
+                />
+              </div>
             </div>
+            <div className={styles['form-row']}>
+              <div className={styles['price-and-supply']}>
+                {/* price */}
+                <TextInput
+                  type="number"
+                  label="Price per copy*"
+                  name="price"
+                  value={price}
+                  setValue={(value) => {
+                    // validate
+                    if (!Number.isNaN(value) && 0 < Number(value)) {
+                      setPrice(Number(value).toString());
+                    }
+                  }}
+                  suffix="&nbsp;ETH"
+                  disabled={status !== 'input'}
+                />
+                {/* supply */}
+                <TextInput
+                  type="number"
+                  label="Supply (max: 100)*"
+                  name="supply"
+                  value={supply}
+                  setValue={(value) => {
+                    // validate
+                    console.log(value);
+                    if (Number.isInteger(Number(value)) && 0 < Number(value)) {
+                      setSupply(Number(value).toString());
+                    }
+                  }}
+                  disabled={status !== 'input'}
+                />
+              </div>
+            </div>
+          </div>
+          <div className={styles['form-right']}>
             {/* image */}
             <div className={styles['image-uploader']}>
               <FileInput
-                label="Image"
+                label="Image (max: 100mb)*"
                 name="image"
                 value={image}
                 setValue={setImage}
                 disabled={status !== 'input'}
               />
             </div>
+            {/* animation */}
+            <FileInput
+              label="Video (max: 100mb)"
+              name="animation_url"
+              value={animation}
+              setValue={setAnimation}
+              disabled={status !== 'input'}
+            />
+            {/* glb_l */}
+            <FileInput
+              label="GLB Left (max: 30mb)*"
+              name="glb_l"
+              value={glbL}
+              setValue={setGLBL}
+              disabled={status !== 'input'}
+            />
+            {/* gln_r */}
+            <FileInput
+              label="GLB Right (max: 30mb)*"
+              name="glb_r"
+              value={glbR}
+              setValue={setGLBR}
+              disabled={status !== 'input'}
+            />
           </div>
           <div className={styles['form-row']}>
-            <div className={styles['animation-and-glbs-uploader']}>
-              {/* animation */}
-              <FileInput
-                label="Video"
-                name="animation_url"
-                value={animation}
-                setValue={setAnimation}
-                disabled={status !== 'input'}
-              />
-              {/* glb_l */}
-              <FileInput
-                label="GLB Left"
-                name="glb_l"
-                value={glbL}
-                setValue={setGLBL}
-                disabled={status !== 'input'}
-              />
-              {/* gln_r */}
-              <FileInput
-                label="GLB Right"
-                name="glb_r"
-                value={glbR}
-                setValue={setGLBR}
-                disabled={status !== 'input'}
-              />
+            <div className={styles['button-box']}>
+              <button
+                className={`${styles['button']} ${
+                  mintable
+                    ? styles['button-available']
+                    : styles['button-disabled']
+                }`}
+                onClick={onSubmit}
+                // disabled={!mintable}
+              >
+                CREATE
+                {/* <a className={styles['button-text']}>CREATE</a> */}
+              </button>
             </div>
-          </div>
-          <div className={styles['form-row']}>
-            <div className={styles['price-and-supply']}>
-              {/* price */}
-              <TextInput
-                type="number"
-                label="Price"
-                name="price"
-                value={price}
-                setValue={(value) => {
-                  // validate
-                  if (!Number.isNaN(value) && 0 < Number(value)) {
-                    setPrice(Number(value).toString());
-                  }
-                }}
-                suffix="ETH"
-                disabled={status !== 'input'}
-              />
-              {/* supply */}
-              <TextInput
-                type="number"
-                label="Supply"
-                name="supply"
-                value={supply}
-                setValue={(value) => {
-                  // validate
-                  console.log(value);
-                  if (Number.isInteger(Number(value)) && 0 < Number(value)) {
-                    setSupply(Number(value).toString());
-                  }
-                }}
-                disabled={status !== 'input'}
-              />
-            </div>
-          </div>
-          <div className={styles['form-row']}>
-            <button
-              className={`${styles['button']} ${
-                clearable
-                  ? styles['button-available']
-                  : styles['button-disabled']
-              }`}
-              onClick={onClear}
-              disabled={!clearable}
-            >
-              CLEAR
-              {/* <a className={styles['button-text']}>CLEAR</a> */}
-            </button>
-            <button
-              className={`${styles['button']} ${
-                mintable
-                  ? styles['button-available']
-                  : styles['button-disabled']
-              }`}
-              onClick={onSubmit}
-              // disabled={!mintable}
-            >
-              CREATE
-              {/* <a className={styles['button-text']}>CREATE</a> */}
-            </button>
           </div>
         </div>
       )}

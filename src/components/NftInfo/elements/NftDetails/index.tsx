@@ -4,7 +4,6 @@ import { NftEntity } from 'src/utils/data';
 import styles from './styles/nft-details.module.css';
 import { Model } from './elements/Model';
 import { Movie } from './elements/Movie';
-
 enum ContentsType {
   IMAGE,
   MODEL,
@@ -37,9 +36,7 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
               ? styles['contents-button-selected']
               : styles['contents-button']
           }
-          onClick={() =>
-            startTransition(() => setContents(ContentsType.IMAGE))
-          }
+          onClick={() => startTransition(() => setContents(ContentsType.IMAGE))}
         >
           Image
         </button>
@@ -49,9 +46,7 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
               ? styles['contents-button-selected']
               : styles['contents-button']
           }
-          onClick={() =>
-            startTransition(() => setContents(ContentsType.MODEL))
-          }
+          onClick={() => startTransition(() => setContents(ContentsType.MODEL))}
         >
           3D
         </button>
@@ -61,9 +56,7 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
               ? styles['contents-button-selected']
               : styles['contents-button']
           }
-          onClick={() =>
-            startTransition(() => setContents(ContentsType.VIDEO))
-          }
+          onClick={() => startTransition(() => setContents(ContentsType.VIDEO))}
         >
           Video
         </button>
