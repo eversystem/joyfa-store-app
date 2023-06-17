@@ -94,12 +94,6 @@ export const ProfileEdit: React.FC = () => {
       <div className={styles['title']}>Profile Edit</div>
       {userInfo && (
         <div>
-          <button
-            className={styles['back-btn']}
-            onClick={() => navigate('/profile')}
-          >
-            back
-          </button>
           <div className={styles['left']}>
             <div className={styles['name']}>
               <TextInput
@@ -133,6 +127,7 @@ export const ProfileEdit: React.FC = () => {
                     setTwitter(value);
                   }}
                 />
+                <p className={styles['twitter-text']}>twitter.com/</p>
               </div>
               <div className={styles['instagram']}>
                 <TextInput
@@ -144,6 +139,7 @@ export const ProfileEdit: React.FC = () => {
                     setInstagram(value);
                   }}
                 />
+                <p className={styles['instagram-text']}>instagram.com/</p>
               </div>
               <div className={styles['website']}>
                 <TextInput
@@ -160,7 +156,7 @@ export const ProfileEdit: React.FC = () => {
           </div>
           <div className={styles['right']}>
             <FileInput
-              label={'Cover'}
+              label={'Cover (max: 30mb)'}
               name={'cover'}
               value={cover}
               setValue={(file: File | null) => {
@@ -171,7 +167,7 @@ export const ProfileEdit: React.FC = () => {
               <img src={userInfo.cover || undefined} />
             </div>
             <FileInput
-              label={'Icon'}
+              label={'Icon (max: 30mb)'}
               name={'icon'}
               value={icon}
               setValue={(file: File | null) => {
@@ -185,8 +181,14 @@ export const ProfileEdit: React.FC = () => {
           <div className={styles['clear']}></div>
         </div>
       )}
+      <button
+        className={styles['back-btn']}
+        onClick={() => navigate('/profile')}
+      >
+        Cancel
+      </button>
       <button className={styles['update-btn']} onClick={() => update()}>
-        update
+        Update
       </button>
     </div>
   );

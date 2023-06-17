@@ -31,6 +31,22 @@ main{
   clear:both;
 }
 
+button{
+  cursor:pointer;
+}
+
+label{
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+input[type="file"]{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

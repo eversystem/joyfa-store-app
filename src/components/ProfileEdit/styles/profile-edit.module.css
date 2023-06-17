@@ -35,12 +35,49 @@
   width: 100%;
   max-width: 1400px;
   margin: 0px auto;
-  /* padding-top: 40px; */
 }
 
+.twitter{
+  position:relative;
+}
+.twitter input{
+  padding-left:98px;
+}
+.twitter .twitter-text{
+  position:absolute;
+  top: 23px;
+  left: 16px;
+}
+
+.instagram{
+  position:relative;
+}
+.instagram input{
+  padding-left:122px;
+}
+.instagram .instagram-text{
+  position:absolute;
+  top: 23px;
+  left: 16px;
+}
 .nft-card {
-  /* width: 20%; */
   margin: 10px;
   line-height: 180px;
   text-align: center;
+}
+.back-btn{
+  background-color: #F3F3F3;
+  color:#605e67;
+  border: none;
+  padding: 18px 36px;
+  margin: 50px 30px 50px 0px;
+  border-radius: 5px;
+}
+.update-btn{
+  background-color: #000000;
+  color:#ffffff;
+  border: none;
+  padding: 18px 36px;
+  margin: 50px 5px;
+  border-radius: 5px;
 }
