@@ -17,10 +17,13 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
   const [status, setStatus] = useState<NftInfoStatus>('init');
   const [mintedNfts, setMintedNfts] = useState<NFT[]>([]);
   const [tokenIdFilter, setTokenIdFilter] = useState(0);
+  const [isPopupVisible, setPopupVisible] = useState(false);
+
   const { data: nftCollection } = useContract(
     NFT_COLLECTION_ADDRESS,
     'nft-collection',
   );
+
   useEffect(() => {
     if (nftCollection && status === 'init') {
       setStatus('loading');
@@ -30,6 +33,7 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
       });
     }
   }, [nftCollection, status]);
+
   const isMintable = (nft_id: number, token_id: number) => {
     const uid = `${nft_id}#${token_id}`;
     const mintedNftHasSameExternalUrl = mintedNfts.filter(
@@ -47,50 +51,76 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
     );
     return mintedNftHasSameUid.length === 0;
   };
+
+  const handleCollectButtonClick = () => {
+    setPopupVisible(true);
+  };
+
+  const handleClosePopup = () => {
+    setPopupVisible(false);
+  };
+  const handleBackdropClick = (event) => {
+    if (event.target === event.currentTarget) {
+      handleClosePopup();
+    }
+  };
+
   return (
     <div className={styles['nft-info']}>
       <div className={styles['nft-details']}>
         <NftDetails {...nft} />
       </div>
-      <div className={styles['available-ids']}>Available IDs</div>
-      <div className={styles['id-filter']}>
-        {[...new Array(Math.ceil(nft.supply.amount / 20))].map((_, i) => (
-          <button
-            className={
-              tokenIdFilter === i
-                ? styles['id-filter-button-selected']
-                : styles['id-filter-button']
-            }
-            key={i}
-            onClick={() => {
-              setTokenIdFilter(i);
-            }}
-          >
-            {1 + i * 20} - {(i + 1) * 20}
-          </button>
-        ))}
-      </div>
-      <div className={styles['mint-button-list']}>
-        {[...new Array(nft.supply.amount)]
-          .map((_, i) => i + 1)
-          .map((token_id) =>
-            1 + tokenIdFilter * 20 <= token_id &&
-            token_id <= (tokenIdFilter + 1) * 20 ? (
-              <NftMintButton
-                key={token_id}
-                nft_id={nft.id}
-                token_id={token_id}
-                status={
-                  status !== 'fetched'
-                    ? 'loading'
-                    : isMintable(nft.id, token_id)
-                    ? 'mintable'
-                    : 'minted'
-                }
-              />
-            ) : null,
-          )}
-      </div>
+      <button className={styles['button']} onClick={handleCollectButtonClick}>
+        Collect
+      </button>
+      {isPopupVisible && (
+        <div className={styles['popup-container']} onClick={handleBackdropClick}>
+          <div className={styles['popup']}>
+            <div className={styles['popup-close-button']} onClick={handleClosePopup}>
+              X
+            </div>
+            <div className={styles['available-ids']}>Available IDs</div>
+            <div className={styles['id-filter']}>
+              {[...new Array(Math.ceil(nft.supply.amount / 20))].map((_, i) => (
+                <button
+                  className={
+                    tokenIdFilter === i
+                      ? styles['id-filter-button-selected']
+                      : styles['id-filter-button']
+                  }
+                  key={i}
+                  onClick={() => {
+                    setTokenIdFilter(i);
+                  }}
+                >
+                  {1 + i * 20} - {(i + 1) * 20}
+                </button>
+              ))}
+            </div>
+            <div className={styles['mint-button-list']}>
+              {[...new Array(nft.supply.amount)]
+                .map((_, i) => i + 1)
+                .map((token_id) =>
+                  1 + tokenIdFilter * 20 <= token_id &&
+                  token_id <= (tokenIdFilter + 1) * 20 ? (
+                    <NftMintButton
+                      key={token_id}
+                      nft_id={nft.id}
+                      token_id={token_id}
+                      status={
+                        status !== 'fetched'
+                          ? 'loading'
+                          : isMintable(nft.id, token_id)
+                          ? 'mintable'
+                          : 'minted'
+                      }
+                    />
+                  ) : null
+                )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

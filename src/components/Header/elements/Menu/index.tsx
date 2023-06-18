@@ -18,8 +18,7 @@ export const Menu: React.FC = () => {
       <div
         className={`${styles['menu-links']} ${isOpen ? styles['open'] : ''}`}
       >
-        <MenuLink text="Home" link="/" />
-        <MenuLink text="Store" link="/drops" />
+        <MenuLink text="Top" link="/drops" />
         <MenuLink text="Create" link="/create" />
         <MenuLink text="Profile" link="/profile" />
         <WalletButton />

@@ -10,14 +10,10 @@
 }
 
 .available-ids {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  font-weight: 900;
   font-family: 'Mont';
   font-size: 36px;
   color: #0D0F08;
-  margin:50px 0 20px 0;
+  text-align:left;
 }
 
 .mint-button-list {
@@ -51,4 +47,45 @@
   padding:12px 24px;
   margin:0px 5px;
   border-radius:5px;
+}
+.button{
+  background-color: #000000;
+  color:#ffffff;
+  border: none;
+  padding: 18px 36px;
+  margin: 50px 5px;
+  border-radius: 5px;
+}
+.popup {
+  background-color: #ffffff;
+  animation: fadeIn 0.3s ease-in-out;
+  position:relative;
+  padding:30px;
+  width:550px;
+  max-width:100%;
+}
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); /* ウィンドウ外の背景色 (黒の半透明) */
+}
+.popup-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
