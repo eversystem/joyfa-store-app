@@ -49,6 +49,7 @@
 }
 .socials{
   width:100%;
+  float:left;
 }
 .socials a{
   width:22px;
@@ -58,6 +59,10 @@
 }
 .socials a img{
   width:100%;
+}
+.edit-button{
+  float:left;
+  margin-top:15px;
 }
 .edit-button button{
   background-color:#ffffff;
@@ -74,4 +79,5 @@
   line-height: 120%;
   color: #0D0F08;
   margin: 50px 0px 0px 0px;
+  float:left;
 }

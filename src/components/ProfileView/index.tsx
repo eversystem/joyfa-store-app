@@ -72,11 +72,6 @@ export const ProfileView: React.FC = () => {
                 <div className={styles['description']}>
                   {userInfo.description}
                 </div>
-                <div className={styles['edit-button']}>
-                  <button onClick={() => navigate('/profile/edit')}>
-                    Edit Profile
-                  </button>
-                </div>
               </div>
               <div className={styles['container-right']}>
                 <div className={styles['socials']}>
@@ -108,6 +103,11 @@ export const ProfileView: React.FC = () => {
                   >
                     <img className={styles.image} src={ProfileEtherscanSvg} />
                   </a>
+                </div>
+                <div className={styles['edit-button']}>
+                  <button onClick={() => navigate('/profile/edit')}>
+                    Edit Profile
+                  </button>
                 </div>
               </div>
             </div>
