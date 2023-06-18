@@ -77,14 +77,16 @@ export const ProfileView: React.FC = () => {
                 <div className={styles['socials']}>
                   <a
                     className={styles.twitter}
-                    href={userInfo?.twitter}
+                    href={'https://twitter.com/' + (userInfo?.twitter || '')}
                     target="_blank"
                   >
                     <img className={styles.image} src={ProfileTwitterSvg} />
                   </a>
                   <a
                     className={styles.instagram}
-                    href={userInfo?.instagram}
+                    href={
+                      'https://www.instagram.com/' + (userInfo?.instagram || '')
+                    }
                     target="_blank"
                   >
                     <img className={styles.image} src={ProfileInstagramSvg} />
@@ -98,7 +100,10 @@ export const ProfileView: React.FC = () => {
                   </a>
                   <a
                     className={styles.etherscan}
-                    href={`https://etherscan.io/address/${address || ''}`}
+                    href={
+                      'https://etherscan.io/address/' +
+                      (userInfo?.address || '')
+                    }
                     target="_blank"
                   >
                     <img className={styles.image} src={ProfileEtherscanSvg} />
@@ -115,7 +120,7 @@ export const ProfileView: React.FC = () => {
           {ownedNfts.length ? (
             <main>
               <div>
-                <div className={styles['cntents-label']}>Collection</div>
+                <div className={styles['cntents-label']}>Collected</div>
                 <div className={styles['nft-list']}>
                   {ownedNfts.map((nft) => (
                     <NftCardById key={nft.metadata.id} {...nft} />
@@ -128,7 +133,7 @@ export const ProfileView: React.FC = () => {
           {userInfo?.creator && (
             <main>
               <div>
-                <div className={styles['cntents-label']}>Created NFT</div>
+                <div className={styles['cntents-label']}>Created</div>
                 <div className={styles['nft-list']}>
                   {createdNfts.map((nft, i) => (
                     <NftCard key={i} {...nft} />
