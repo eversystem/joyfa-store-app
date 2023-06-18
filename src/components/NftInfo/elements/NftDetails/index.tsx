@@ -81,11 +81,15 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
           &nbsp;page and select your NFT. You will then be able to wear this
           sneaker over AR.
         </div>
-        <div className={styles['price']}>
-          <div className={styles['price-prefix']}>Price</div>
-          <div className={styles['price-content']}>
+        <div className={styles['price_supply']}>
+          <div className={styles['price_supply-prefix']}>Price</div>
+          <div className={styles['price_supply-content']}>
             {props.supply.price} ETH
           </div>
+        </div>
+        <div className={styles['price_supply']}>
+          <div className={styles['price_supply-prefix']}>Supply</div>
+          <div className={styles['price_supply-content']}>XX / XX</div>
         </div>
       </div>
     </div>
