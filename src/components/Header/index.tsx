@@ -9,8 +9,9 @@ export const Header: React.FC = () => {
     <header className={styles['header']}>
       {/* <LogoJoyfa /> */}
       <div>
-        <LogoDrops />
-        <div className={styles['title']}>Drops</div>
+        <a href="https://joyfa.io/drops">
+          <LogoDrops />
+        </a>
       </div>
       <Menu />
       {/* <div className={styles['wallet-button']}>

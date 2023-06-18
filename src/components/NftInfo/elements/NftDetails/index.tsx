@@ -73,7 +73,14 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
           ))}
         </div>
         <div className={styles['info-title']}>How to wear</div>
-        <div className={styles['description']}>After collecting, please go to the <a href='https://mystudio.joyfa.io/' target='_blank'>My Studio</a> page and select your NFT. You will then be able to wear this sneaker over AR.</div>
+        <div className={styles['description']}>
+          After collecting, please go to the&nbsp;
+          <a href="https://mystudio.joyfa.io/" target="_blank">
+            My Studio
+          </a>
+          &nbsp;page and select your NFT. You will then be able to wear this
+          sneaker over AR.
+        </div>
         <div className={styles['price']}>
           <div className={styles['price-prefix']}>Price</div>
           <div className={styles['price-content']}>
