@@ -9,13 +9,6 @@
   justify-content: center;
 }
 
-.available-ids {
-  font-family: 'Mont';
-  font-size: 36px;
-  color: #0D0F08;
-  text-align:left;
-}
-
 .mint-button-list {
   display: flex;
   flex-flow: row wrap;
@@ -36,9 +29,19 @@
 .mint-button-list::-webkit-scrollbar-thumb {
   background-color: #0d0f08;
 }
+
+.id-title {
+  font-family: 'Mont';
+  font-size: 32px;
+  color: #0D0F08;
+  text-align:left;
+}
+.id-description{
+  margin-top:10px;
+}
 .id-filter{
-  text-align:center;
-  margin:20px 0 40px 0;
+  text-align:left;
+  margin:30px 0 10px 0;
 }
 .id-filter button{
   background-color:#F3F3F3;
@@ -53,15 +56,15 @@
   color:#ffffff;
   border: none;
   padding: 18px 36px;
-  margin: 50px 5px;
   border-radius: 5px;
 }
 .popup {
   background-color: #ffffff;
   animation: fadeIn 0.3s ease-in-out;
   position:relative;
-  padding:30px;
-  width:550px;
+  padding:35px 40px 45px 40px;
+  border-radius:10px;
+  width:470px;
   max-width:100%;
 }
 .popup-container {
@@ -79,7 +82,7 @@
 .popup-close-button {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 20px;
   font-size: 20px;
   background: none;
   border: none;

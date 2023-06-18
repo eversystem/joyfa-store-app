@@ -64,18 +64,21 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
       <div className={styles['info']}>
         <div className={styles['name']}>{props.metadata.name}</div>
         <div className={styles['creator']}>{props.creator.name}</div>
-        <div className={styles['price']}>
-          <div className={styles['price-prefix']}>Price</div>
-          <div className={styles['price-content']}>
-            {props.supply.price} ETH
-          </div>
-        </div>
+        <div className={styles['info-title']}>Story</div>
         <div className={styles['description']}>
           {props.metadata.description.split('\n').map((paragraph, i) => (
             <div key={i} className={styles['description-text']}>
               {paragraph}
             </div>
           ))}
+        </div>
+        <div className={styles['info-title']}>How to wear</div>
+        <div className={styles['description']}>After collecting, please go to the <a href='https://mystudio.joyfa.io/' target='_blank'>My Studio</a> page and select your NFT. You will then be able to wear this sneaker over AR.</div>
+        <div className={styles['price']}>
+          <div className={styles['price-prefix']}>Price</div>
+          <div className={styles['price-content']}>
+            {props.supply.price} ETH
+          </div>
         </div>
       </div>
     </div>

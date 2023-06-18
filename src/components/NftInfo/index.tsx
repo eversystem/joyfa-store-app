@@ -59,7 +59,7 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
   const handleClosePopup = () => {
     setPopupVisible(false);
   };
-  const handleBackdropClick = (event) => {
+  const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       handleClosePopup();
     }
@@ -74,12 +74,22 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
         Collect
       </button>
       {isPopupVisible && (
-        <div className={styles['popup-container']} onClick={handleBackdropClick}>
+        <div
+          className={styles['popup-container']}
+          onClick={handleBackdropClick}
+        >
           <div className={styles['popup']}>
-            <div className={styles['popup-close-button']} onClick={handleClosePopup}>
+            <div
+              className={styles['popup-close-button']}
+              onClick={handleClosePopup}
+            >
               X
             </div>
-            <div className={styles['available-ids']}>Available IDs</div>
+            <div className={styles['id-title']}>Select Sneaker ID</div>
+            <div className={styles['id-description']}>
+              Select the ID for this sneaker. The chosen ID will be included in
+              the NFT name.
+            </div>
             <div className={styles['id-filter']}>
               {[...new Array(Math.ceil(nft.supply.amount / 20))].map((_, i) => (
                 <button
@@ -115,7 +125,7 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
                           : 'minted'
                       }
                     />
-                  ) : null
+                  ) : null,
                 )}
             </div>
           </div>
