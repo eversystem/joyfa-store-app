@@ -3,7 +3,7 @@
 
   display: block;
   float: left;
-  margin: 20px;
+  margin: 20px 10px;
   /* width: 100%; */
   width: 243px;
   /* max-width: 245px; */
@@ -39,7 +39,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 24px;
+  padding: 16px;
   flex: none;
   order: 1;
   align-self: stretch;
@@ -53,7 +53,7 @@
 
   font-family: 'Mont';
   font-weight: 900;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 120%;
   text-align: left;
   color: #0D0F08;
