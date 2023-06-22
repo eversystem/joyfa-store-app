@@ -5,6 +5,7 @@ import { TextInput } from './elements/TextInput';
 import { FileInput } from './elements/FileInput';
 import styles from './styles/create-form.module.css';
 import { TextareaInput } from './elements/TextareaInput';
+import { ListingRequest } from 'src/utils/data';
 
 type ListingStatus = 'input' | 'loading' | 'completed' | 'error';
 
@@ -19,7 +20,7 @@ export const CreateForm: React.FC = () => {
   const [animation, setAnimation] = useState<File | null>(null);
   const [glbL, setGLBL] = useState<File | null>(null);
   const [glbR, setGLBR] = useState<File | null>(null);
-  const [price, setPrice] = useState('0');
+  const [price, setPrice] = useState('0.1');
   const [supply, setSupply] = useState('1');
 
   useEffect(() => {
@@ -31,12 +32,12 @@ export const CreateForm: React.FC = () => {
     }
   }, [address]);
 
-  const mintable =
+  const creatable =
     status === 'input' &&
     !!name &&
     !!description &&
     !!image &&
-    !!animation &&
+    // !!animation &&
     !!glbL &&
     !!glbR;
   const clearable = status !== 'loading';
@@ -55,10 +56,14 @@ export const CreateForm: React.FC = () => {
 
   const onSubmit = async () => {
     try {
+      console.log('submit');
       // if (status !== 'input') {
       //   throw new Error('invalid_status');
       // }
-      console.log('submit');
+      if (!creatable) {
+        console.log('fill all required form');
+        return;
+      }
       setStatus('loading');
       if (!address) {
         throw new Error('wallet_not_connected');
@@ -70,20 +75,43 @@ export const CreateForm: React.FC = () => {
         throw new Error('file_not_found');
       }
       console.log('upload_file');
-      const [_image, _animation_url, _glb_l, _glb_r] =
-        await sdk.storage.uploadBatch([image, animation, glbL, glbR]);
-      console.log('listing');
-      const metadata = {
-        creator: address,
+      const metadata: ListingRequest = {
+        // creator: address,
         name,
         description,
-        image: _image,
-        animation_url: _animation_url,
-        glb_r: _glb_r,
-        glb_l: _glb_l,
+        image: '',
+        // animation_url: _animation_url,
+        glb_l: '',
+        glb_r: '',
         price: Number(price),
         supply: Number(supply),
       };
+      const [_image, _animation_url, _glb_l, _glb_r] = await Promise.all([
+        sdk.storage.upload(image),
+        animation
+          ? sdk.storage.upload(animation)
+          : new Promise<null>((resolve) => resolve(null)),
+        sdk.storage.upload(glbL),
+        sdk.storage.upload(glbR),
+      ]);
+      metadata.image = _image;
+      if (_animation_url) {
+        metadata.animation_url = _animation_url;
+      }
+      metadata.glb_l = _glb_l;
+      metadata.glb_r = _glb_r;
+      // if (animation) {
+      //   const [_image, _animation_url, _glb_l, _glb_r] =
+      //     await sdk.storage.uploadBatch([image, animation, glbL, glbR]);
+      // } else {
+      //   const [_image, _glb_l, _glb_r] = await sdk.storage.uploadBatch([
+      //     image,
+      //     glbL,
+      //     glbR,
+      //   ]);
+      // }
+      console.log(JSON.stringify(metadata, null, 2));
+      console.log('listing');
       const signer = sdk.getSigner();
       if (!signer) {
         throw new Error('signer not found');
@@ -142,9 +170,12 @@ export const CreateForm: React.FC = () => {
                   value={price}
                   setValue={(value) => {
                     // validate
-                    if (!Number.isNaN(value) && 0 < Number(value)) {
+                    if (/^[0-9]*\.?[0-9]*$/.test(value)) {
                       setPrice(Number(value).toString());
                     }
+                    // if (!Number.isNaN(value) && 0 < Number(value)) {
+                    //   setPrice(Number(value).toString());
+                    // }
                   }}
                   suffix="&nbsp;ETH"
                   disabled={status !== 'input'}
@@ -157,10 +188,18 @@ export const CreateForm: React.FC = () => {
                   value={supply}
                   setValue={(value) => {
                     // validate
-                    console.log(value);
-                    if (Number.isInteger(Number(value)) && 0 < Number(value)) {
-                      setSupply(Number(value).toString());
+                    // if (Number.isInteger(Number(value)) && 0 < Number(value)) {
+                    //   setSupply(Number(value).toString());
+                    // }
+                    // setSupply(Number(value).toString());
+                    if (/^[1-9][0-9]*$/.test(value)) {
+                      if (Number(value) <= 100) {
+                        setSupply(Number(value).toString());
+                      }
                     }
+                    // if (!Number.isNaN(value) && 0 < Number(value)) {
+                    //   setSupply(Number(value).toString());
+                    // }
                   }}
                   disabled={status !== 'input'}
                 />
@@ -174,7 +213,12 @@ export const CreateForm: React.FC = () => {
                 label="Image (max: 100mb)*"
                 name="image"
                 value={image}
-                setValue={setImage}
+                setValue={(value) => {
+                  // 100MB = 104857600 Byte
+                  if (value && value.size < 104857600) {
+                    setImage(value);
+                  }
+                }}
                 disabled={status !== 'input'}
               />
             </div>
@@ -183,7 +227,12 @@ export const CreateForm: React.FC = () => {
               label="Video (max: 100mb)"
               name="animation_url"
               value={animation}
-              setValue={setAnimation}
+              setValue={(value) => {
+                // 100MB = 104857600 Byte
+                if (value && value.size < 104857600) {
+                  setAnimation(value);
+                }
+              }}
               disabled={status !== 'input'}
             />
             {/* glb_l */}
@@ -191,7 +240,13 @@ export const CreateForm: React.FC = () => {
               label="GLB Left (max: 30mb)*"
               name="glb_l"
               value={glbL}
-              setValue={setGLBL}
+              // setValue={setGLBL}
+              setValue={(value) => {
+                // 100MB = 31457280 Byte
+                if (value && value.size < 31457280) {
+                  setGLBL(value);
+                }
+              }}
               disabled={status !== 'input'}
             />
             {/* gln_r */}
@@ -199,18 +254,25 @@ export const CreateForm: React.FC = () => {
               label="GLB Right (max: 30mb)*"
               name="glb_r"
               value={glbR}
-              setValue={setGLBR}
+              // setValue={setGLBR}
+              setValue={(value) => {
+                // 100MB = 31457280 Byte
+                if (value && value.size < 31457280) {
+                  setGLBR(value);
+                }
+              }}
               disabled={status !== 'input'}
             />
           </div>
           <div className={styles['form-row']}>
             <div className={styles['button-box']}>
               <button
-                className={`${styles['button']} ${
-                  mintable
-                    ? styles['button-available']
-                    : styles['button-disabled']
-                }`}
+                // className={`${styles['button']} ${
+                //   mintable
+                //     ? styles['button-available']
+                //     : styles['button-disabled']
+                // }`}
+                className={`${styles['button']} ${styles['button-available']}`}
                 onClick={onSubmit}
                 // disabled={!mintable}
               >
@@ -218,6 +280,13 @@ export const CreateForm: React.FC = () => {
                 {/* <a className={styles['button-text']}>CREATE</a> */}
               </button>
             </div>
+          </div>
+          <div className={styles['status']}>
+            {status === 'loading'
+              ? 'Loading'
+              : status === 'completed'
+              ? 'Your NFT has been created!'
+              : ''}
           </div>
         </div>
       )}

@@ -8,25 +8,30 @@
   align-self: stretch;
   flex-grow: 0;
 }
-.left{
-  float:left;
-  width:500px;
+
+.left {
+  float: left;
+  width: 500px;
 }
-.right{
-  float:left;
-  width:250px;
-  margin-left:50px;
+
+.right {
+  float: left;
+  width: 250px;
+  margin-left: 50px;
 }
-.clear{
-  clear:both;
+
+.clear {
+  clear: both;
 }
-.img-cover img{
-  width:100%;
-  max-width:300px;
+
+.img-cover img {
+  width: 100%;
+  max-width: 300px;
 }
-.img-icon img{
-  width:100%;
-  max-width:150px;
+
+.img-icon img {
+  width: 100%;
+  max-width: 150px;
 }
 
 .nft-list {
@@ -37,47 +42,59 @@
   margin: 0px auto;
 }
 
-.twitter{
-  position:relative;
+.twitter {
+  position: relative;
 }
-.twitter input{
-  padding-left:98px;
+
+.twitter input {
+  padding-left: 98px;
 }
-.twitter .twitter-text{
-  position:absolute;
+
+.twitter .twitter-text {
+  position: absolute;
   top: 22px;
   left: 16px;
 }
 
-.instagram{
-  position:relative;
+.instagram {
+  position: relative;
 }
-.instagram input{
-  padding-left:122px;
+
+.instagram input {
+  padding-left: 122px;
 }
-.instagram .instagram-text{
-  position:absolute;
+
+.instagram .instagram-text {
+  position: absolute;
   top: 22px;
   left: 16px;
 }
+
 .nft-card {
   margin: 10px;
   line-height: 180px;
   text-align: center;
 }
-.back-btn{
+
+.back-btn {
   background-color: #F3F3F3;
-  color:#605e67;
+  color: #605e67;
   border: none;
   padding: 18px 36px;
   margin: 50px 30px 50px 0px;
   border-radius: 5px;
 }
-.update-btn{
+
+.update-btn {
   background-color: #000000;
-  color:#ffffff;
+  color: #ffffff;
   border: none;
   padding: 18px 36px;
   margin: 50px 5px;
   border-radius: 5px;
+}
+
+.status {
+  font-family: 'Mont';
+  font-size: 20px;
 }

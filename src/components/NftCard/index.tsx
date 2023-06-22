@@ -20,7 +20,14 @@ export const NftCard: React.FC<NftEntity> = (props) => {
       </div>
       <div className={styles['nft-details']}>
         <div className={styles['nft-name']}>{props.metadata.name}</div>
-        <div className="nft-creator">{props.creator.name}</div>
+        <div className={styles['nft-creator']}>
+          <img
+            className={styles['nft-creator-icon']}
+            src={props.creator.icon}
+          />
+
+          <div className={styles['nft-creator-name']}>{props.creator.name}</div>
+        </div>
         <div className={styles['sales-info']}>
           <div className={styles['sold-for']}>Sold for</div>
           <div className={styles['nft-price']}>{props.supply.price}ETH</div>

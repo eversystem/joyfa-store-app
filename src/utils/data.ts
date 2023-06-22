@@ -3,7 +3,7 @@ export type ListingRequest = {
   name: string;
   description: string;
   image: string;
-  animation_url: string;
+  animation_url?: string;
   glb_r: string;
   glb_l: string;
   price: number;

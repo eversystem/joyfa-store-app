@@ -12,15 +12,17 @@
 .mint-button-list {
   display: flex;
   flex-flow: row wrap;
-  width:800px;
+  width: 800px;
   max-width: 100%;
-  max-height:350px;
+  max-height: 350px;
   overflow-y: scroll;
   margin: 0px auto;
 }
+
 .mint-button-list::-webkit-scrollbar {
   width: 20px;
 }
+
 .mint-button-list::-webkit-scrollbar-track {
   background-color: #fafafa;
 }
@@ -29,43 +31,57 @@
   background-color: #0d0f08;
 }
 
+.minting-error {
+  font-family: 'Mont';
+  font-size: 14px;
+  color: #8d0000;
+  text-align: left;
+  margin: 30px 0 10px 0;
+}
+
 .id-title {
   font-family: 'Mont';
   font-size: 32px;
   color: #0D0F08;
-  text-align:left;
+  text-align: left;
 }
-.id-description{
-  margin-top:10px;
+
+.id-description {
+  margin-top: 10px;
 }
-.id-filter{
-  text-align:left;
-  margin:30px 0 10px 0;
+
+.id-filter {
+  text-align: left;
+  margin: 30px 0 10px 0;
 }
-.id-filter button{
-  background-color:#F3F3F3;
+
+.id-filter button {
+  background-color: #F3F3F3;
   border: none;
-  cursor:pointer;
-  padding:12px 24px;
-  margin:0px 5px;
-  border-radius:5px;
+  cursor: pointer;
+  padding: 12px 24px;
+  margin: 0px 5px;
+  border-radius: 5px;
 }
-.button{
+
+.button {
   background-color: #000000;
-  color:#ffffff;
+  color: #ffffff;
   border: none;
   padding: 18px 36px;
   border-radius: 5px;
 }
+
 .popup {
   background-color: #ffffff;
   animation: fadeIn 0.3s ease-in-out;
-  position:relative;
-  padding:35px 40px 45px 40px;
-  border-radius:10px;
-  width:470px;
-  max-width:100%;
+  position: relative;
+  padding: 35px 40px 45px 40px;
+  border-radius: 10px;
+  width: 470px;
+  max-width: 100%;
 }
+
 .popup-container {
   position: fixed;
   top: 0;
@@ -76,8 +92,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5); /* ウィンドウ外の背景色 (黒の半透明) */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* ウィンドウ外の背景色 (黒の半透明) */
 }
+
 .popup-close-button {
   position: absolute;
   top: 10px;
@@ -87,7 +105,13 @@
   border: none;
   cursor: pointer;
 }
+
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

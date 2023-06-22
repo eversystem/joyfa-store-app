@@ -13,6 +13,13 @@ import {
   UserEntityUpdatableBySelf,
 } from 'src/api/update-user-profile';
 
+export enum Status {
+  edit,
+  loading,
+  success,
+  error,
+}
+
 export const ProfileEdit: React.FC = () => {
   const sdk = useSDK();
   const address = useAddress();
@@ -32,6 +39,7 @@ export const ProfileEdit: React.FC = () => {
   const [website, setWebsite] = useState<string>('');
   const [icon, setIcon] = useState<File | null>(null);
   const [cover, setCover] = useState<File | null>(null);
+  const [status, setStatus] = useState<Status>(Status.edit);
 
   useEffect(() => {
     if (address !== currentAddress) {
@@ -86,7 +94,21 @@ export const ProfileEdit: React.FC = () => {
       if (userInfo.website !== website) updateData.website = website;
       if (icon) updateData.icon = icon;
       if (cover) updateData.cover = cover;
-      await updateUserProfile(jwt, updateData);
+      try {
+        setStatus(Status.loading);
+        await updateUserProfile(jwt, updateData);
+        setStatus(Status.success);
+        // const user = await getUserInfo(address);
+        // setUserInfo(user);
+        // setName(user.name);
+        // setDescription(user.description || '');
+        // setTwitter(user.twitter || '');
+        // setInstagram(user.instagram || '');
+        // setWebsite(user.website || '');
+      } catch (error) {
+        setStatus(Status.error);
+        // co
+      }
     }
   };
   return (
@@ -190,6 +212,13 @@ export const ProfileEdit: React.FC = () => {
       <button className={styles['update-btn']} onClick={() => update()}>
         Update
       </button>
+      <div className={styles['status']}>
+        {status === Status.success
+          ? 'Your profile has been updated!'
+          : status === Status.loading
+          ? 'Loading...'
+          : ''}
+      </div>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import styles from './styles/model.module.css';
 
 export const Model: React.FC<NftEntity> = (props) => {
   const { scene } = useGLTF(resolveIpfsUri(props.metadata.glb_l) || '');
+  console.log('scene', scene);
   return (
     <div className={styles['canvas']}>
       <Canvas

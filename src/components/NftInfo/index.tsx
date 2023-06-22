@@ -18,6 +18,7 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
   const [mintedNfts, setMintedNfts] = useState<NFT[]>([]);
   const [tokenIdFilter, setTokenIdFilter] = useState(0);
   const [isPopupVisible, setPopupVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const { data: nftCollection } = useContract(
     NFT_COLLECTION_ADDRESS,
@@ -34,13 +35,13 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
     }
   }, [nftCollection, status]);
 
+  const mintedNftHasSameExternalUrl = mintedNfts.filter(
+    (mintedNft) =>
+      mintedNft.metadata.external_url ===
+      `https://store.joyfa.io/nft/${nft.metadata.id}`,
+  );
   const isMintable = (nft_id: number, token_id: number) => {
     const uid = `${nft_id}#${token_id}`;
-    const mintedNftHasSameExternalUrl = mintedNfts.filter(
-      (mintedNft) =>
-        mintedNft.metadata.external_url ===
-        `https://store.joyfa.io/nft/${nft.metadata.id}`,
-    );
     const mintedNftHasSameUid = mintedNftHasSameExternalUrl.filter(
       (mintedNft) => {
         const attribute = (
@@ -64,11 +65,14 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
       handleClosePopup();
     }
   };
+  // const mintable = [...new Array(nft.supply.amount)]
+  //   .map((_, i) => i + 1)
+  //   .map((token_id) => isMintable(nft.id, token_id));
 
   return (
     <div className={styles['nft-info']}>
       <div className={styles['nft-details']}>
-        <NftDetails {...nft} />
+        <NftDetails {...nft} mintedNfts={mintedNftHasSameExternalUrl.length} />
       </div>
       <button className={styles['button']} onClick={handleCollectButtonClick}>
         Collect
@@ -90,6 +94,9 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
               Select the ID for this sneaker. The chosen ID will be included in
               the NFT name.
             </div>
+            {errorMessage && (
+              <div className={styles['minting-error']}>{errorMessage}</div>
+            )}
             <div className={styles['id-filter']}>
               {[...new Array(Math.ceil(nft.supply.amount / 20))].map((_, i) => (
                 <button
@@ -110,6 +117,7 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
             <div className={styles['mint-button-list']}>
               {[...new Array(nft.supply.amount)]
                 .map((_, i) => i + 1)
+                // .map((token_id, i) =>
                 .map((token_id) =>
                   1 + tokenIdFilter * 20 <= token_id &&
                   token_id <= (tokenIdFilter + 1) * 20 ? (
@@ -120,10 +128,13 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
                       status={
                         status !== 'fetched'
                           ? 'loading'
-                          : isMintable(nft.id, token_id)
+                          : // : mintable[i]
+                          isMintable(nft.id, token_id)
                           ? 'mintable'
                           : 'minted'
                       }
+                      errorMessage={errorMessage}
+                      setErrorMessage={setErrorMessage}
                     />
                   ) : null,
                 )}

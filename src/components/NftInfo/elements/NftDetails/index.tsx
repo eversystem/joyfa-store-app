@@ -10,7 +10,9 @@ enum ContentsType {
   VIDEO,
 }
 
-export const NftDetails: React.FC<NftEntity> = (props) => {
+export type NftDetailsProps = NftEntity & { mintedNfts: number };
+
+export const NftDetails: React.FC<NftDetailsProps> = (props) => {
   const { image, glb_l, animation_url } = props.metadata;
   const [contents, setContents] = useState<ContentsType>(ContentsType.IMAGE);
   const ContentsElements = [
@@ -20,7 +22,9 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
       src={resolveIpfsUri(image)}
     />,
     glb_l.endsWith('.glb') ? <Model {...props} /> : null,
-    animation_url.endsWith('.mp4') ? <Movie {...props} /> : null,
+    animation_url && animation_url.endsWith('.mp4') ? (
+      <Movie {...props} />
+    ) : null,
   ];
   return (
     <div className={styles['wrapper']}>
@@ -50,16 +54,20 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
         >
           3D
         </button>
-        <button
-          className={
-            contents === ContentsType.VIDEO
-              ? styles['contents-button-selected']
-              : styles['contents-button']
-          }
-          onClick={() => startTransition(() => setContents(ContentsType.VIDEO))}
-        >
-          Video
-        </button>
+        {animation_url && (
+          <button
+            className={
+              contents === ContentsType.VIDEO
+                ? styles['contents-button-selected']
+                : styles['contents-button']
+            }
+            onClick={() =>
+              startTransition(() => setContents(ContentsType.VIDEO))
+            }
+          >
+            Video
+          </button>
+        )}
       </div>
       <div className={styles['info']}>
         <div className={styles['name']}>{props.metadata.name}</div>
@@ -89,7 +97,9 @@ export const NftDetails: React.FC<NftEntity> = (props) => {
         </div>
         <div className={styles['price_supply']}>
           <div className={styles['price_supply-prefix']}>Supply</div>
-          <div className={styles['price_supply-content']}>XX / XX</div>
+          <div className={styles['price_supply-content']}>
+            {props.mintedNfts} / {props.supply.amount}
+          </div>
         </div>
       </div>
     </div>
