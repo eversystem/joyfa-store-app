@@ -10,35 +10,42 @@
   align-items: center;
   width: 1070px;
 }
-.content div{
-  width:100%;
+
+.content div {
+  width: 100%;
   overflow: hidden;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
-.contents-selector{
-  text-align:center;
-  margin:20px 0 40px 0;
+
+.contents-selector {
+  text-align: center;
+  margin: 20px 0 40px 0;
 }
-.contents-selector button{
-  background-color:#F3F3F3;
+
+.contents-selector button {
+  background-color: #F3F3F3;
   border: none;
-  cursor:pointer;
-  padding:12px 24px;
-  margin:0px 5px;
-  border-radius:5px;
+  cursor: pointer;
+  padding: 12px 24px;
+  margin: 0px 5px;
+  border-radius: 5px;
 }
+
 .image-wrapper {
   width: 100%;
-  height:450px;
-  text-align:center;
+  height: 450px;
+  text-align: center;
 }
-.image-wrapper img, .image-wrapper video{
+
+.image-wrapper img,
+.image-wrapper video {
   height: 450px;
   max-width: 100%;
   object-fit: contain;
 }
+
 .arrow-button {
   position: absolute;
   top: 50%;
@@ -51,15 +58,18 @@
   cursor: pointer;
   z-index: 1;
 }
-.info{
-  width:530px;
+
+.info {
+  width: 530px;
 }
-.info-title{
+
+.info-title {
   font-family: 'Mont';
   font-size: 18px;
   color: #0D0F08;
-  margin:30px 0 5px 0;
+  margin: 30px 0 5px 0;
 }
+
 .name {
   font-family: 'Mont';
   margin: 0px 0 16px 0;
@@ -69,9 +79,21 @@
 }
 
 .creator {
+  display: flex;
+  flex-direction: row;
+}
+
+.creator-name {
   font-size: 18px;
   margin: 10px 0;
   letter-spacing: 0.01em;
+  line-height: 40px;
+}
+
+.creator-icon {
+  width: 40px;
+  height: 40px;
+  margin: auto 10px;
 }
 
 .price_supply {
@@ -88,6 +110,7 @@
 .price_supply-content {
   color: #0D0F08;
 }
+
 .description {
   font-size: 18px;
   line-height: 125%;

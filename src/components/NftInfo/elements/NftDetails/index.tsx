@@ -71,7 +71,10 @@ export const NftDetails: React.FC<NftDetailsProps> = (props) => {
       </div>
       <div className={styles['info']}>
         <div className={styles['name']}>{props.metadata.name}</div>
-        <div className={styles['creator']}>{props.creator.name}</div>
+        <div className={styles['creator']}>
+          <img className={styles['creator-icon']} src={props.creator.icon} />
+          <div className={styles['creator-name']}>{props.creator.name}</div>
+        </div>
         <div className={styles['info-title']}>Story</div>
         <div className={styles['description']}>
           {props.metadata.description.split('\n').map((paragraph, i) => (
