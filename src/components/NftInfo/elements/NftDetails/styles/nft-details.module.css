@@ -60,7 +60,15 @@
 }
 
 .info {
-  width: 530px;
+  width: 100%;
+}
+.info-left {
+  width: 600px;
+    float:left;
+}
+.info-right{
+  width:300px;
+  float:right;
 }
 
 .info-title {
@@ -94,6 +102,7 @@
   width: 40px;
   height: 40px;
   margin: auto 10px;
+  border-radius:50%;
 }
 
 .price_supply {

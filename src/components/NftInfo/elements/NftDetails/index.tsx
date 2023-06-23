@@ -70,38 +70,42 @@ export const NftDetails: React.FC<NftDetailsProps> = (props) => {
         )}
       </div>
       <div className={styles['info']}>
-        <div className={styles['name']}>{props.metadata.name}</div>
-        <div className={styles['creator']}>
-          <img className={styles['creator-icon']} src={props.creator.icon} />
-          <div className={styles['creator-name']}>{props.creator.name}</div>
-        </div>
-        <div className={styles['info-title']}>Story</div>
-        <div className={styles['description']}>
-          {props.metadata.description.split('\n').map((paragraph, i) => (
-            <div key={i} className={styles['description-text']}>
-              {paragraph}
-            </div>
-          ))}
-        </div>
-        <div className={styles['info-title']}>How to wear</div>
-        <div className={styles['description']}>
-          After collecting, please go to the&nbsp;
-          <a href="https://mystudio.joyfa.io/" target="_blank">
-            My Studio
-          </a>
-          &nbsp;page and select your NFT. You will then be able to wear this
-          sneaker over AR.
-        </div>
-        <div className={styles['price_supply']}>
-          <div className={styles['price_supply-prefix']}>Price</div>
-          <div className={styles['price_supply-content']}>
-            {props.supply.price} ETH
+        <div className={styles['info-left']}>
+          <div className={styles['name']}>{props.metadata.name}</div>
+          <div className={styles['creator']}>
+            <img className={styles['creator-icon']} src={props.creator.icon} />
+            <div className={styles['creator-name']}>{props.creator.name}</div>
+          </div>
+          <div className={styles['info-title']}>Story</div>
+          <div className={styles['description']}>
+            {props.metadata.description.split('\n').map((paragraph, i) => (
+              <div key={i} className={styles['description-text']}>
+                {paragraph}
+              </div>
+            ))}
+          </div>
+          <div className={styles['info-title']}>How to wear</div>
+          <div className={styles['description']}>
+            After collecting, please go to the&nbsp;
+            <a href="https://mystudio.joyfa.io/" target="_blank">
+              My Studio
+            </a>
+            &nbsp;page and select your NFT. You will then be able to wear this
+            sneaker over AR.
           </div>
         </div>
-        <div className={styles['price_supply']}>
-          <div className={styles['price_supply-prefix']}>Supply</div>
-          <div className={styles['price_supply-content']}>
-            {props.mintedNfts} / {props.supply.amount}
+        <div className={styles['info-right']}>
+          <div className={styles['price_supply']}>
+            <div className={styles['price_supply-prefix']}>Price</div>
+            <div className={styles['price_supply-content']}>
+              {props.supply.price} ETH
+            </div>
+          </div>
+          <div className={styles['price_supply']}>
+            <div className={styles['price_supply-prefix']}>Supply</div>
+            <div className={styles['price_supply-content']}>
+              {props.mintedNfts} / {props.supply.amount}
+            </div>
           </div>
         </div>
       </div>

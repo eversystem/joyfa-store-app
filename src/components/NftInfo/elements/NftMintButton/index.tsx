@@ -26,7 +26,7 @@ export const NftMintButton: React.FC<AvailableNftProps> = (props) => {
   const onMint = async () => {
     console.log('mint-button-clicked');
     if (!address) {
-      setErrorMessage('please connect wallet');
+      setErrorMessage('Please connect your wallet.');
     } else {
       console.log('mint');
       setErrorMessage('');
@@ -39,7 +39,7 @@ export const NftMintButton: React.FC<AvailableNftProps> = (props) => {
         // console.log(message);
         // console.log('>-ERROR');
         // setErrorMessage(message);
-        setErrorMessage('metamask failed to send tx');
+        setErrorMessage('We were unable to send the transaction.');
       }
     }
   };
