@@ -3,25 +3,17 @@
   font-size: 32px;
   line-height: 120%;
   color: #0D0F08;
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
 }
 
 .message {
-  font-size: 18px;
-  line-height: 150%;
+  font-size: 16px;
+  margin-top:8px;
   color: #605E67;
-  flex: none;
-  order: 1;
-  align-self: stretch;
-  flex-grow: 0;
 }
 
 .form-left {
   float: left;
-  width: 450px;
+  width: 400px;
 }
 
 .form-right {
@@ -79,7 +71,7 @@
 }
 
 .button-box {
-  text-align: center;
+  text-align: left;
 }
 
 .button {
@@ -102,4 +94,33 @@
   font-family: 'Mont';
   font-size: 20px;
   text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .title,.message,.button-box {
+    text-align:center;
+  }
+  .form-left{
+    float:none;
+    width:calc(100% - 100px);
+    margin: 0 auto;
+    text-align:center;
+  }
+  .form-right {
+    float:none;
+    width:calc(100% - 100px);
+    margin: 0 auto;
+  }
+  .price-and-supply{
+    padding-top:10px;
+  }
+  .price-and-supply>div {
+    float: none;
+  }
+  .price-and-supply>div:first-child {
+    width: 100%;
+  }
+  .price-and-supply>div:nth-child(2) {
+    width: 100%;
+  }
 }
