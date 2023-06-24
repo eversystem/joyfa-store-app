@@ -48,9 +48,7 @@
 }
 
 .nft-name {
-  /* width: 197px; */
-  /* height: 58px; */
-
+  height: 58px;
   font-family: 'Mont';
   font-weight: 900;
   font-size: 20px;

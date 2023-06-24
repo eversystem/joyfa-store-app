@@ -93,6 +93,8 @@ export const NftDetails: React.FC<NftDetailsProps> = (props) => {
             &nbsp;page and select your NFT. You will then be able to wear this
             sneaker over AR.
           </div>
+          <div className={styles['info-title']}>Blockchain</div>
+          <div className={styles['description']}>Ethereum</div>
         </div>
         <div className={styles['info-right']}>
           <div className={styles['price_supply']}>
