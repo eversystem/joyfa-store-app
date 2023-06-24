@@ -12,3 +12,9 @@
   line-height: 180px;
   text-align: center;
 }
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    justify-content: center;
+  }
+}
