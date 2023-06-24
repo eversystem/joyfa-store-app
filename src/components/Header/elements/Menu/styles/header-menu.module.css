@@ -50,7 +50,7 @@
     background-color: #000;
   }
   .menu-links {
-    transform: translateX(-100%);
+    transform: translateY(-100%);
     position: absolute;
     top: 0;
     left: 0;
@@ -60,7 +60,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-top:150px;
+    padding-top:120px;
     align-items: center;
   }
   .menu-links.open {
