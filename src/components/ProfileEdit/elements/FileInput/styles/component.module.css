@@ -1,6 +1,6 @@
 .wrapper {
   width: 400px;
-  margin: 5px;
+  max-width:100%;
 }
 
 .label {
@@ -12,7 +12,7 @@
 
 .uploader {
   width: 300px;
-  /* float: left; */
+  margin:0 auto 5px auto;
 }
 
 .upload-file {

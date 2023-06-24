@@ -203,15 +203,17 @@ export const ProfileEdit: React.FC = () => {
           <div className={styles['clear']}></div>
         </div>
       )}
-      <button
-        className={styles['back-btn']}
-        onClick={() => navigate('/profile')}
-      >
-        Cancel
-      </button>
-      <button className={styles['update-btn']} onClick={() => update()}>
-        Update
-      </button>
+      <div className={styles['btn']}>
+        <button
+          className={styles['back-btn']}
+          onClick={() => navigate('/profile')}
+        >
+          Cancel
+        </button>
+        <button className={styles['update-btn']} onClick={() => update()}>
+          Update
+        </button>
+      </div>
       <div className={styles['status']}>
         {status === Status.success
           ? 'Your profile has been updated!'

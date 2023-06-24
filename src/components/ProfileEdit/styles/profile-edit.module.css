@@ -3,20 +3,18 @@
   font-size: 32px;
   line-height: 120%;
   color: #0D0F08;
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
 }
 
 .left {
   float: left;
   width: 500px;
+  max-width:100%;
 }
 
 .right {
   float: left;
   width: 250px;
+  max-width:100%;
   margin-left: 50px;
 }
 
@@ -32,6 +30,7 @@
 .img-icon img {
   width: 100%;
   max-width: 150px;
+  border-radius:50%;
 }
 
 .nft-list {
@@ -47,7 +46,7 @@
 }
 
 .twitter input {
-  padding-left: 98px;
+  padding-left: 100px;
 }
 
 .twitter .twitter-text {
@@ -61,7 +60,7 @@
 }
 
 .instagram input {
-  padding-left: 122px;
+  padding-left: 125px;
 }
 
 .instagram .instagram-text {
@@ -76,25 +75,47 @@
   text-align: center;
 }
 
+.btn button{
+  border: none;
+  padding: 18px 36px;
+  border-radius: 5px;
+  margin-top:50px;
+  margin-bottom:50px;
+}
+
 .back-btn {
   background-color: #F3F3F3;
   color: #605e67;
-  border: none;
-  padding: 18px 36px;
-  margin: 50px 30px 50px 0px;
-  border-radius: 5px;
+  margin-right:20px;
 }
 
 .update-btn {
   background-color: #000000;
   color: #ffffff;
-  border: none;
-  padding: 18px 36px;
-  margin: 50px 5px;
-  border-radius: 5px;
 }
 
 .status {
-  font-family: 'Mont';
   font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    text-align:center;
+  }
+  .left {
+    width:calc(100% - 100px);
+    margin: 0 auto;
+    text-align:center;
+    float:none;
+  }
+  .right {
+    width:calc(100% - 100px);
+    margin: 0 auto;
+    text-align:center;
+    float:none;
+  }
+  .btn{
+    text-align:center;
+  }
+
 }
