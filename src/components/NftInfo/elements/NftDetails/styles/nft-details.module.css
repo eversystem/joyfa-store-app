@@ -9,6 +9,7 @@
   justify-content: center;
   align-items: center;
   width: 1070px;
+  max-width:100%;
 }
 
 .content div {
@@ -64,10 +65,12 @@
 }
 .info-left {
   width: 600px;
-    float:left;
+  max-width:100%;
+  float:left;
 }
 .info-right{
   width:300px;
+  max-width:100%;
   float:right;
 }
 
@@ -123,4 +126,15 @@
 .description {
   font-size: 18px;
   line-height: 125%;
+}
+
+@media screen and (max-width: 768px) {
+  .info-left{
+    width:auto;
+    padding:0 20px;
+  }
+  .info-right{
+    width:auto;
+    padding:0 20px;
+  }
 }
