@@ -54,7 +54,7 @@ export const ProfileView: React.FC = () => {
     }
   }, [address, currentAddress, userInfo, nftCollection]);
   return (
-    <div className={styles['']}>
+    <div className={styles['wrapper']}>
       {userInfo && (
         <div>
           <div className={styles['img-cover']}>
@@ -119,7 +119,7 @@ export const ProfileView: React.FC = () => {
           </main>
           {ownedNfts.length ? (
             <main>
-              <div>
+              <div className={styles['collected']}>
                 <div className={styles['cntents-label']}>Collected</div>
                 <div className={styles['nft-list']}>
                   {ownedNfts.map((nft) => (
@@ -132,7 +132,7 @@ export const ProfileView: React.FC = () => {
           <br />
           {userInfo?.creator && (
             <main>
-              <div>
+              <div className={styles['created']}>
                 <div className={styles['cntents-label']}>Created</div>
                 <div className={styles['nft-list']}>
                   {createdNfts.map((nft, i) => (
