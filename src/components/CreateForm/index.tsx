@@ -152,7 +152,7 @@ export const CreateForm: React.FC = () => {
                 />
                 {/* description */}
                 <TextareaInput
-                  label="Description*"
+                  label="Story*"
                   name="description"
                   value={description}
                   setValue={setDescription}
