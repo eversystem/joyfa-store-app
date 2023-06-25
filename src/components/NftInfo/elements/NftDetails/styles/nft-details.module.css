@@ -47,19 +47,6 @@
   object-fit: contain;
 }
 
-.arrow-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  z-index: 1;
-}
-
 .info {
   width: 100%;
 }
@@ -122,10 +109,6 @@
   margin:10px 0;
 }
 
-.price_supply-content {
-
-}
-
 .description {
   font-size: 18px;
   line-height: 125%;
@@ -139,5 +122,14 @@
   .info-right{
     width:auto;
     padding:0 20px;
+  }
+  .name{
+    text-align:center;
+  }
+  .creator {
+    justify-content: center;
+  }
+  .info-title,.description{
+    text-align:center;
   }
 }
