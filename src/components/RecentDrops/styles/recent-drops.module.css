@@ -1,3 +1,19 @@
+.main{
+  height:95vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.main-title{
+  font-family: 'Mont';
+  font-style: normal;
+  font-size: 56px;
+  line-height: 120%;
+  color: #0D0F08;
+  width:500px;
+}
+
 .title {
   font-family: 'Mont';
   font-style: normal;
