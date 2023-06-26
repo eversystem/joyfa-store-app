@@ -91,58 +91,71 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
             >
               X
             </div>
-            <div className={styles['id-title']}>Select Sneaker ID</div>
-            <div className={styles['id-description']}>
-              Select the ID for this sneaker. The chosen ID will be included in
-              the NFT name.
-            </div>
-            {errorMessage && (
-              <div className={styles['minting-error']}>{errorMessage}</div>
-            )}
-            <div className={styles['id-filter']}>
-              {[...new Array(Math.ceil(nft.supply.amount / 20))].map((_, i) => (
-                <button
-                  className={
-                    tokenIdFilter === i
-                      ? styles['id-filter-button-selected']
-                      : styles['id-filter-button']
-                  }
-                  key={i}
-                  onClick={() => {
-                    setTokenIdFilter(i);
-                  }}
-                >
-                  {1 + i * 20} - {(i + 1) * 20}
-                </button>
-              ))}
-            </div>
-            <div className={styles['mint-button-list']}>
-              {[...new Array(nft.supply.amount)]
-                .map((_, i) => i + 1)
-                // .map((token_id, i) =>
-                .map((token_id) =>
-                  1 + tokenIdFilter * 20 <= token_id &&
-                  token_id <= (tokenIdFilter + 1) * 20 ? (
-                    <NftMintButton
-                      key={token_id}
-                      nft_id={nft.id}
-                      token_id={token_id}
-                      status={
-                        status !== 'fetched'
-                          ? 'loading'
-                          : // : mintable[i]
-                          isMintable(nft.id, token_id)
-                          ? 'mintable'
-                          : 'minted'
-                      }
-                      mintingStatus={mintingStatus}
-                      setMintingStatus={setMintingStatus}
-                      errorMessage={errorMessage}
-                      setErrorMessage={setErrorMessage}
-                    />
-                  ) : null,
+            {mintingStatus === 'loading' ? (
+              <>
+                <div className={styles['id-title']}>Loading</div>
+                <div className={styles['id-description']}>
+                  Minting process is running.
+                </div>
+              </>
+            ) : (
+              <>
+                <div className={styles['id-title']}>Select Sneaker ID</div>
+                <div className={styles['id-description']}>
+                  Select the ID for this sneaker. The chosen ID will be included
+                  in the NFT name.
+                </div>
+                {errorMessage && (
+                  <div className={styles['minting-error']}>{errorMessage}</div>
                 )}
-            </div>
+                <div className={styles['id-filter']}>
+                  {[...new Array(Math.ceil(nft.supply.amount / 20))].map(
+                    (_, i) => (
+                      <button
+                        className={
+                          tokenIdFilter === i
+                            ? styles['id-filter-button-selected']
+                            : styles['id-filter-button']
+                        }
+                        key={i}
+                        onClick={() => {
+                          setTokenIdFilter(i);
+                        }}
+                      >
+                        {1 + i * 20} - {(i + 1) * 20}
+                      </button>
+                    ),
+                  )}
+                </div>
+                <div className={styles['mint-button-list']}>
+                  {[...new Array(nft.supply.amount)]
+                    .map((_, i) => i + 1)
+                    // .map((token_id, i) =>
+                    .map((token_id) =>
+                      1 + tokenIdFilter * 20 <= token_id &&
+                      token_id <= (tokenIdFilter + 1) * 20 ? (
+                        <NftMintButton
+                          key={token_id}
+                          nft_id={nft.id}
+                          token_id={token_id}
+                          status={
+                            status !== 'fetched'
+                              ? 'loading'
+                              : // : mintable[i]
+                              isMintable(nft.id, token_id)
+                              ? 'mintable'
+                              : 'minted'
+                          }
+                          mintingStatus={mintingStatus}
+                          setMintingStatus={setMintingStatus}
+                          errorMessage={errorMessage}
+                          setErrorMessage={setErrorMessage}
+                        />
+                      ) : null,
+                    )}
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}
