@@ -11,7 +11,8 @@ import { TextInput } from './elements/TextInput';
 import {
   updateUserProfile,
   UserEntityUpdatableBySelf,
-} from 'src/api/update-user-profile';
+  registerUserProfile,
+} from 'src/api';
 
 export enum Status {
   edit,
@@ -32,6 +33,7 @@ export const ProfileEdit: React.FC = () => {
     undefined,
   );
   const [userInfo, setUserInfo] = useState<UserEntity | null>(null);
+  const [registerMode, setRegisterMode] = useState<boolean>(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [twitter, setTwitter] = useState<string>('');
@@ -111,10 +113,49 @@ export const ProfileEdit: React.FC = () => {
       }
     }
   };
+  const register = async () => {
+    if (sdk && address) {
+      const signer = sdk.getSigner();
+      if (!signer) {
+        throw new Error('signer not found');
+      }
+      const message = `Sign in to Drops. (${new Date().getTime().toString()})`;
+      const signature = await signer.signMessage(message);
+      if (!signature) {
+        throw new Error('sign rejected');
+      }
+      const jwt = await signin(
+        address.toLowerCase(),
+        `${message}:${signature}`,
+      );
+      try {
+        setStatus(Status.loading);
+        await registerUserProfile(jwt, name);
+        await getUserInfo(address).then((user) => {
+          console.log('user-info');
+          console.log(user);
+          if (user) {
+            setUserInfo(user);
+            setName(user.name);
+            setDescription(user.description || '');
+            setTwitter(user.twitter || '');
+            setInstagram(user.instagram || '');
+            setWebsite(user.website || '');
+            setRegisterMode(false);
+          }
+        });
+        setStatus(Status.edit);
+      } catch (error) {
+        setStatus(Status.error);
+        // co
+      }
+    }
+  };
+
   return (
     <div className={styles['']}>
       <div className={styles['title']}>Profile Edit</div>
-      {userInfo && (
+      {registerMode ? (
         <div>
           <div className={styles['left']}>
             <div className={styles['name']}>
@@ -128,80 +169,99 @@ export const ProfileEdit: React.FC = () => {
                 }}
               />
             </div>
-            <div className={styles['description']}>
-              <TextareaInput
-                label={'Description'}
-                name={'description'}
-                value={description}
-                setValue={(value: string) => {
-                  setDescription(value);
-                }}
-              />
-            </div>
-            <div className={styles['socials']}>
-              <div className={styles['twitter']}>
-                <TextInput
-                  label={'Twitter'}
-                  name={'twitter'}
-                  value={twitter}
-                  type={'text'}
-                  setValue={(value: string) => {
-                    setTwitter(value);
-                  }}
-                />
-                <p className={styles['twitter-text']}>twitter.com/</p>
-              </div>
-              <div className={styles['instagram']}>
-                <TextInput
-                  label={'Instagram'}
-                  name={'instagram'}
-                  value={instagram}
-                  type={'text'}
-                  setValue={(value: string) => {
-                    setInstagram(value);
-                  }}
-                />
-                <p className={styles['instagram-text']}>instagram.com/</p>
-              </div>
-              <div className={styles['website']}>
-                <TextInput
-                  label={'Website'}
-                  name={'website'}
-                  value={website}
-                  type={'text'}
-                  setValue={(value: string) => {
-                    setWebsite(value);
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-          <div className={styles['right']}>
-            <FileInput
-              label={'Cover (max: 30mb)'}
-              name={'cover'}
-              value={cover}
-              setValue={(file: File | null) => {
-                setCover(file);
-              }}
-            />
-            <div className={styles['img-cover']}>
-              <img src={userInfo.cover || undefined} />
-            </div>
-            <FileInput
-              label={'Icon (max: 30mb)'}
-              name={'icon'}
-              value={icon}
-              setValue={(file: File | null) => {
-                setIcon(file);
-              }}
-            />
-            <div className={styles['img-icon']}>
-              <img src={userInfo.icon || undefined} />
-            </div>
           </div>
           <div className={styles['clear']}></div>
         </div>
+      ) : (
+        userInfo && (
+          <div>
+            <div className={styles['left']}>
+              <div className={styles['name']}>
+                <TextInput
+                  label={'Name'}
+                  name={'name'}
+                  value={name}
+                  type={'text'}
+                  setValue={(value: string) => {
+                    setName(value);
+                  }}
+                />
+              </div>
+              <div className={styles['description']}>
+                <TextareaInput
+                  label={'Description'}
+                  name={'description'}
+                  value={description}
+                  setValue={(value: string) => {
+                    setDescription(value);
+                  }}
+                />
+              </div>
+              <div className={styles['socials']}>
+                <div className={styles['twitter']}>
+                  <TextInput
+                    label={'Twitter'}
+                    name={'twitter'}
+                    value={twitter}
+                    type={'text'}
+                    setValue={(value: string) => {
+                      setTwitter(value);
+                    }}
+                  />
+                  <p className={styles['twitter-text']}>twitter.com/</p>
+                </div>
+                <div className={styles['instagram']}>
+                  <TextInput
+                    label={'Instagram'}
+                    name={'instagram'}
+                    value={instagram}
+                    type={'text'}
+                    setValue={(value: string) => {
+                      setInstagram(value);
+                    }}
+                  />
+                  <p className={styles['instagram-text']}>instagram.com/</p>
+                </div>
+                <div className={styles['website']}>
+                  <TextInput
+                    label={'Website'}
+                    name={'website'}
+                    value={website}
+                    type={'text'}
+                    setValue={(value: string) => {
+                      setWebsite(value);
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className={styles['right']}>
+              <FileInput
+                label={'Cover (max: 30mb)'}
+                name={'cover'}
+                value={cover}
+                setValue={(file: File | null) => {
+                  setCover(file);
+                }}
+              />
+              <div className={styles['img-cover']}>
+                <img src={userInfo.cover || undefined} />
+              </div>
+              <FileInput
+                label={'Icon (max: 30mb)'}
+                name={'icon'}
+                value={icon}
+                setValue={(file: File | null) => {
+                  setIcon(file);
+                }}
+              />
+              <div className={styles['img-icon']}>
+                <img src={userInfo.icon || undefined} />
+              </div>
+            </div>
+            <div className={styles['clear']}></div>
+          </div>
+        )
       )}
       <div className={styles['btn']}>
         <button
@@ -210,8 +270,11 @@ export const ProfileEdit: React.FC = () => {
         >
           Cancel
         </button>
-        <button className={styles['update-btn']} onClick={() => update()}>
-          Update
+        <button
+          className={styles['update-btn']}
+          onClick={() => (registerMode ? register() : update())}
+        >
+          {registerMode ? 'Register' : 'Update'}
         </button>
       </div>
       <div className={styles['status']}>

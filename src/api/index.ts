@@ -8,3 +8,4 @@ export * from './listing';
 export * from './mint';
 export * from './register-user';
 export * from './signin';
+export * from './update-user-profile';

@@ -2,7 +2,7 @@ import { NftEntity, UserEntity } from 'src/utils/data';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles/profile-view.module.css';
 import { NFT, useAddress, useContract } from '@thirdweb-dev/react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { getNftsByCreator, getUserInfo } from 'src/api';
 import { NFT_COLLECTION_ADDRESS } from 'src/utils/env';
 import { NftCard } from '../NftCard';
@@ -12,8 +12,13 @@ import ProfileInstagramSvg from 'src/assets/profile-instagram.svg';
 import ProfileWebsiteSvg from 'src/assets/profile-website.svg';
 import ProfileEtherscanSvg from 'src/assets/profile-etherscan.svg';
 
-export const ProfileView: React.FC = () => {
-  const address = useAddress();
+export type ProfileViewProps = {
+  address: string;
+};
+
+export const ProfileView: React.FC<ProfileViewProps> = (props) => {
+  const { address } = props;
+  const editable = useAddress()?.toLowerCase() === address.toLowerCase();
   const navigate = useNavigate();
   const { data: nftCollection } = useContract(
     NFT_COLLECTION_ADDRESS,
@@ -109,11 +114,13 @@ export const ProfileView: React.FC = () => {
                     <img className={styles.image} src={ProfileEtherscanSvg} />
                   </a>
                 </div>
-                <div className={styles['edit-button']}>
-                  <button onClick={() => navigate('/profile/edit')}>
-                    Edit Profile
-                  </button>
-                </div>
+                {editable && (
+                  <div className={styles['edit-button']}>
+                    <button onClick={() => navigate('/profile/edit')}>
+                      Edit Profile
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </main>

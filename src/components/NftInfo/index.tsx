@@ -1,5 +1,5 @@
 import { NftDetails } from './elements/NftDetails';
-import { NftMintButton } from './elements/NftMintButton';
+import { NftMintButton, NftMintingStatus } from './elements/NftMintButton';
 import { NftEntity } from 'src/utils/data';
 import styles from './styles/nft-info.module.css';
 import { NFT, useContract } from '@thirdweb-dev/react';
@@ -18,6 +18,8 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
   const [mintedNfts, setMintedNfts] = useState<NFT[]>([]);
   const [tokenIdFilter, setTokenIdFilter] = useState(0);
   const [isPopupVisible, setPopupVisible] = useState(false);
+  const [mintingStatus, setMintingStatus] =
+    useState<NftMintingStatus>('available');
   const [errorMessage, setErrorMessage] = useState('');
 
   const { data: nftCollection } = useContract(
@@ -133,6 +135,8 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
                           ? 'mintable'
                           : 'minted'
                       }
+                      mintingStatus={mintingStatus}
+                      setMintingStatus={setMintingStatus}
                       errorMessage={errorMessage}
                       setErrorMessage={setErrorMessage}
                     />
