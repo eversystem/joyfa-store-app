@@ -5,7 +5,7 @@ import styles from './styles/nft-mint-button.module.css';
 // import { useState } from 'react';
 
 export type NftMintStatus = 'loading' | 'mintable' | 'minted';
-export type NftMintingStatus = 'loading' | 'available';
+export type NftMintingStatus = 'loading' | 'available' | 'minted';
 
 export type AvailableNftProps = {
   nft_id: number;
@@ -37,6 +37,7 @@ export const NftMintButton: React.FC<AvailableNftProps> = (props) => {
       try {
         const res = await mint(nft_id, token_id, address);
         await nftCollection?.signature.mint(res.data);
+        setMintingStatus('minted');
       } catch (error) {
         // const { message } = error as { message: string };
         // console.log('ERROR->');
@@ -44,7 +45,6 @@ export const NftMintButton: React.FC<AvailableNftProps> = (props) => {
         // console.log('>-ERROR');
         // setErrorMessage(message);
         setErrorMessage('We were unable to send the transaction.');
-      } finally {
         setMintingStatus('available');
       }
     }

@@ -94,9 +94,19 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
             </div>
             {mintingStatus === 'loading' ? (
               <>
-                <div className={styles['id-title']}>Loading</div>
+                <div className={styles['id-title']}>Processing</div>
                 <div className={styles['id-description']}>
-                  Minting process is running.
+                  Please wait a moment.
+                </div>
+              </>
+            ) : mintingStatus === 'minted' ? (
+              <>
+                <div className={styles['id-title']}>
+                  Your transaction has been issued.
+                </div>
+                <div className={styles['id-description']}>
+                  Once it is successfully minted, it will be reflected on your
+                  profile page.
                 </div>
               </>
             ) : (
