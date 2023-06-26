@@ -113,7 +113,7 @@ export const NftDetails: React.FC<NftDetailsProps> = (props) => {
           <div className={styles['price_supply']}>
             <div className={styles['price_supply-prefix']}>Supply</div>
             <div className={styles['price_supply-content']}>
-              {props.mintedNfts - props.supply.amount} / {props.supply.amount}
+              {props.supply.amount - props.mintedNfts} / {props.supply.amount}
             </div>
           </div>
         </div>
