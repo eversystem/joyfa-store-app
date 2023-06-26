@@ -30,7 +30,9 @@ export const NftCard: React.FC<NftEntity> = (props) => {
         </div>
         <div className={styles['sales-info']}>
           <div className={styles['sold-for']}>Sold for</div>
-          <div className={styles['nft-price']}>{props.supply.price}ETH</div>
+          <div className={styles['nft-price']}>
+            {props.supply.price}&nbsp;ETH
+          </div>
         </div>
       </div>
     </div>
