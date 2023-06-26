@@ -9,7 +9,7 @@ export const Header: React.FC = () => {
     <header className={styles['header']}>
       {/* <LogoJoyfa /> */}
       <div>
-        <a href="https://joyfa.io/drops">
+        <a href="https://drops.joyfa.io/">
           <LogoDrops />
         </a>
       </div>
