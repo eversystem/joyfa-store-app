@@ -1,4 +1,5 @@
 import { useState, startTransition } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { resolveIpfsUri } from '@thirdweb-dev/react';
 import { NftEntity } from 'src/utils/data';
 import styles from './styles/nft-details.module.css';
@@ -14,6 +15,7 @@ export type NftDetailsProps = NftEntity & { mintedNfts: number };
 
 export const NftDetails: React.FC<NftDetailsProps> = (props) => {
   const { image, glb_l, animation_url } = props.metadata;
+  const navigate = useNavigate();
   const [contents, setContents] = useState<ContentsType>(ContentsType.IMAGE);
   const ContentsElements = [
     <img
@@ -72,7 +74,12 @@ export const NftDetails: React.FC<NftDetailsProps> = (props) => {
       <div className={styles['info']}>
         <div className={styles['info-left']}>
           <div className={styles['name']}>{props.metadata.name}</div>
-          <div className={styles['creator']}>
+          <div
+            className={styles['creator']}
+            onClick={() => {
+              navigate(`/user/${props.creator.address}`);
+            }}
+          >
             <img className={styles['creator-icon']} src={props.creator.icon} />
             <div className={styles['creator-name']}>{props.creator.name}</div>
           </div>

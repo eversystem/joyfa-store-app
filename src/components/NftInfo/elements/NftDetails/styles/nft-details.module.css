@@ -79,6 +79,7 @@
 .creator {
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 }
 
 .creator-name {
