@@ -153,7 +153,7 @@ export const ProfileEdit: React.FC = () => {
   };
 
   return (
-    <div className={styles['']}>
+    <div className={styles['wrapper']}>
       <div className={styles['title']}>Profile Edit</div>
       {registerMode ? (
         <div>

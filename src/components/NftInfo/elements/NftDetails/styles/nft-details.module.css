@@ -9,6 +9,7 @@
   border: none;
   padding: 18px 36px;
   border-radius: 5px;
+  margin-top:30px;
 }
 
 .content {
@@ -127,18 +128,16 @@
   .info-left{
     width:auto;
     padding:0 20px;
+    float:none;
+    text-align:center;
   }
   .info-right{
     width:auto;
     padding:0 20px;
-  }
-  .name{
+    float:none;
     text-align:center;
   }
   .creator {
     justify-content: center;
-  }
-  .info-title,.description{
-    text-align:center;
   }
 }

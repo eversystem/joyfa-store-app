@@ -1,13 +1,8 @@
 .wrapper {
-  /* box-sizing: border-box; */
-
-  display: block;
+display: block;
   float: left;
   margin: 20px 10px;
-  /* width: 100%; */
   width: 243px;
-  /* max-width: 245px; */
-  /* height: 386px; */
   background: #FFFFFF;
   border: 1px solid #F3F3F3;
   text-decoration: none;
@@ -15,7 +10,6 @@
 }
 
 .nft-image-wrapper {
-  /* width: 100%; */
   width: 243px;
   height: 243px;
   overflow: hidden;
@@ -27,7 +21,6 @@
 
 .nft-image {
   width: 100%;
-  display: block;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -67,11 +60,6 @@
   flex-direction: row;
   align-items: flex-start;
   padding-top: 16px;
-  /* gap: 8px; */
-
-  /* width: 197px; */
-  /* height: 24px; */
-
   flex: none;
   order: 1;
   align-self: stretch;

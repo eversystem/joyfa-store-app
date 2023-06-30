@@ -1,3 +1,8 @@
+.wrapper{
+    max-width:710px;
+    margin:50px auto 0 auto;
+}
+
 .title {
   font-family: 'Mont';
   font-size: 32px;
@@ -7,7 +12,7 @@
 
 .left {
   float: left;
-  width: 500px;
+  width: 350px;
   max-width:100%;
 }
 
@@ -15,7 +20,7 @@
   float: left;
   width: 250px;
   max-width:100%;
-  margin-left: 50px;
+  margin-left: 100px;
 }
 
 .clear {
@@ -31,14 +36,6 @@
   width: 100%;
   max-width: 150px;
   border-radius:50%;
-}
-
-.nft-list {
-  display: flex;
-  flex-flow: row wrap;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0px auto;
 }
 
 .twitter {
@@ -67,12 +64,6 @@
   position: absolute;
   top: 22px;
   left: 16px;
-}
-
-.nft-card {
-  margin: 10px;
-  line-height: 180px;
-  text-align: center;
 }
 
 .btn button{
