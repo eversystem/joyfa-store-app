@@ -7,13 +7,6 @@
   flex-flow: row wrap;
   width: 100%;
   max-width: 1400px;
-  margin: 0px auto;
-}
-
-.nft-card {
-  margin: 10px;
-  line-height: 180px;
-  text-align: center;
 }
 
 .img-cover img{
@@ -78,6 +71,10 @@
   border-width:1px;
   cursor:pointer;
 }
+.collected, .created{
+  float:left;
+  width:100%;
+}
 .cntents-label{
   font-family: 'Mont';
   font-style: normal;
@@ -85,10 +82,13 @@
   line-height: 120%;
   color: #0D0F08;
   margin: 50px 0px 0px 0px;
-  float:left;
+  width:100%;
 }
 
 @media screen and (max-width: 768px) {
+  .nft-list{
+    justify-content: center;
+  }
   .img-icon{
     margin:0 auto;
     text-align:center;
@@ -107,10 +107,11 @@
   }
   .collected, .created{
     text-align:center;
+    float:left;
   }
   .collected .cntents-label, .created .cntents-label{
     float:none;
-    margin-top:80px;
+    margin-top:50px;
   }
   .socials{
     width:170px;

@@ -16,7 +16,7 @@
   max-width: 100%;
   max-height: 350px;
   overflow-y: scroll;
-  margin: 0px auto;
+  justify-content: center;
 }
 
 .mint-button-list::-webkit-scrollbar {
@@ -41,8 +41,9 @@
 
 .id-title {
   font-family: 'Mont';
-  font-size: 32px;
+  font-size: 28px;
   color: #0D0F08;
+  margin:10px 0;
   text-align: left;
 }
 
@@ -52,14 +53,14 @@
 
 .id-filter {
   text-align: left;
-  margin: 30px 0 10px 0;
+  margin: 30px 0 15px 0;
 }
 
 .id-filter button {
   background-color: #F3F3F3;
   border: none;
   cursor: pointer;
-  padding: 12px 18px;
+  padding: 16px 18px;
   margin: 0px 5px;
   border-radius: 5px;
 }

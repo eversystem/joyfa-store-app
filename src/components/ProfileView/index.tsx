@@ -64,90 +64,80 @@ export const ProfileView: React.FC<ProfileViewProps> = (props) => {
         <div>
           <div className={styles['img-cover']}>
             <img src={userInfo.cover || undefined} />
-            {/*<img src="https://uploads-ssl.webflow.com/623b48aca4d6403c00f8c106/6284bd3414beabc8c536453d_EINSTEIN-BLAZE-Background-Image.jpg" />*/}
           </div>
-          <main>
-            <div className={styles['container']}>
-              <div className={styles['img-icon']}>
-                <img src={userInfo.icon || undefined} />
-                {/*<img src="https://uploads-ssl.webflow.com/623b48aca4d6403c00f8c106/63579d4a0b897b5b3958f2f8_tubby%20cats.png" />*/}
-              </div>
-              <div className={styles['container-left']}>
-                <div className={styles['name']}>{userInfo.name}</div>
-                <div className={styles['description']}>
-                  {userInfo.description}
-                </div>
-              </div>
-              <div className={styles['container-right']}>
-                <div className={styles['socials']}>
-                  <a
-                    className={styles.twitter}
-                    href={'https://twitter.com/' + (userInfo?.twitter || '')}
-                    target="_blank"
-                  >
-                    <img className={styles.image} src={ProfileTwitterSvg} />
-                  </a>
-                  <a
-                    className={styles.instagram}
-                    href={
-                      'https://www.instagram.com/' + (userInfo?.instagram || '')
-                    }
-                    target="_blank"
-                  >
-                    <img className={styles.image} src={ProfileInstagramSvg} />
-                  </a>
-                  <a
-                    className={styles.website}
-                    href={userInfo?.website}
-                    target="_blank"
-                  >
-                    <img className={styles.image} src={ProfileWebsiteSvg} />
-                  </a>
-                  <a
-                    className={styles.etherscan}
-                    href={
-                      'https://etherscan.io/address/' +
-                      (userInfo?.address || '')
-                    }
-                    target="_blank"
-                  >
-                    <img className={styles.image} src={ProfileEtherscanSvg} />
-                  </a>
-                </div>
-                {editable && (
-                  <div className={styles['edit-button']}>
-                    <button onClick={() => navigate('/profile/edit')}>
-                      Edit Profile
-                    </button>
-                  </div>
-                )}
+          <div className={styles['container']}>
+            <div className={styles['img-icon']}>
+              <img src={userInfo.icon || undefined} />
+            </div>
+            <div className={styles['container-left']}>
+              <div className={styles['name']}>{userInfo.name}</div>
+              <div className={styles['description']}>
+                {userInfo.description}
               </div>
             </div>
-          </main>
+            <div className={styles['container-right']}>
+              <div className={styles['socials']}>
+                <a
+                  className={styles.twitter}
+                  href={'https://twitter.com/' + (userInfo?.twitter || '')}
+                  target="_blank"
+                >
+                  <img className={styles.image} src={ProfileTwitterSvg} />
+                </a>
+                <a
+                  className={styles.instagram}
+                  href={
+                    'https://www.instagram.com/' + (userInfo?.instagram || '')
+                  }
+                  target="_blank"
+                >
+                  <img className={styles.image} src={ProfileInstagramSvg} />
+                </a>
+                <a
+                  className={styles.website}
+                  href={userInfo?.website}
+                  target="_blank"
+                >
+                  <img className={styles.image} src={ProfileWebsiteSvg} />
+                </a>
+                <a
+                  className={styles.etherscan}
+                  href={
+                    'https://etherscan.io/address/' + (userInfo?.address || '')
+                  }
+                  target="_blank"
+                >
+                  <img className={styles.image} src={ProfileEtherscanSvg} />
+                </a>
+              </div>
+              {editable && (
+                <div className={styles['edit-button']}>
+                  <button onClick={() => navigate('/profile/edit')}>
+                    Edit Profile
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
           {ownedNfts.length ? (
-            <main>
-              <div className={styles['collected']}>
-                <div className={styles['cntents-label']}>Collected</div>
-                <div className={styles['nft-list']}>
-                  {ownedNfts.map((nft) => (
-                    <NftCardById key={nft.metadata.id} {...nft} />
-                  ))}
-                </div>
+            <div className={styles['collected']}>
+              <div className={styles['cntents-label']}>Collected</div>
+              <div className={styles['nft-list']}>
+                {ownedNfts.map((nft) => (
+                  <NftCardById key={nft.metadata.id} {...nft} />
+                ))}
               </div>
-            </main>
+            </div>
           ) : null}
-          <br />
           {userInfo?.creator && (
-            <main>
-              <div className={styles['created']}>
-                <div className={styles['cntents-label']}>Created</div>
-                <div className={styles['nft-list']}>
-                  {createdNfts.map((nft, i) => (
-                    <NftCard key={i} {...nft} />
-                  ))}
-                </div>
+            <div className={styles['created']}>
+              <div className={styles['cntents-label']}>Created</div>
+              <div className={styles['nft-list']}>
+                {createdNfts.map((nft, i) => (
+                  <NftCard key={i} {...nft} />
+                ))}
               </div>
-            </main>
+            </div>
           )}
         </div>
       )}
