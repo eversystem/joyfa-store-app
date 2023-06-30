@@ -78,17 +78,17 @@ export const NftDetails: React.FC<NftDetailsProps> = (props) => {
         )}
       </div>
       <div className={styles['info']}>
+        <div className={styles['name']}>{props.metadata.name}</div>
+        <div
+          className={styles['creator']}
+          onClick={() => {
+            navigate(`/user/${props.creator.address}`);
+          }}
+        >
+          <img className={styles['creator-icon']} src={props.creator.icon} />
+          <div className={styles['creator-name']}>{props.creator.name}</div>
+        </div>
         <div className={styles['info-left']}>
-          <div className={styles['name']}>{props.metadata.name}</div>
-          <div
-            className={styles['creator']}
-            onClick={() => {
-              navigate(`/user/${props.creator.address}`);
-            }}
-          >
-            <img className={styles['creator-icon']} src={props.creator.icon} />
-            <div className={styles['creator-name']}>{props.creator.name}</div>
-          </div>
           <div className={styles['info-title']}>Story</div>
           <div className={styles['description']}>
             {props.metadata.description.split('\n').map((paragraph, i) => (
@@ -99,28 +99,28 @@ export const NftDetails: React.FC<NftDetailsProps> = (props) => {
           </div>
           <div className={styles['info-title']}>How to wear</div>
           <div className={styles['description']}>
-            After collecting, please go to the&nbsp;
+            Once collected, go to&nbsp;
             <a href="https://mystudio.joyfa.io/" target="_blank">
               My Studio
             </a>
-            &nbsp;page and select your NFT. You will then be able to wear this
-            sneaker over AR.
+            &nbsp;and choose your NFT. You will then be able to wear the sneaker
+            over AR.
           </div>
           <div className={styles['info-title']}>Blockchain</div>
           <div className={styles['description']}>Ethereum</div>
         </div>
         <div className={styles['info-right']}>
           <div className={styles['price_supply']}>
-            <div className={styles['price_supply-prefix']}>Price</div>
-            <div className={styles['price_supply-content']}>
+            <span className={styles['price_supply-prefix']}>Price&nbsp;</span>
+            <span className={styles['price_supply-content']}>
               {props.supply.price} ETH
-            </div>
+            </span>
           </div>
           <div className={styles['price_supply']}>
-            <div className={styles['price_supply-prefix']}>Supply</div>
-            <div className={styles['price_supply-content']}>
+            <span className={styles['price_supply-prefix']}>Supply&nbsp;</span>
+            <span className={styles['price_supply-content']}>
               {props.supply.amount - props.mintedNfts} / {props.supply.amount}
-            </div>
+            </span>
           </div>
           <button
             className={styles['button']}

@@ -114,8 +114,7 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
               <>
                 <div className={styles['id-title']}>Select Sneaker ID</div>
                 <div className={styles['id-description']}>
-                  Select the ID for this sneaker. The chosen ID will be included
-                  in the NFT name.
+                  The chosen ID will be included in the NFT name.
                 </div>
                 {errorMessage && (
                   <div className={styles['minting-error']}>{errorMessage}</div>
