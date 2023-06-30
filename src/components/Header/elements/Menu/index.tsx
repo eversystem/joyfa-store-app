@@ -6,18 +6,8 @@ import styles from './styles/header-menu.module.css';
 import { isCreatorAddress } from 'src/api';
 
 export const Menu: React.FC = () => {
-  // const sdk = useSDK();
   const address = useAddress();
   const [isCreator, setIsCretor] = useState<boolean>(false);
-  // const [status, setStatus] = useState<ListingStatus>('input');
-  // const [name, setName] = useState('');
-  // const [description, setDescription] = useState('');
-  // const [image, setImage] = useState<File | null>(null);
-  // const [animation, setAnimation] = useState<File | null>(null);
-  // const [glbL, setGLBL] = useState<File | null>(null);
-  // const [glbR, setGLBR] = useState<File | null>(null);
-  // const [price, setPrice] = useState('0');
-  // const [supply, setSupply] = useState('1');
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {

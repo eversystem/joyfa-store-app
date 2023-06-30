@@ -5,19 +5,10 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* padding: 24px 111px; */
-  /* gap: 684px; */
-
   width: 100vw;
   height: 90px;
   padding: 0px 50px;
-
-  /* Shades/Dark-15% */
-
   border-bottom: 1px solid #DBDBDA;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 0;
   align-self: stretch;
