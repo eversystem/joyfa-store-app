@@ -11,10 +11,16 @@ enum ContentsType {
   VIDEO,
 }
 
-export type NftDetailsProps = NftEntity & { mintedNfts: number };
+export type NftDetailsProps = NftEntity & {
+  mintedNfts: number;
+  handleCollectButtonClick: () => void;
+};
 
 export const NftDetails: React.FC<NftDetailsProps> = (props) => {
-  const { image, glb_l, animation_url } = props.metadata;
+  const {
+    metadata: { image, glb_l, animation_url },
+    handleCollectButtonClick,
+  } = props;
   const navigate = useNavigate();
   const [contents, setContents] = useState<ContentsType>(ContentsType.IMAGE);
   const ContentsElements = [
@@ -116,6 +122,12 @@ export const NftDetails: React.FC<NftDetailsProps> = (props) => {
               {props.supply.amount - props.mintedNfts} / {props.supply.amount}
             </div>
           </div>
+          <button
+            className={styles['button']}
+            onClick={handleCollectButtonClick}
+          >
+            Collect
+          </button>
         </div>
       </div>
     </div>

@@ -75,11 +75,12 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
   return (
     <div className={styles['nft-info']}>
       <div className={styles['nft-details']}>
-        <NftDetails {...nft} mintedNfts={mintedNftHasSameExternalUrl.length} />
+        <NftDetails
+          {...nft}
+          mintedNfts={mintedNftHasSameExternalUrl.length}
+          handleCollectButtonClick={handleCollectButtonClick}
+        />
       </div>
-      <button className={styles['button']} onClick={handleCollectButtonClick}>
-        Collect
-      </button>
       {isPopupVisible && (
         <div
           className={styles['popup-container']}
