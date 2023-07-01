@@ -37,7 +37,6 @@ export const CreateForm: React.FC = () => {
     !!name &&
     !!description &&
     !!image &&
-    // !!animation &&
     !!glbL &&
     !!glbR;
   const clearable = status !== 'loading';
@@ -61,6 +60,12 @@ export const CreateForm: React.FC = () => {
       //   throw new Error('invalid_status');
       // }
       if (!creatable) {
+        console.log(status);
+        console.log(name);
+        console.log(description);
+        console.log(image);
+        console.log(glbL);
+        console.log(glbR);
         console.log('fill all required form');
         return;
       }
@@ -73,6 +78,16 @@ export const CreateForm: React.FC = () => {
       }
       if (!(image && animation && glbL && glbR)) {
         throw new Error('file_not_found');
+      }
+      if (!Number.isInteger(price) || Number(price) < 0) {
+        throw new Error('The price needs to be greater than or equal to zero.');
+      }
+      if (
+        !Number.isInteger(supply) ||
+        Number(supply) < 0 ||
+        Number(supply) > 100
+      ) {
+        throw new Error('The supply needs to be between 1 and 100.');
       }
       console.log('upload_file');
       const metadata: ListingRequest = {
@@ -100,16 +115,7 @@ export const CreateForm: React.FC = () => {
       }
       metadata.glb_l = _glb_l;
       metadata.glb_r = _glb_r;
-      // if (animation) {
-      //   const [_image, _animation_url, _glb_l, _glb_r] =
-      //     await sdk.storage.uploadBatch([image, animation, glbL, glbR]);
-      // } else {
-      //   const [_image, _glb_l, _glb_r] = await sdk.storage.uploadBatch([
-      //     image,
-      //     glbL,
-      //     glbR,
-      //   ]);
-      // }
+
       console.log(JSON.stringify(metadata, null, 2));
       console.log('listing');
       const signer = sdk.getSigner();
@@ -169,13 +175,7 @@ export const CreateForm: React.FC = () => {
                   name="price"
                   value={price}
                   setValue={(value) => {
-                    // validate
-                    if (/^[0-9]*\.?[0-9]*$/.test(value)) {
-                      setPrice(Number(value).toString());
-                    }
-                    // if (!Number.isNaN(value) && 0 < Number(value)) {
-                    //   setPrice(Number(value).toString());
-                    // }
+                    setPrice(value.toString());
                   }}
                   suffix="&nbsp;ETH"
                   disabled={status !== 'input'}
@@ -187,19 +187,7 @@ export const CreateForm: React.FC = () => {
                   name="supply"
                   value={supply}
                   setValue={(value) => {
-                    // validate
-                    // if (Number.isInteger(Number(value)) && 0 < Number(value)) {
-                    //   setSupply(Number(value).toString());
-                    // }
-                    // setSupply(Number(value).toString());
-                    if (/^[1-9][0-9]*$/.test(value)) {
-                      if (Number(value) <= 100) {
-                        setSupply(Number(value).toString());
-                      }
-                    }
-                    // if (!Number.isNaN(value) && 0 < Number(value)) {
-                    //   setSupply(Number(value).toString());
-                    // }
+                    setSupply(value.toString());
                   }}
                   disabled={status !== 'input'}
                 />
