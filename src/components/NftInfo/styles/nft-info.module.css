@@ -61,7 +61,7 @@
   border: none;
   cursor: pointer;
   padding: 16px 18px;
-  margin: 0px 5px;
+  margin: 5px 5px;
   border-radius: 5px;
 }
 
@@ -113,5 +113,12 @@
 
   to {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .popup{
+    margin:0 20px;
+    width: 270px;
   }
 }
