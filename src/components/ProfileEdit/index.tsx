@@ -244,9 +244,6 @@ export const ProfileEdit: React.FC = () => {
                   setCover(file);
                 }}
               />
-              <div className={styles['img-cover']}>
-                <img src={userInfo.cover || undefined} />
-              </div>
               <FileInput
                 label={'Icon (max: 30mb)'}
                 name={'icon'}
@@ -255,9 +252,6 @@ export const ProfileEdit: React.FC = () => {
                   setIcon(file);
                 }}
               />
-              <div className={styles['img-icon']}>
-                <img src={userInfo.icon || undefined} />
-              </div>
             </div>
             <div className={styles['clear']}></div>
           </div>

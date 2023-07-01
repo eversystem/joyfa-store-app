@@ -208,20 +208,18 @@ export const CreateForm: React.FC = () => {
           </div>
           <div className={styles['form-right']}>
             {/* image */}
-            <div className={styles['image-uploader']}>
-              <FileInput
-                label="Image (max: 100mb)*"
-                name="image"
-                value={image}
-                setValue={(value) => {
-                  // 100MB = 104857600 Byte
-                  if (value && value.size < 104857600) {
-                    setImage(value);
-                  }
-                }}
-                disabled={status !== 'input'}
-              />
-            </div>
+            <FileInput
+              label="Image (max: 100mb)*"
+              name="image"
+              value={image}
+              setValue={(value) => {
+                // 100MB = 104857600 Byte
+                if (value && value.size < 104857600) {
+                  setImage(value);
+                }
+              }}
+              disabled={status !== 'input'}
+            />
             {/* animation */}
             <FileInput
               label="Video (max: 100mb)"
