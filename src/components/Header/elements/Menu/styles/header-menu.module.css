@@ -28,6 +28,7 @@
 
 .menu-links {
   display: flex;
+  background: #fff;
   gap: 48px;
   transition: transform 0.3s ease-in-out;
   align-items: center;
@@ -53,14 +54,9 @@
     left: 0;
     height: 100vh;
     width: 100%;
-    background: #fff;
-    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     padding-top:120px;
     align-items: center;
-  }
-  .menu-links.open {
-    transform: translateX(0);
   }
 }
