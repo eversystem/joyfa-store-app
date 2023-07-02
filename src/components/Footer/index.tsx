@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
     <footer className={styles['footer']}>
       <div className={styles['footer-first']}>
         <div className={styles['footer-first-links']}>
-          <a onClick={handleJoyfa}>joyfa.io</a>
+          <a onClick={handleJoyfa}>corp.joyfa.io</a>
           <a onClick={handleMyStudio}>My Studio</a>
           <a onClick={handleTerms}>Terms</a>
           <a onClick={handleContact}>Contact Us</a>
