@@ -8,16 +8,16 @@ export const Footer: React.FC = () => {
   const navigate = useNavigate();
 
   const handleJoyfa = () => {
-    window.open('https://joyfa.io', '_blank');
+    window.open('https://corp.joyfa.io', '_blank');
   };
   const handleMyStudio = () => {
     window.open('https://mystudio.joyfa.io/', '_blank');
   };
   const handleTerms = () => {
-    window.open('https://www.joyfa.io/terms', '_blank');
+    window.open('https://corp.joyfa.io/terms', '_blank');
   };
   const handleContact = () => {
-    window.open('https://www.joyfa.io/contact-us', '_blank');
+    window.open('https://corp.joyfa.io/contact-us', '_blank');
   };
   const handleTwitter = () => {
     window.open('https://twitter.com/Joyfa_official', '_blank');
