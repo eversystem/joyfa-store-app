@@ -87,7 +87,7 @@
   color: #ffffff;
   border: none;
   padding: 18px 36px;
-  margin: 50px 5px;
+  margin: 50px 5px 30px 5px;
   border-radius: 5px;
 }
 
@@ -99,9 +99,7 @@
 }
 
 .status {
-  font-family: 'Mont';
-  font-size: 20px;
-  text-align: center;
+  color:#E65E67;
 }
 
 @media screen and (max-width: 768px) {

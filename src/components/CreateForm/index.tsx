@@ -57,18 +57,8 @@ export const CreateForm: React.FC = () => {
   const onSubmit = async () => {
     try {
       console.log('submit');
-      // if (!creatable) {
-      //   console.log(status);
-      //   console.log(name);
-      //   console.log(description);
-      //   console.log(image);
-      //   console.log(glbL);
-      //   console.log(glbR);
-      //   console.log('fill all required form');
-      //   return;
-      // }
       if (!address) {
-        const message = 'Please connect wallet.';
+        const message = 'Please connect your wallet.';
         setError(message);
         throw new Error(message);
       }
@@ -77,18 +67,18 @@ export const CreateForm: React.FC = () => {
       }
       const signer = sdk.getSigner();
       if (!signer) {
-        const message = 'Please connect wallet.';
+        const message = 'Please connect your wallet.';
         setError(message);
         throw new Error(message);
       }
       if (!(image && glbL && glbR)) {
-        const message = 'Fill all required form.';
+        const message = 'Please fill in all required fields.';
         setError(message);
         throw new Error(message);
       }
-      // if (!Number.isInteger(price) || Number(price) <= 0) {
       if (Number(price) <= 0) {
-        const message = 'The price needs to be greater than or equal to zero.';
+        const message =
+          'Price per copy needs to be greater than or equal to zero.';
         setError(message);
         throw new Error('message');
       }
@@ -96,7 +86,7 @@ export const CreateForm: React.FC = () => {
         !Number.isInteger(Number(supply)) ||
         !(0 < Number(supply) && Number(supply) <= 100)
       ) {
-        const message = 'The supply needs to be between 1 and 100.';
+        const message = 'Supply needs to be between 1 and 100.';
         setError(message);
         throw new Error(message);
       }
