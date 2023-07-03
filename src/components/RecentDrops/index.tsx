@@ -8,7 +8,7 @@ export const RecentDrops: React.FC = () => {
       <div className={styles['main']}>
         <img className={styles['main-image']} src={MainImage} />
         <div className={styles['main-box']}>
-          <div className={styles['main-title']}>Red</div>
+          <div className={styles['main-title']}>10.19 Genesis Shoe</div>
           <div className={styles['main-description']}>
             by Tokyo White International
           </div>
