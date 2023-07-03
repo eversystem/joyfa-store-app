@@ -1,17 +1,20 @@
 import React from 'react';
 import { resolveIpfsUri } from '@thirdweb-dev/react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import styles from './styles/nft-card.module.css';
 import { NftEntity } from 'src/utils/data';
 
 export type NftCardProps = NftEntity & { tokenId?: string };
 
 export const NftCard: React.FC<NftCardProps> = (props) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return (
     <div
       className={styles['wrapper']}
-      onClick={() => navigate(`/nft/${props.id}`)}
+      // onClick={() => navigate(`/nft/${props.id}`)}
+      onClick={() =>
+        (window.location.href = `${window.location.origin}/nft/${props.id}`)
+      }
     >
       <div className={styles['nft-image-wrapper']}>
         <img

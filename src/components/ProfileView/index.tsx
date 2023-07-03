@@ -63,11 +63,21 @@ export const ProfileView: React.FC<ProfileViewProps> = (props) => {
       {userInfo && (
         <div>
           <div className={styles['img-cover']}>
-            <img src={userInfo.cover || undefined} />
+            <img
+              src={
+                userInfo.cover &&
+                `${userInfo.cover}?rand=${new Date().getTime()}`
+              }
+            />
           </div>
           <div className={styles['container']}>
             <div className={styles['img-icon']}>
-              <img src={userInfo.icon || undefined} />
+              <img
+                src={
+                  userInfo.icon &&
+                  `${userInfo.icon}?rand=${new Date().getTime()}`
+                }
+              />
             </div>
             <div className={styles['container-left']}>
               <div className={styles['name']}>{userInfo.name}</div>
