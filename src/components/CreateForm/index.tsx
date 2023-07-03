@@ -22,6 +22,7 @@ export const CreateForm: React.FC = () => {
   const [glbR, setGLBR] = useState<File | null>(null);
   const [price, setPrice] = useState('0.1');
   const [supply, setSupply] = useState('1');
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (address) {
@@ -32,63 +33,74 @@ export const CreateForm: React.FC = () => {
     }
   }, [address]);
 
-  const creatable =
-    status === 'input' &&
-    !!name &&
-    !!description &&
-    !!image &&
-    !!glbL &&
-    !!glbR;
-  const clearable = status !== 'loading';
+  // const creatable =
+  //   status === 'input' &&
+  //   !!name &&
+  //   !!description &&
+  //   !!image &&
+  //   !!glbL &&
+  //   !!glbR;
+  // const clearable = status !== 'loading';
 
-  const onClear = () => {
-    setStatus('input');
-    setName('');
-    setDescription('');
-    setImage(null);
-    setAnimation(null);
-    setGLBL(null);
-    setGLBR(null);
-    setPrice('0');
-    setSupply('1');
-  };
+  // const onClear = () => {
+  //   setStatus('input');
+  //   setName('');
+  //   setDescription('');
+  //   setImage(null);
+  //   setAnimation(null);
+  //   setGLBL(null);
+  //   setGLBR(null);
+  //   setPrice('0');
+  //   setSupply('1');
+  // };
 
   const onSubmit = async () => {
     try {
       console.log('submit');
-      // if (status !== 'input') {
-      //   throw new Error('invalid_status');
+      // if (!creatable) {
+      //   console.log(status);
+      //   console.log(name);
+      //   console.log(description);
+      //   console.log(image);
+      //   console.log(glbL);
+      //   console.log(glbR);
+      //   console.log('fill all required form');
+      //   return;
       // }
-      if (!creatable) {
-        console.log(status);
-        console.log(name);
-        console.log(description);
-        console.log(image);
-        console.log(glbL);
-        console.log(glbR);
-        console.log('fill all required form');
-        return;
-      }
-      setStatus('loading');
       if (!address) {
-        throw new Error('wallet_not_connected');
+        const message = 'Please connect wallet.';
+        setError(message);
+        throw new Error(message);
       }
       if (!sdk) {
         throw new Error('sdk_not_connected');
       }
-      if (!(image && animation && glbL && glbR)) {
-        throw new Error('file_not_found');
+      const signer = sdk.getSigner();
+      if (!signer) {
+        const message = 'Please connect wallet.';
+        setError(message);
+        throw new Error(message);
       }
-      if (!Number.isInteger(price) || Number(price) < 0) {
-        throw new Error('The price needs to be greater than or equal to zero.');
+      if (!(image && glbL && glbR)) {
+        const message = 'Fill all required form.';
+        setError(message);
+        throw new Error(message);
+      }
+      // if (!Number.isInteger(price) || Number(price) <= 0) {
+      if (Number(price) <= 0) {
+        const message = 'The price needs to be greater than or equal to zero.';
+        setError(message);
+        throw new Error('message');
       }
       if (
-        !Number.isInteger(supply) ||
-        Number(supply) < 0 ||
-        Number(supply) > 100
+        !Number.isInteger(Number(supply)) ||
+        !(0 < Number(supply) && Number(supply) <= 100)
       ) {
-        throw new Error('The supply needs to be between 1 and 100.');
+        const message = 'The supply needs to be between 1 and 100.';
+        setError(message);
+        throw new Error(message);
       }
+      setStatus('loading');
       console.log('upload_file');
       const metadata: ListingRequest = {
         // creator: address,
@@ -115,17 +127,14 @@ export const CreateForm: React.FC = () => {
       }
       metadata.glb_l = _glb_l;
       metadata.glb_r = _glb_r;
-
       console.log(JSON.stringify(metadata, null, 2));
       console.log('listing');
-      const signer = sdk.getSigner();
-      if (!signer) {
-        throw new Error('signer not found');
-      }
       const message = `Sign in to Drops. (${new Date().getTime().toString()})`;
       const signature = await signer.signMessage(message);
       if (!signature) {
-        throw new Error('sign rejected');
+        const message = 'Invalid signature.';
+        setError(message);
+        throw new Error(message);
       }
       const jwt = await signin(
         address.toLowerCase(),
@@ -153,16 +162,24 @@ export const CreateForm: React.FC = () => {
                   label="Name*"
                   name="name"
                   value={name}
-                  setValue={setName}
-                  disabled={status !== 'input'}
+                  setValue={(value) => {
+                    setError('');
+                    setStatus('input');
+                    setName(value);
+                  }}
+                  disabled={status === 'loading'}
                 />
                 {/* description */}
                 <TextareaInput
                   label="Story*"
                   name="description"
                   value={description}
-                  setValue={setDescription}
-                  disabled={status !== 'input'}
+                  setValue={(value) => {
+                    setError('');
+                    setStatus('input');
+                    setDescription(value);
+                  }}
+                  disabled={status === 'loading'}
                 />
               </div>
             </div>
@@ -175,10 +192,12 @@ export const CreateForm: React.FC = () => {
                   name="price"
                   value={price}
                   setValue={(value) => {
+                    setError('');
+                    setStatus('input');
                     setPrice(value.toString());
                   }}
                   suffix="&nbsp;ETH"
-                  disabled={status !== 'input'}
+                  disabled={status === 'loading'}
                 />
                 {/* supply */}
                 <TextInput
@@ -187,9 +206,11 @@ export const CreateForm: React.FC = () => {
                   name="supply"
                   value={supply}
                   setValue={(value) => {
+                    setError('');
+                    setStatus('input');
                     setSupply(value.toString());
                   }}
-                  disabled={status !== 'input'}
+                  disabled={status === 'loading'}
                 />
               </div>
             </div>
@@ -199,55 +220,67 @@ export const CreateForm: React.FC = () => {
             <FileInput
               label="Image (max: 100mb)*"
               name="image"
+              accept="image/png, image/jpeg, image/jpg"
               value={image}
               setValue={(value) => {
                 // 100MB = 104857600 Byte
                 if (value && value.size < 104857600) {
+                  setError('');
+                  setStatus('input');
                   setImage(value);
                 }
               }}
-              disabled={status !== 'input'}
+              disabled={status === 'loading'}
             />
             {/* animation */}
             <FileInput
               label="Video (max: 100mb)"
               name="animation_url"
+              accept="video/mp4"
               value={animation}
               setValue={(value) => {
                 // 100MB = 104857600 Byte
                 if (value && value.size < 104857600) {
+                  setError('');
+                  setStatus('input');
                   setAnimation(value);
                 }
               }}
-              disabled={status !== 'input'}
+              disabled={status === 'loading'}
             />
             {/* glb_l */}
             <FileInput
               label="GLB Left (max: 30mb)*"
               name="glb_l"
+              accept=".glb"
               value={glbL}
               // setValue={setGLBL}
               setValue={(value) => {
                 // 100MB = 31457280 Byte
                 if (value && value.size < 31457280) {
+                  setError('');
+                  setStatus('input');
                   setGLBL(value);
                 }
               }}
-              disabled={status !== 'input'}
+              disabled={status === 'loading'}
             />
             {/* gln_r */}
             <FileInput
               label="GLB Right (max: 30mb)*"
               name="glb_r"
+              accept=".glb"
               value={glbR}
               // setValue={setGLBR}
               setValue={(value) => {
                 // 100MB = 31457280 Byte
                 if (value && value.size < 31457280) {
+                  setError('');
+                  setStatus('input');
                   setGLBR(value);
                 }
               }}
-              disabled={status !== 'input'}
+              disabled={status === 'loading'}
             />
           </div>
           <div className={styles['form-row']}>
@@ -272,6 +305,8 @@ export const CreateForm: React.FC = () => {
               ? 'Loading'
               : status === 'completed'
               ? 'Your NFT has been created!'
+              : status === 'error'
+              ? error
               : ''}
           </div>
         </div>

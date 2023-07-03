@@ -7,6 +7,7 @@ export type FileInputProps = {
   value: File | null;
   setValue: (file: File | null) => void;
   disabled?: boolean;
+  accept?: string;
 };
 
 export const FileInput: React.FC<FileInputProps> = (props) => {
@@ -19,6 +20,7 @@ export const FileInput: React.FC<FileInputProps> = (props) => {
             type="file"
             disabled={!!props.disabled}
             className={styles['input']}
+            accept={props.accept}
             name={props.name}
             onChange={handleFile(props.setValue)}
           />

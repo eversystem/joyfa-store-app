@@ -239,6 +239,7 @@ export const ProfileEdit: React.FC = () => {
               <FileInput
                 label={'Cover (max: 30mb)'}
                 name={'cover'}
+                accept="image/png, image/jpeg, image/jpg"
                 value={cover}
                 setValue={(file: File | null) => {
                   setCover(file);
@@ -247,6 +248,7 @@ export const ProfileEdit: React.FC = () => {
               <FileInput
                 label={'Icon (max: 30mb)'}
                 name={'icon'}
+                accept="image/png, image/jpeg, image/jpg"
                 value={icon}
                 setValue={(file: File | null) => {
                   setIcon(file);

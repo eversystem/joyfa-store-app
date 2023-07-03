@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import styles from './styles/nft-card.module.css';
 import { NftEntity } from 'src/utils/data';
 
-export const NftCard: React.FC<NftEntity> = (props) => {
+export type NftCardProps = NftEntity & { tokenId?: string };
+
+export const NftCard: React.FC<NftCardProps> = (props) => {
   const navigate = useNavigate();
   return (
     <div
@@ -19,13 +21,15 @@ export const NftCard: React.FC<NftEntity> = (props) => {
         />
       </div>
       <div className={styles['nft-details']}>
-        <div className={styles['nft-name']}>{props.metadata.name}</div>
+        <div className={styles['nft-name']}>
+          {props.metadata.name}
+          {props.tokenId ? ` #${props.tokenId}/${props.supply.amount}` : ''}
+        </div>
         <div className={styles['nft-creator']}>
           <img
             className={styles['nft-creator-icon']}
             src={props.creator.icon}
           />
-
           <div className={styles['nft-creator-name']}>{props.creator.name}</div>
         </div>
         <div className={styles['sales-info']}>

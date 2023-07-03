@@ -1,12 +1,9 @@
 import styles from './styles/footer.module.css';
-import { useNavigate } from 'react-router-dom';
 import { ReactComponent as TwitterSVG } from 'src/assets/icon-twitter.svg';
 import { ReactComponent as InstagramSVG } from 'src/assets/icon-instagram.svg';
 import { ReactComponent as DiscordSVG } from 'src/assets/icon-discord.svg';
 
 export const Footer: React.FC = () => {
-  const navigate = useNavigate();
-
   const handleJoyfa = () => {
     window.open('https://corp.joyfa.io', '_blank');
   };
