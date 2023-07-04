@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ThirdwebProvider activeChain="mumbai">
+    <ThirdwebProvider activeChain="ethereum">
       <App />
     </ThirdwebProvider>
   </React.StrictMode>,
