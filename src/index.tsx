@@ -5,13 +5,14 @@ import { App } from './App';
 import * as serviceWorkerRegistration from './utils/serviceWorkerRegistration';
 import reportWebVitals from './utils/reportWebVitals';
 import './styles/index.css';
+import { storage } from './utils/thirdweb-storage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 root.render(
   <React.StrictMode>
-    <ThirdwebProvider activeChain="ethereum">
+    <ThirdwebProvider activeChain="ethereum" storageInterface={storage}>
       <App />
     </ThirdwebProvider>
   </React.StrictMode>,
