@@ -5,116 +5,141 @@
   max-width: 1400px;
 }
 
-.img-cover img{
-  width:100%;
-  height:250px;
+.img-cover img {
+  width: 100%;
+  height: 250px;
   object-fit: cover;
 }
-.container{
-  margin-top:-120px;
+
+.container {
+  margin-top: -120px;
 }
-.container-left{
-  float:left;
-  width:65%;
+
+.container-left {
+  float: left;
+  width: 65%;
 }
-.container-right{
-  float:right;
-  width:30%;
+
+.container-right {
+  float: right;
+  width: 30%;
 }
-.img-icon{
-  width:160px;
-  height:160px;
+
+.img-icon {
+  width: 160px;
+  height: 160px;
 }
-.img-icon img{
-  border-radius:100%;
-  width:100%;
-  height:100%;
+
+.img-icon img {
+  border-radius: 100%;
+  width: 100%;
+  height: 100%;
   border: 5px solid #fff;
 }
-.name{
-  font-size:32px;
+
+.name {
+  font-size: 32px;
   color: #0D0F08;
-  margin:5px 0;
-  font-family:"Mont";
+  margin: 5px 0;
+  font-family: "Mont";
 }
-.description{
-  margin:20px 0;
+
+.description {
+  margin: 20px 0;
 }
-.socials{
-  width:100%;
-  float:right;
+
+.socials {
+  width: 100%;
+  float: right;
 }
-.socials a{
-  width:22px;
-  float:left;
-  margin:0 10px;
-  display:block;
+
+.socials a {
+  width: 22px;
+  float: left;
+  margin: 0 10px;
+  display: block;
 }
-.socials a img{
-  width:100%;
+
+.socials a img {
+  width: 100%;
 }
-.edit-button{
-  float:left;
-  margin:15px 0;
-  width:100%;
-  text-align:left;
+
+.edit-button {
+  float: left;
+  margin: 15px 0;
+  width: 100%;
+  text-align: left;
 }
-.edit-button button{
-  background-color:#ffffff;
-  color:#605e67;
-  padding:10px;
-  border-radius:10px;
-  border-width:1px;
-  cursor:pointer;
+
+.edit-button button {
+  background-color: #ffffff;
+  color: #605e67;
+  padding: 10px;
+  border-radius: 10px;
+  border-width: 1px;
+  cursor: pointer;
 }
-.collected, .created{
-  float:left;
-  width:100%;
+
+.collected,
+.created {
+  float: left;
+  width: 100%;
 }
-.cntents-label{
+
+.cntents-label {
   font-family: 'Mont';
   font-style: normal;
   font-size: 32px;
   line-height: 120%;
   color: #0D0F08;
   margin: 50px 0px 0px 0px;
-  width:100%;
+  width: 100%;
 }
 
 @media screen and (max-width: 768px) {
-  .nft-list{
+  .nft-list {
     justify-content: center;
   }
-  .img-icon{
-    margin:0 auto;
-    text-align:center;
+
+  .img-icon {
+    margin: 0 auto;
+    text-align: center;
   }
-  .description{
-    padding:0 20px;
+
+  .description {
+    padding: 0 20px;
   }
-  .container-left{
-    float:none;
-    width:100%;
-    text-align:center;
+
+  .container-left {
+    float: none;
+    width: 100%;
+    text-align: center;
   }
-  .container-right{
-    float:none;
-    width:100%;
+
+  .container-right {
+    float: none;
+    width: 100%;
   }
-  .collected, .created{
-    text-align:center;
-    float:left;
+
+  .collected,
+  .created {
+    text-align: center;
+    float: left;
   }
-  .collected .cntents-label, .created .cntents-label{
-    float:none;
-    margin-top:50px;
+
+  .collected .cntents-label,
+  .created .cntents-label {
+    float: none;
+    margin-top: 50px;
   }
-  .socials{
-    width:170px;
-    margin:0 auto;
-    float:none;
+
+  .socials {
+    width: 170px;
+    margin: 0 auto;
+    float: none;
   }
-  .edit-button{
-    text-align:center;
+
+  .edit-button {
+    text-align: center;
   }
 }

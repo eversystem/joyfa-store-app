@@ -68,6 +68,8 @@ export const ProfileEdit: React.FC = () => {
           setTwitter(user.twitter || '');
           setInstagram(user.instagram || '');
           setWebsite(user.website || '');
+        } else {
+          setRegisterMode(true);
         }
       });
     }
@@ -154,7 +156,9 @@ export const ProfileEdit: React.FC = () => {
 
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['title']}>Profile Edit</div>
+      <div className={styles['title']}>
+        {registerMode ? 'Profile Register' : 'Profile Edit'}
+      </div>
       {registerMode ? (
         <div>
           <div className={styles['left']}>

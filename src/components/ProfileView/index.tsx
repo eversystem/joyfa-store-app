@@ -48,109 +48,115 @@ export const ProfileView: React.FC<ProfileViewProps> = (props) => {
       });
       void getUserInfo(currentAddress).then((user) => {
         console.log('user-info');
-        console.log(user);
-        setUserInfo(user);
-        if (user?.creator) {
-          void getNftsByCreator(user.address).then((nfts) => {
-            setCreatedNfts(nfts);
-          });
+        if (user) {
+          console.log(user);
+          setUserInfo(user);
+          if (user?.creator) {
+            void getNftsByCreator(user.address).then((nfts) => {
+              setCreatedNfts(nfts);
+            });
+          }
         }
       });
     }
   }, [address, currentAddress, userInfo, nftCollection]);
   return (
     <div className={styles['wrapper']}>
-      {userInfo && (
-        <div>
-          <div className={styles['img-cover']}>
+      <div>
+        <div className={styles['img-cover']}>
+          <img
+            src={
+              userInfo && userInfo.cover
+                ? `${userInfo.cover}?rand=${new Date().getTime()}`
+                : 'https://placehold.jp/30/ffffff/000000/1200x700.png?text=image+not+found'
+            }
+          />
+        </div>
+        <div className={styles['container']}>
+          <div className={styles['img-icon']}>
             <img
               src={
-                userInfo.cover &&
-                `${userInfo.cover}?rand=${new Date().getTime()}`
+                userInfo && userInfo.icon
+                  ? `${userInfo.icon}?rand=${new Date().getTime()}`
+                  : 'https://placehold.jp/30/ffffff/000000/300x300.png?text=icon'
               }
             />
           </div>
-          <div className={styles['container']}>
-            <div className={styles['img-icon']}>
-              <img
-                src={
-                  userInfo.icon &&
-                  `${userInfo.icon}?rand=${new Date().getTime()}`
-                }
-              />
+          <div className={styles['container-left']}>
+            <div className={styles['name']}>
+              {userInfo ? userInfo.name : 'Guest'}
             </div>
-            <div className={styles['container-left']}>
-              <div className={styles['name']}>{userInfo.name}</div>
-              <div className={styles['description']}>
-                {userInfo.description}
-              </div>
-            </div>
-            <div className={styles['container-right']}>
-              <div className={styles['socials']}>
-                <a
-                  className={styles.twitter}
-                  href={'https://twitter.com/' + (userInfo?.twitter || '')}
-                  target="_blank"
-                >
-                  <img className={styles.image} src={ProfileTwitterSvg} />
-                </a>
-                <a
-                  className={styles.instagram}
-                  href={
-                    'https://www.instagram.com/' + (userInfo?.instagram || '')
-                  }
-                  target="_blank"
-                >
-                  <img className={styles.image} src={ProfileInstagramSvg} />
-                </a>
-                <a
-                  className={styles.website}
-                  href={userInfo?.website}
-                  target="_blank"
-                >
-                  <img className={styles.image} src={ProfileWebsiteSvg} />
-                </a>
-                <a
-                  className={styles.etherscan}
-                  href={
-                    'https://etherscan.io/address/' + (userInfo?.address || '')
-                  }
-                  target="_blank"
-                >
-                  <img className={styles.image} src={ProfileEtherscanSvg} />
-                </a>
-              </div>
-              {editable && (
-                <div className={styles['edit-button']}>
-                  <button onClick={() => navigate('/profile/edit')}>
-                    Edit Profile
-                  </button>
-                </div>
-              )}
+            <div className={styles['description']}>
+              {userInfo
+                ? userInfo.description
+                : 'Please register your address as a Drops account.'}
             </div>
           </div>
-          {ownedNfts.length ? (
-            <div className={styles['collected']}>
-              <div className={styles['cntents-label']}>Collected</div>
-              <div className={styles['nft-list']}>
-                {ownedNfts.map((nft) => (
-                  <NftCardById key={nft.metadata.id} {...nft} />
-                ))}
-              </div>
+          <div className={styles['container-right']}>
+            <div className={styles['socials']}>
+              <a
+                className={styles.twitter}
+                href={'https://twitter.com/' + (userInfo?.twitter || '')}
+                target="_blank"
+              >
+                <img className={styles.image} src={ProfileTwitterSvg} />
+              </a>
+              <a
+                className={styles.instagram}
+                href={
+                  'https://www.instagram.com/' + (userInfo?.instagram || '')
+                }
+                target="_blank"
+              >
+                <img className={styles.image} src={ProfileInstagramSvg} />
+              </a>
+              <a
+                className={styles.website}
+                href={userInfo?.website}
+                target="_blank"
+              >
+                <img className={styles.image} src={ProfileWebsiteSvg} />
+              </a>
+              <a
+                className={styles.etherscan}
+                href={
+                  'https://etherscan.io/address/' + (userInfo?.address || '')
+                }
+                target="_blank"
+              >
+                <img className={styles.image} src={ProfileEtherscanSvg} />
+              </a>
             </div>
-          ) : null}
-          {userInfo?.creator && (
-            <div className={styles['created']}>
-              <div className={styles['cntents-label']}>Created</div>
-              <div className={styles['nft-list']}>
-                {createdNfts.map((nft, i) => (
-                  <NftCard key={i} {...nft} />
-                ))}
+            {editable && (
+              <div className={styles['edit-button']}>
+                <button onClick={() => navigate('/profile/edit')}>
+                  {userInfo ? 'Edit Profile' : 'Register Profile'}
+                </button>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
-      )}
+        {ownedNfts.length ? (
+          <div className={styles['collected']}>
+            <div className={styles['cntents-label']}>Collected</div>
+            <div className={styles['nft-list']}>
+              {ownedNfts.map((nft) => (
+                <NftCardById key={nft.metadata.id} {...nft} />
+              ))}
+            </div>
+          </div>
+        ) : null}
+        {userInfo?.creator && (
+          <div className={styles['created']}>
+            <div className={styles['cntents-label']}>Created</div>
+            <div className={styles['nft-list']}>
+              {createdNfts.map((nft, i) => (
+                <NftCard key={i} {...nft} />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
