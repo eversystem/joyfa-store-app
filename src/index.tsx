@@ -6,13 +6,14 @@ import * as serviceWorkerRegistration from './utils/serviceWorkerRegistration';
 import reportWebVitals from './utils/reportWebVitals';
 import './styles/index.css';
 import { storage } from './utils/thirdweb-storage';
+import { NETWORK } from './utils/env';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 root.render(
   <React.StrictMode>
-    <ThirdwebProvider activeChain="ethereum" storageInterface={storage}>
+    <ThirdwebProvider activeChain={NETWORK} storageInterface={storage}>
       <App />
     </ThirdwebProvider>
   </React.StrictMode>,
