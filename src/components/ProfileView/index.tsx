@@ -91,7 +91,7 @@ export const ProfileView: React.FC<ProfileViewProps> = (props) => {
             <div className={styles['description']}>
               {userInfo
                 ? userInfo.description
-                : 'Please register your address as a Drops account.'}
+                : 'Please register your name and update your profile.'}
             </div>
           </div>
           <div className={styles['container-right']}>
@@ -132,7 +132,7 @@ export const ProfileView: React.FC<ProfileViewProps> = (props) => {
             {editable && (
               <div className={styles['edit-button']}>
                 <button onClick={() => navigate('/profile/edit')}>
-                  {userInfo ? 'Edit Profile' : 'Register Profile'}
+                  {userInfo ? 'Edit Profile' : 'Register Name'}
                 </button>
               </div>
             )}
