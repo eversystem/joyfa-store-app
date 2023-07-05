@@ -11,6 +11,8 @@ import ProfileTwitterSvg from 'src/assets/profile-twitter.svg';
 import ProfileInstagramSvg from 'src/assets/profile-instagram.svg';
 import ProfileWebsiteSvg from 'src/assets/profile-website.svg';
 import ProfileEtherscanSvg from 'src/assets/profile-etherscan.svg';
+import ProfileDefault from 'src/assets/profile.png';
+import BackgroundDefault from 'src/assets/background.jpg';
 
 export type ProfileViewProps = {
   address: string;
@@ -68,7 +70,7 @@ export const ProfileView: React.FC<ProfileViewProps> = (props) => {
             src={
               userInfo && userInfo.cover
                 ? `${userInfo.cover}?rand=${new Date().getTime()}`
-                : 'https://placehold.jp/30/ffffff/000000/1200x700.png?text=image+not+found'
+                : BackgroundDefault
             }
           />
         </div>
@@ -78,7 +80,7 @@ export const ProfileView: React.FC<ProfileViewProps> = (props) => {
               src={
                 userInfo && userInfo.icon
                   ? `${userInfo.icon}?rand=${new Date().getTime()}`
-                  : 'https://placehold.jp/30/ffffff/000000/300x300.png?text=icon'
+                  : ProfileDefault
               }
             />
           </div>
