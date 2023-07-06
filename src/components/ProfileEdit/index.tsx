@@ -10,6 +10,7 @@ import { TextareaInput } from './elements/TextareaInput';
 import { TextInput } from './elements/TextInput';
 import {
   updateUserProfile,
+  UserEntityRegsiterable,
   UserEntityUpdatableBySelf,
   registerUserProfile,
 } from 'src/api';
@@ -132,7 +133,15 @@ export const ProfileEdit: React.FC = () => {
       );
       try {
         setStatus(Status.loading);
-        await registerUserProfile(jwt, name);
+        const registerData: UserEntityRegsiterable = { name };
+        description && (registerData.description = description);
+        twitter && (registerData.twitter = twitter);
+        instagram && (registerData.instagram = instagram);
+        website && (registerData.website = website);
+        icon && (registerData.icon = icon);
+        cover && (registerData.cover = cover);
+        console.log(registerData);
+        await registerUserProfile(jwt, registerData);
         await getUserInfo(address).then((user) => {
           console.log('user-info');
           console.log(user);
@@ -146,7 +155,7 @@ export const ProfileEdit: React.FC = () => {
             setRegisterMode(false);
           }
         });
-        setStatus(Status.edit);
+        setStatus(Status.success);
       } catch (error) {
         setStatus(Status.error);
         // co
@@ -159,110 +168,89 @@ export const ProfileEdit: React.FC = () => {
       <div className={styles['title']}>
         {registerMode ? 'Profile Register' : 'Profile Edit'}
       </div>
-      {registerMode ? (
-        <div>
-          <div className={styles['left']}>
-            <div className={styles['name']}>
+      <div>
+        <div className={styles['left']}>
+          <div className={styles['name']}>
+            <TextInput
+              label={'Name'}
+              name={'name'}
+              value={name}
+              type={'text'}
+              setValue={(value: string) => {
+                setName(value);
+              }}
+            />
+          </div>
+          <div className={styles['description']}>
+            <TextareaInput
+              label={'Description'}
+              name={'description'}
+              value={description}
+              setValue={(value: string) => {
+                setDescription(value);
+              }}
+            />
+          </div>
+          <div className={styles['socials']}>
+            <div className={styles['twitter']}>
               <TextInput
-                label={'Name'}
-                name={'name'}
-                value={name}
+                label={'Twitter'}
+                name={'twitter'}
+                value={twitter}
                 type={'text'}
                 setValue={(value: string) => {
-                  setName(value);
+                  setTwitter(value);
+                }}
+              />
+              <p className={styles['twitter-text']}>twitter.com/</p>
+            </div>
+            <div className={styles['instagram']}>
+              <TextInput
+                label={'Instagram'}
+                name={'instagram'}
+                value={instagram}
+                type={'text'}
+                setValue={(value: string) => {
+                  setInstagram(value);
+                }}
+              />
+              <p className={styles['instagram-text']}>instagram.com/</p>
+            </div>
+            <div className={styles['website']}>
+              <TextInput
+                label={'Website'}
+                name={'website'}
+                value={website}
+                type={'text'}
+                setValue={(value: string) => {
+                  setWebsite(value);
                 }}
               />
             </div>
           </div>
-          <div className={styles['clear']}></div>
         </div>
-      ) : (
-        userInfo && (
-          <div>
-            <div className={styles['left']}>
-              <div className={styles['name']}>
-                <TextInput
-                  label={'Name'}
-                  name={'name'}
-                  value={name}
-                  type={'text'}
-                  setValue={(value: string) => {
-                    setName(value);
-                  }}
-                />
-              </div>
-              <div className={styles['description']}>
-                <TextareaInput
-                  label={'Description'}
-                  name={'description'}
-                  value={description}
-                  setValue={(value: string) => {
-                    setDescription(value);
-                  }}
-                />
-              </div>
-              <div className={styles['socials']}>
-                <div className={styles['twitter']}>
-                  <TextInput
-                    label={'Twitter'}
-                    name={'twitter'}
-                    value={twitter}
-                    type={'text'}
-                    setValue={(value: string) => {
-                      setTwitter(value);
-                    }}
-                  />
-                  <p className={styles['twitter-text']}>twitter.com/</p>
-                </div>
-                <div className={styles['instagram']}>
-                  <TextInput
-                    label={'Instagram'}
-                    name={'instagram'}
-                    value={instagram}
-                    type={'text'}
-                    setValue={(value: string) => {
-                      setInstagram(value);
-                    }}
-                  />
-                  <p className={styles['instagram-text']}>instagram.com/</p>
-                </div>
-                <div className={styles['website']}>
-                  <TextInput
-                    label={'Website'}
-                    name={'website'}
-                    value={website}
-                    type={'text'}
-                    setValue={(value: string) => {
-                      setWebsite(value);
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className={styles['right']}>
-              <FileInput
-                label={'Cover (max: 30mb)'}
-                name={'cover'}
-                accept="image/png, image/jpeg, image/jpg"
-                value={cover}
-                setValue={(file: File | null) => {
-                  setCover(file);
-                }}
-              />
-              <FileInput
-                label={'Icon (max: 30mb)'}
-                name={'icon'}
-                accept="image/png, image/jpeg, image/jpg"
-                value={icon}
-                setValue={(file: File | null) => {
-                  setIcon(file);
-                }}
-              />
-            </div>
-            <div className={styles['clear']}></div>
-          </div>
-        )
-      )}
+        <div className={styles['right']}>
+          <FileInput
+            label={'Cover (max: 30mb)'}
+            name={'cover'}
+            accept="image/png, image/jpeg, image/jpg"
+            value={cover}
+            setValue={(file: File | null) => {
+              setCover(file);
+            }}
+          />
+          <FileInput
+            label={'Icon (max: 30mb)'}
+            name={'icon'}
+            accept="image/png, image/jpeg, image/jpg"
+            value={icon}
+            setValue={(file: File | null) => {
+              setIcon(file);
+            }}
+          />
+        </div>
+        <div className={styles['clear']}></div>
+      </div>
       <div className={styles['btn']}>
         <button
           className={styles['back-btn']}

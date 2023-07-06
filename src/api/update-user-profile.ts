@@ -28,13 +28,13 @@ export const updateUserProfile = async (
   jwt: string,
   data: UserEntityUpdatableBySelf,
 ) => {
-  const formData = new FormData();
-  for (const key in data) {
-    const d = data[key as keyof typeof data];
-    if (d !== undefined) {
-      formData.append(key, d);
-    }
-  }
+  // const formData = new FormData();
+  // for (const key in data) {
+  //   const d = data[key as keyof typeof data];
+  //   if (d !== undefined) {
+  //     formData.append(key, d);
+  //   }
+  // }
   const res = await axios.post(
     `${API_ENDPOINT}/user/update`,
     { ...data },
