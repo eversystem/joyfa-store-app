@@ -95,6 +95,7 @@ display: block;
 .nft-creator {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .nft-creator-icon {
@@ -102,9 +103,9 @@ display: block;
   width: 40px;
   height: 40px;
   margin: 5px;
+  object-fit: cover;
 }
 
 .nft-creator-name {
-  height: 50px;
-  line-height: 50px;
+
 }
