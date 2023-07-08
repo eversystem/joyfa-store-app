@@ -31,3 +31,12 @@
   cursor: not-allowed;
   background-color: lightgray;
 }
+
+@media screen and (max-width: 768px) {
+  .button{
+    font-size:14px;
+    width:43px;
+    height:43px;
+    margin: 7px;
+  }
+}

@@ -32,7 +32,6 @@
 }
 
 .minting-error {
-  font-family: 'Mont';
   font-size: 14px;
   color: #8d0000;
   text-align: left;
@@ -119,8 +118,12 @@
 @media screen and (max-width: 768px) {
   .popup{
     margin:0 20px;
-    width: 480px;
-    max-width:90%;
-    padding:20px 10px;
+    width: 360px;
+    max-width:100%;
+    padding:20px;
+  }
+  .id-filter button {
+    padding: 12px 12px;
+    font-size: 12px;
   }
 }

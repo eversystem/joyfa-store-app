@@ -13,3 +13,9 @@
   align-self: stretch;
   flex-grow: 0;
 }
+
+@media screen and (max-width: 768px) {
+  .header {
+    height:75px;
+  }
+}
