@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ThirdwebProvider } from '@thirdweb-dev/react';
+import {
+  ThirdwebProvider,
+  metamaskWallet,
+  coinbaseWallet,
+  walletConnect,
+} from '@thirdweb-dev/react';
 import { App } from './App';
 import * as serviceWorkerRegistration from './utils/serviceWorkerRegistration';
 import reportWebVitals from './utils/reportWebVitals';
@@ -8,12 +13,22 @@ import './styles/index.css';
 import { storage } from './utils/thirdweb-storage';
 import { NETWORK } from './utils/env';
 
+const isMobile = !!/(iPhone|iPad|iPod|Android)/i.exec(navigator.userAgent);
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 root.render(
   <React.StrictMode>
-    <ThirdwebProvider activeChain={NETWORK} storageInterface={storage}>
+    <ThirdwebProvider
+      activeChain={NETWORK}
+      supportedWallets={
+        isMobile
+          ? [walletConnect()]
+          : [metamaskWallet(), coinbaseWallet(), walletConnect()]
+      }
+      storageInterface={storage}
+    >
       <App />
     </ThirdwebProvider>
   </React.StrictMode>,

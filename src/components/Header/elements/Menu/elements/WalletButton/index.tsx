@@ -4,7 +4,7 @@ import styles from './styles/component.module.css';
 export const WalletButton: React.FC = () => {
   return (
     <div className={styles['wallet-button']}>
-      <ConnectWallet />
+      <ConnectWallet theme="light" />
     </div>
   );
 };
