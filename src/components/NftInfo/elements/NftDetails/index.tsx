@@ -119,7 +119,10 @@ export const NftDetails: React.FC<NftDetailsProps> = (props) => {
           <div className={styles['price_supply']}>
             <span className={styles['price_supply-prefix']}>Supply&nbsp;</span>
             <span className={styles['price_supply-content']}>
-              {props.supply.amount - props.mintedNfts} / {props.supply.amount}
+              {props.mintedNfts === -1
+                ? '--'
+                : props.supply.amount - props.mintedNfts}{' '}
+              / {props.supply.amount}
             </span>
           </div>
           <button
