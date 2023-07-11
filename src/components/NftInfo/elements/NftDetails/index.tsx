@@ -1,6 +1,6 @@
 import { useState, startTransition } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { resolveIpfsUri } from '@thirdweb-dev/react';
+import { resolveIpfsUri } from 'src/utils/resolve-ipfs-uri';
 import { NftEntity } from 'src/utils/data';
 import styles from './styles/nft-details.module.css';
 import { Model } from './elements/Model';

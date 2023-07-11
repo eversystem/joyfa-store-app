@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { resolveIpfsUri } from '@thirdweb-dev/react';
+import { resolveIpfsUri } from 'src/utils/resolve-ipfs-uri';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import { NftEntity } from 'src/utils/data';
