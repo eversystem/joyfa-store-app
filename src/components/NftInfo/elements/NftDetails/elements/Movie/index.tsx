@@ -1,6 +1,6 @@
 import { NftEntity } from 'src/utils/data';
 import styles from './styles/movie.module.css';
-import { resolveIpfsUri } from '@thirdweb-dev/react';
+import { resolveIpfsUri } from 'src/utils/resolve-ipfs-uri';
 
 export const Movie: React.FC<NftEntity> = (props) => {
   return (

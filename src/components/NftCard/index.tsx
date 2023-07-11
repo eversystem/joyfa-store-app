@@ -1,8 +1,8 @@
 import React from 'react';
-import { resolveIpfsUri } from '@thirdweb-dev/react';
 // import { useNavigate } from 'react-router-dom';
 import styles from './styles/nft-card.module.css';
 import { NftEntity } from 'src/utils/data';
+import { resolveIpfsUri } from 'src/utils/resolve-ipfs-uri';
 
 export type NftCardProps = NftEntity & { tokenId?: string };
 

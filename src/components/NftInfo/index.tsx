@@ -15,7 +15,7 @@ type NftInfoStatus = 'init' | 'loading' | 'fetched';
 export const NftInfo: React.FC<NftInfoProps> = (props) => {
   const { nft } = props;
   const [status, setStatus] = useState<NftInfoStatus>('init');
-  const [mintedNfts, setMintedNfts] = useState<NFT[]>([]);
+  const [mintedNfts, setMintedNfts] = useState<NFT[] | null>(null);
   const [tokenIdFilter, setTokenIdFilter] = useState(0);
   const [isPopupVisible, setPopupVisible] = useState(false);
   const [mintingStatus, setMintingStatus] =
@@ -38,13 +38,18 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
   }, [nftCollection, status]);
 
   // [TODO]
-  const mintedNftHasSameExternalUrl = mintedNfts.filter(
-    (mintedNft) =>
-      mintedNft.metadata.external_url ===
-      `https://drops.joyfa.io/nft/${nft.metadata.id}`,
-  );
+  const mintedNftHasSameExternalUrl =
+    mintedNfts &&
+    mintedNfts.filter(
+      (mintedNft) =>
+        mintedNft.metadata.external_url ===
+        `https://drops.joyfa.io/nft/${nft.metadata.id}`,
+    );
   const isMintable = (nft_id: number, token_id: number) => {
     const uid = `${nft_id}#${token_id}`;
+    if (!mintedNftHasSameExternalUrl) {
+      return true;
+    }
     const mintedNftHasSameUid = mintedNftHasSameExternalUrl.filter(
       (mintedNft) => {
         const attribute = (
@@ -77,7 +82,11 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
       <div className={styles['nft-details']}>
         <NftDetails
           {...nft}
-          mintedNfts={mintedNftHasSameExternalUrl.length}
+          mintedNfts={
+            mintedNftHasSameExternalUrl
+              ? mintedNftHasSameExternalUrl.length
+              : -1
+          }
           handleCollectButtonClick={handleCollectButtonClick}
         />
       </div>

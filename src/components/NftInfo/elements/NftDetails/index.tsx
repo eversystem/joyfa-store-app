@@ -1,6 +1,6 @@
 import { useState, startTransition } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { resolveIpfsUri } from '@thirdweb-dev/react';
+import { resolveIpfsUri } from 'src/utils/resolve-ipfs-uri';
 import { NftEntity } from 'src/utils/data';
 import styles from './styles/nft-details.module.css';
 import { Model } from './elements/Model';
@@ -119,7 +119,10 @@ export const NftDetails: React.FC<NftDetailsProps> = (props) => {
           <div className={styles['price_supply']}>
             <span className={styles['price_supply-prefix']}>Supply&nbsp;</span>
             <span className={styles['price_supply-content']}>
-              {props.supply.amount - props.mintedNfts} / {props.supply.amount}
+              {props.mintedNfts === -1
+                ? '--'
+                : props.supply.amount - props.mintedNfts}{' '}
+              / {props.supply.amount}
             </span>
           </div>
           <button
