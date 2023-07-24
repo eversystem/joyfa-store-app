@@ -21,10 +21,11 @@ export const Movie: React.FC<NftEntity> = (props) => {
         />
       </video>
       <button onClick={handleMute} className={styles['mute-button']}>
-        {muted
-          ? <img src={MutedIcon} alt="Muted" />
-          : <img src={UnMutedIcon} alt="UnMuted" />
-        }
+        {muted ? (
+          <img src={MutedIcon} alt="Muted" />
+        ) : (
+          <img src={UnMutedIcon} alt="UnMuted" />
+        )}
       </button>
     </div>
   );
