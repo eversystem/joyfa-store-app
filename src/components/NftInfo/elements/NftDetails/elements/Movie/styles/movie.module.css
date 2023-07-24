@@ -1,0 +1,17 @@
+.video-container {
+  position: relative;
+  width: 100%;
+}
+
+.video {
+  width: 100%;
+}
+
+.mute-button img{
+  position: absolute;
+  top: 10px;    /* Adjust as necessary */
+  right: 10px;  /* Adjust as necessary */
+  border: none;
+  width:50px;
+  height:50px;
+}
