@@ -46,6 +46,7 @@
 @media screen and (max-width: 768px) {
   .title {
     text-align:center;
+    font-size:24px;
   }
   .main-box{
     text-align:center;

@@ -1,12 +1,16 @@
 .wrapper {
   display: block;
   float: left;
-  margin: 20px 20px 20px 0px;
+  margin: 20px 10px 20px 10px;
   width: 243px;
   background: #FFFFFF;
   border: 1px solid #F3F3F3;
   text-decoration: none;
   cursor: pointer;
+}
+
+.wrapper:first-child{
+  margin-left:0px;
 }
 
 .nft-image-wrapper {
@@ -16,7 +20,6 @@
   background-color: #F3F3F3;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .nft-image {
@@ -89,6 +92,6 @@
 
 @media screen and (max-width: 768px) {
   .wrapper {
-    margin: 20px 0px 20px 0px;
+    margin: 20px 5px 20px 5px;
   }
 }
