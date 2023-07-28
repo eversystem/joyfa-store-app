@@ -28,24 +28,15 @@
 .nft-details {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   padding: 16px;
-  flex: none;
-  order: 1;
-  align-self: stretch;
-  flex-grow: 0;
-
 }
 
 .nft-name {
-  height: 48px;
+  height: 42px;
   font-family: 'Mont';
-  font-weight: 900;
   font-size: 20px;
-  line-height: 120%;
   text-align: left;
   color: #0D0F08;
-
 }
 
 .sales-info {
@@ -81,7 +72,7 @@
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  margin: 5px;
+  margin-right: 8px;
   object-fit: cover;
 }
 
