@@ -38,7 +38,6 @@
   font-family: 'Mont';
   font-style: normal;
   font-size: 32px;
-  line-height: 120%;
   color: #0D0F08;
   margin:75px 0 25px 0;
 }
@@ -84,7 +83,6 @@
 .how-details{
   display: flex;
   flex-flow: column wrap;
-  justify-content: center;
   word-wrap: break-word;
 }
 

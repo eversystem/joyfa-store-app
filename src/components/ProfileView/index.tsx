@@ -84,59 +84,61 @@ export const ProfileView: React.FC<ProfileViewProps> = (props) => {
               }
             />
           </div>
-          <div className={styles['container-left']}>
-            <div className={styles['name']}>
-              {userInfo ? userInfo.name : 'Guest'}
-            </div>
-            <div className={styles['description']}>
-              {userInfo
-                ? userInfo.description
-                : 'Please register your name and update your profile.'}
-            </div>
-          </div>
-          <div className={styles['container-right']}>
-            <div className={styles['socials']}>
-              <a
-                className={styles.twitter}
-                href={'https://twitter.com/' + (userInfo?.twitter || '')}
-                target="_blank"
-              >
-                <img className={styles.image} src={ProfileTwitterSvg} />
-              </a>
-              <a
-                className={styles.instagram}
-                href={
-                  'https://www.instagram.com/' + (userInfo?.instagram || '')
-                }
-                target="_blank"
-              >
-                <img className={styles.image} src={ProfileInstagramSvg} />
-              </a>
-              <a
-                className={styles.website}
-                href={userInfo?.website}
-                target="_blank"
-              >
-                <img className={styles.image} src={ProfileWebsiteSvg} />
-              </a>
-              <a
-                className={styles.etherscan}
-                href={
-                  'https://etherscan.io/address/' + (userInfo?.address || '')
-                }
-                target="_blank"
-              >
-                <img className={styles.image} src={ProfileEtherscanSvg} />
-              </a>
-            </div>
-            {editable && (
-              <div className={styles['edit-button']}>
-                <button onClick={() => navigate('/profile/edit')}>
-                  {/* {userInfo ? 'Edit Profile' : 'Register Name'} */}
-                  Edit Profile
-                </button>
+          <div className={styles['container-low']}>
+            <div className={styles['container-low-left']}>
+              <div className={styles['name']}>
+                {userInfo ? userInfo.name : 'Guest'}
               </div>
-            )}
+              <div className={styles['description']}>
+                {userInfo
+                  ? userInfo.description
+                  : 'Please register your name and update your profile.'}
+              </div>
+            </div>
+            <div className={styles['container-low-right']}>
+              <div className={styles['socials']}>
+                <a
+                  className={styles.twitter}
+                  href={'https://twitter.com/' + (userInfo?.twitter || '')}
+                  target="_blank"
+                >
+                  <img className={styles.image} src={ProfileTwitterSvg} />
+                </a>
+                <a
+                  className={styles.instagram}
+                  href={
+                    'https://www.instagram.com/' + (userInfo?.instagram || '')
+                  }
+                  target="_blank"
+                >
+                  <img className={styles.image} src={ProfileInstagramSvg} />
+                </a>
+                <a
+                  className={styles.website}
+                  href={userInfo?.website}
+                  target="_blank"
+                >
+                  <img className={styles.image} src={ProfileWebsiteSvg} />
+                </a>
+                <a
+                  className={styles.etherscan}
+                  href={
+                    'https://etherscan.io/address/' + (userInfo?.address || '')
+                  }
+                  target="_blank"
+                >
+                  <img className={styles.image} src={ProfileEtherscanSvg} />
+                </a>
+              </div>
+              {editable && (
+                <div className={styles['edit-button']}>
+                  <button onClick={() => navigate('/profile/edit')}>
+                    {/* {userInfo ? 'Edit Profile' : 'Register Name'} */}
+                    Edit Profile
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
         {ownedNfts.length ? (
