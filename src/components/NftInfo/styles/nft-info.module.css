@@ -34,7 +34,6 @@
 .minting-error {
   font-size: 14px;
   color: #8d0000;
-  text-align: left;
   margin: 30px 0 10px 0;
 }
 
@@ -42,17 +41,11 @@
   font-family: 'Mont';
   font-size: 28px;
   color: #0D0F08;
-  margin:10px 0 20px 0;
-  text-align: left;
-}
-
-.id-description {
-  margin-top: 10px;
+  margin:10px 0 10px 0;
 }
 
 .id-filter {
-  text-align: left;
-  margin: 30px 0 15px 0;
+  margin: 25px 0 15px 0;
 }
 
 .id-filter button {
@@ -97,11 +90,9 @@
 
 .popup-close-button {
   position: absolute;
-  top: 10px;
+  top: 15px;
   right: 20px;
   font-size: 20px;
-  background: none;
-  border: none;
   cursor: pointer;
 }
 
@@ -124,6 +115,6 @@
   }
   .id-filter button {
     padding: 12px 10px;
-    font-size: 11px;
+    font-size: 10px;
   }
 }
