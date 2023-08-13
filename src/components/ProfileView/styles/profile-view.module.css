@@ -80,7 +80,8 @@
 
 .edit-button {
   width: 100%;
-  text-align: center;
+  text-align: right;
+  margin-top:10px;
 }
 
 .edit-button button {
@@ -121,6 +122,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+
+  .edit-button {
+    text-align: center;
   }
 
   .description {
