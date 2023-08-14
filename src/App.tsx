@@ -4,25 +4,29 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import { Drops } from './pages/_drops';
-import { Nft } from './pages/_nft';
-import { Create } from './pages/_create';
-import { Profile } from './pages/_profile';
-import { ProfileE } from './pages/_profile_edit';
-import { UserProfile } from './pages/_user_profile';
+import { DropsPage } from './pages/_drops';
+import { NftPage } from './pages/_nft';
+import { CreatePage } from './pages/_create';
+import { ProfilePage } from './pages/_profile';
+import { ProfileEditPage } from './pages/_profile_edit';
+import { UserProfilePage } from './pages/_user_profile';
+import { AtelierPage } from './pages/_atelier';
+import { CollectionsPage } from './pages/_collections';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="" element={<Drops />} />
-      <Route path="drops" element={<Drops />} />
-      <Route path="create" element={<Create />} />
-      <Route path="profile" element={<Profile />} />
-      <Route path="profile/edit" element={<ProfileE />} />
-      <Route path="user/:address" element={<UserProfile />} />
+      <Route path="" element={<DropsPage />} />
+      <Route path="drops" element={<DropsPage />} />
+      <Route path="create" element={<CreatePage />} />
+      <Route path="profile" element={<ProfilePage />} />
+      <Route path="profile/edit" element={<ProfileEditPage />} />
+      <Route path="user/:address" element={<UserProfilePage />} />
       <Route path="nft">
-        <Route path=":id" element={<Nft />} />
+        <Route path=":id" element={<NftPage />} />
       </Route>
+      <Route path="mystudio/atelier" element={<AtelierPage />} />
+      <Route path="mystudio/collections" element={<CollectionsPage />} />
     </Route>,
   ),
 );

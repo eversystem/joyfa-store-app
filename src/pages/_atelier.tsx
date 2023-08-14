@@ -1,13 +1,13 @@
 import { Header } from 'src/components/Header';
 import { Footer } from 'src/components/Footer';
-import { ProfileEdit } from 'src/components/ProfileEdit';
+import { Atelier } from 'src/components/Atelier';
 
-export const ProfileEditPage: React.FC = () => {
+export const AtelierPage: React.FC = () => {
   return (
     <>
       <Header />
       <main>
-        <ProfileEdit />
+        <Atelier />
       </main>
       <Footer />
     </>
