@@ -8,7 +8,7 @@ import { Footer } from 'src/components/Footer';
 
 type NftPageStatus = 'init' | 'loading' | 'fetched' | 'error';
 
-export const Nft: React.FC = () => {
+export const NftPage: React.FC = () => {
   const [status, setStatus] = useState<NftPageStatus>('init');
   const [nft, setNft] = useState<NftEntity | null>(null);
   const { id } = useParams();

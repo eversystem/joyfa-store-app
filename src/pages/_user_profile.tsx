@@ -3,7 +3,7 @@ import { Footer } from 'src/components/Footer';
 import { ProfileView } from 'src/components/ProfileView';
 import { useParams } from 'react-router-dom';
 
-export const UserProfile: React.FC = () => {
+export const UserProfilePage: React.FC = () => {
   const { address } = useParams();
   return (
     <>

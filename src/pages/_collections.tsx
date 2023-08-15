@@ -1,13 +1,13 @@
 import { Header } from 'src/components/Header';
 import { Footer } from 'src/components/Footer';
-import { ProfileEdit } from 'src/components/ProfileEdit';
+import { Collections } from 'src/components/Collections';
 
-export const ProfileEditPage: React.FC = () => {
+export const CollectionsPage: React.FC = () => {
   return (
     <>
       <Header />
       <main>
-        <ProfileEdit />
+        <Collections />
       </main>
       <Footer />
     </>
