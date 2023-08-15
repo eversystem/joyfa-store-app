@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent } from 'react';
+import React, { useState, useEffect, MouseEvent } from 'react';
 import MainImage from 'src/assets/main-image.png';
 import TopImage1 from 'src/assets/top1.png';
 import TopImage2 from 'src/assets/top2.png';
@@ -10,17 +10,23 @@ import { NftList } from './elements/NftList';
 import styles from './styles/recent-drops.module.css';
 
 export const RecentDrops: React.FC = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const nextImage = () => {
-  if (currentImageIndex < 2) {
-    setCurrentImageIndex(prev => prev + 1);
-    }
-  };
-  const prevImage = () => {
-    if (currentImageIndex > 0) {
-      setCurrentImageIndex(prev => prev - 1);
-    }
-  };
+  const images = [TopImage1, TopImage2, TopImage3];
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isFading, setIsFading] = useState(true);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIsFading(false); // Start the fade-out
+
+      setTimeout(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+        setIsFading(true); // Start the fade-in
+      }, 1000); // Wait for the fade-out to finish
+    }, 6000); // 1s fade-out + 5s wait
+
+    return () => clearInterval(timer);
+  }, [images.length]);
+
   const [isDragging, setIsDragging] = useState(false);
   const [startPosX, setStartPosX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -38,7 +44,7 @@ export const RecentDrops: React.FC = () => {
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!isDragging) return;
     const x = e.clientX;
-    const walk = (x - startPosX) * 2; // 2は移動の速さを制御する係数です
+    const walk = (x - startPosX) * 2;
     e.currentTarget.scrollLeft = scrollLeft - walk;
   };
 
@@ -51,17 +57,21 @@ export const RecentDrops: React.FC = () => {
             <p>into</p>
             <p>Digital</p>
           </div>
-          <div className={styles['top-image']}>
-            <button onClick={prevImage}>←</button>
-            <img src={TopImage1} style={{ display: currentImageIndex === 0 ? 'block' : 'none' }} />
-            <img src={TopImage2} style={{ display: currentImageIndex === 1 ? 'block' : 'none' }} />
-            <img src={TopImage3} style={{ display: currentImageIndex === 2 ? 'block' : 'none' }} />
-            <button onClick={nextImage}>→</button>
+          <div
+            className={styles['top-image']}
+            style={{ justifyContent: 'flex-end' }}
+          >
+            <img
+              src={images[currentIndex]}
+              style={{ opacity: isFading ? 1 : 0, transition: 'opacity 1s' }}
+            />
           </div>
         </div>
       </div>
+
       <div className={styles['title']}>Recent Drops</div>
       <NftList />
+
       <div className={styles['title']}>How Joyfa Works</div>
       <div
         className={styles['how-wrapper']}

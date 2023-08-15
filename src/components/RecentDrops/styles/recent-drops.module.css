@@ -13,7 +13,7 @@
   height: 100%;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between; /* このプロパティを追加 */
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -25,7 +25,7 @@
 
 .top-title p {
   font-size: 80px;
-  margin: 3px 0;
+  margin: 0;
 }
 .top-title p:nth-child(2) {
   padding-left:50px;
@@ -67,6 +67,9 @@
 
 .top-image img{
   width:450px;
+  max-width: 100%;
+  opacity: 0;
+  transition: opacity 1s;
 }
 
 .title {
@@ -132,9 +135,44 @@
 }
 
 @media screen and (max-width: 768px) {
+  .top{
+    /* height:100vh; */
+  }
+  .top-box{
+  flex-direction: column;
+  align-items: flex-start;
+  width:100%;
+  height:auto;
+}
+
+.top-title {
+  width:100%;
+  text-align:center;
+  margin:55px 0 40px 0;
+}
+
+.top-title p {
+  font-size:48px;
+}
+.top-title p:nth-child(2) {
+  padding-left:0px;
+}
+
+.top-title p:nth-child(3) {
+  padding-left:0px;
+}
+
+.top-image {
+  align-self: center;
+}
+
+.top-image img{
+  width:250px;
+}
+
   .title {
     text-align:center;
-    font-size:24px;
+    font-size:30px;
   }
 
   .main-box{
