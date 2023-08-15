@@ -20,13 +20,28 @@
 .top-title {
   font-family: 'Mont';
   color: #0D0F08;
-  font-style: oblique;
+  font-style: italic;
 }
 
 .top-title p {
   font-size: 80px;
   margin: 0;
 }
+
+.top-title .top-title-opposite {
+  background-color: #0D0F08;
+  color: #ffffff;
+  padding-left: 20px;
+  padding-right: 30px;
+  display: inline-block;
+  transform: skewX(-14deg);
+}
+
+.top-title .top-title-opposite span {
+  display: block;
+  transform: skewX(14deg);
+}
+
 .top-title p:nth-child(2) {
   padding-left:50px;
 }
@@ -157,7 +172,6 @@
 .top-title p:nth-child(2) {
   padding-left:0px;
 }
-
 .top-title p:nth-child(3) {
   padding-left:0px;
 }

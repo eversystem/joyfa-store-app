@@ -54,7 +54,11 @@ export const RecentDrops: React.FC = () => {
         <div className={styles['top-box']}>
           <div className={styles['top-title']}>
             <p>Step</p>
-            <p>into</p>
+            <p>
+              <span className={styles['top-title-opposite']}>
+                <span>into</span>
+              </span>
+            </p>
             <p>Digital</p>
           </div>
           <div
