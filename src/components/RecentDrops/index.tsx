@@ -1,5 +1,8 @@
 import React, { useState, MouseEvent } from 'react';
 import MainImage from 'src/assets/main-image.png';
+import TopImage1 from 'src/assets/top1.png';
+import TopImage2 from 'src/assets/top2.png';
+import TopImage3 from 'src/assets/top3.jpeg';
 import HowImage1 from 'src/assets/how1.png';
 import HowImage2 from 'src/assets/how2.png';
 import HowImage3 from 'src/assets/how3.png';
@@ -7,6 +10,17 @@ import { NftList } from './elements/NftList';
 import styles from './styles/recent-drops.module.css';
 
 export const RecentDrops: React.FC = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const nextImage = () => {
+  if (currentImageIndex < 2) {
+    setCurrentImageIndex(prev => prev + 1);
+    }
+  };
+  const prevImage = () => {
+    if (currentImageIndex > 0) {
+      setCurrentImageIndex(prev => prev - 1);
+    }
+  };
   const [isDragging, setIsDragging] = useState(false);
   const [startPosX, setStartPosX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -30,12 +44,19 @@ export const RecentDrops: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.main}>
-        <img className={styles['main-image']} src={MainImage} />
-        <div className={styles['main-box']}>
-          <div className={styles['main-title']}>10.19 Genesis Shoe</div>
-          <div className={styles['main-description']}>
-            by Tokyo White International
+      <div className={styles['top']}>
+        <div className={styles['top-box']}>
+          <div className={styles['top-title']}>
+            <p>Step</p>
+            <p>into</p>
+            <p>Digital</p>
+          </div>
+          <div className={styles['top-image']}>
+            <button onClick={prevImage}>←</button>
+            <img src={TopImage1} style={{ display: currentImageIndex === 0 ? 'block' : 'none' }} />
+            <img src={TopImage2} style={{ display: currentImageIndex === 1 ? 'block' : 'none' }} />
+            <img src={TopImage3} style={{ display: currentImageIndex === 2 ? 'block' : 'none' }} />
+            <button onClick={nextImage}>→</button>
           </div>
         </div>
       </div>

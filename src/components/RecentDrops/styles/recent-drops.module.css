@@ -1,37 +1,72 @@
-.wrapper {
+.top{
   position: relative;
+  width: 100vw;
+  background-color: #fafafa;
+  height: calc(100vh - 90px);
+  margin-top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.main{
-  position: relative;
-  height:100%;
+.top-box{
+  width: 1070px;
+  height: 100%;
+  margin: 0 auto;
   display: flex;
-  flex-direction: row;
-  align-items: start;
+  justify-content: space-between; /* このプロパティを追加 */
+  align-items: center;
 }
 
-.main-image{
-  width:100%;
-}
-
-.main-box {
-  position: absolute;
-  bottom: 0;
-  left: 20px;
-  padding: 40px 40px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  min-width:300px;
-}
-
-.main-title{
+.top-title {
   font-family: 'Mont';
-  font-size: 32px;
+  color: #0D0F08;
+  font-style: oblique;
 }
 
-.main-description{
-  font-size: 18px;
-  margin-top:15px;
+.top-title p {
+  font-size: 80px;
+  margin: 3px 0;
+}
+.top-title p:nth-child(2) {
+  padding-left:50px;
+}
+
+.top-title p:nth-child(3) {
+  padding-left:100px;
+}
+
+.top-image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-image button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.top-image button:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.top-image button:first-child {
+  left: 0;
+}
+
+.top-image button:last-child {
+  right: 0;
+}
+
+.top-image img{
+  width:450px;
 }
 
 .title {
@@ -57,7 +92,7 @@
 .how-box {
   flex: 0 0 auto;
   margin: 0px 60px 60px 0px;
-  width: 370px;
+  width: 350px;
   background: #FFFFFF;
   border: 1px solid #F3F3F3;
 }
