@@ -89,27 +89,3 @@ export type GetNFTsProps = {
   owner: string;
   contractAddresses?: string[];
 };
-
-// export const getEthNfts = (props: GetNFTsProps) => {
-//   const apiKey = 'demo';
-//   const baseURL = `https://eth-mainnet.alchemyapi.io/v2/${apiKey}/getNFTs/`;
-//   const contractAddressQuery = props.contractAddresses
-//     ? props.contractAddresses
-//         .map((address) => `&contractAddresses[]=${address}`)
-//         .join('')
-//     : '';
-//   const url = `${baseURL}?owner=${props.owner}${contractAddressQuery}`;
-//   return axios.get<GetNftsResponse>(url);
-// };
-
-// export const getPolygonNfts = (props: GetNFTsProps) => {
-//   const apiKey = 'demo';
-//   const baseURL = `https://polygon-mainnet.g.alchemy.com/v2/${apiKey}/getNFTs/`;
-//   const contractAddressQuery = props.contractAddresses
-//     ? props.contractAddresses
-//         .map((address) => `&contractAddresses[]=${address}`)
-//         .join('')
-//     : '';
-//   const url = `${baseURL}?owner=${props.owner}${contractAddressQuery}`;
-//   return axios.get<GetNftsResponse>(url);
-// };

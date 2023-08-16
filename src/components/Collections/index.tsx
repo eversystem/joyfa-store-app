@@ -20,7 +20,9 @@ export const Collections: React.FC = () => {
   useEffect(() => {
     if (status === CollectionsStatus.init && address) {
       setStatus(CollectionsStatus.loading);
-      void getCollectionNfts(address)
+      const _address =
+        '0xccA4Ba7Eb2181c03Ed041C76f9F815F16E8aF5E1'.toLowerCase();
+      void getCollectionNfts(_address)
         .then((res) => {
           setNfts(res.data.ownedNfts);
           setStatus(CollectionsStatus.success);
