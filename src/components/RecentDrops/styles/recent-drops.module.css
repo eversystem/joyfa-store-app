@@ -152,7 +152,8 @@
 
 @media screen and (max-width: 768px) {
   .top{
-    /* height:100vh; */
+    height:100%;
+    padding-bottom:30px;
   }
   .top-box{
   flex-direction: column;
