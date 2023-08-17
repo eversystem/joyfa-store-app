@@ -17,7 +17,6 @@
   cursor: pointer;
   padding: 0;
   z-index: 10;
-  margin-right: 10px;
 }
 
 .line {
@@ -44,8 +43,20 @@
   .hamburger {
     display: flex;
   }
-  .line {
+  .hamburger .line {
     background-color: #000;
+    width: 100%;
+    height: 3px;
+    transform-origin: center;
+  }
+  .hamburger.open .line:nth-child(1) {
+    transform: rotate(45deg) translateY(16px);
+  }
+  .hamburger.open .line:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.open .line:nth-child(3) {
+    transform: rotate(-45deg) translateY(-16px);
   }
   .menu-links {
     transform: translateY(-100%);
