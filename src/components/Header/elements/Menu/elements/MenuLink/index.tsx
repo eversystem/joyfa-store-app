@@ -14,9 +14,4 @@ export const MenuLink: React.FC<MenuLinkProps> = (props) => {
       {text}
     </a>
   );
-  // return (
-  //   <a className={styles['menu-link']} href={href}>
-  //     {text}
-  //   </a>
-  // );
 };

@@ -3,6 +3,7 @@
   width: 100vw;
   background-color: #fafafa;
   height: calc(100vh - 90px);
+  min-height: calc(100% - 90px);
   margin-top: -20px;
   left: 50%;
   transform: translateX(-50%);
@@ -151,7 +152,8 @@
 
 @media screen and (max-width: 768px) {
   .top{
-    /* height:100vh; */
+    height:100%;
+    padding-bottom:30px;
   }
   .top-box{
   flex-direction: column;
@@ -168,6 +170,7 @@
 
 .top-title p {
   font-size:48px;
+  margin-bottom:10px;
 }
 .top-title p:nth-child(2) {
   padding-left:0px;
