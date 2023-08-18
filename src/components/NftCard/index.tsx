@@ -12,9 +12,13 @@ export const NftCard: React.FC<NftCardProps> = (props) => {
     <div
       className={styles['wrapper']}
       // onClick={() => navigate(`/nft/${props.id}`)}
-      onClick={() =>
-        (window.location.href = `${window.location.origin}/nft/${props.id}`)
-      }
+      onClick={() => {
+        if (window.location.href.includes('mystudio')) {
+          window.location.href = `${window.location.origin}/mystudio/nft/${props.id}`;
+        } else {
+          window.location.href = `${window.location.origin}/nft/${props.id}`;
+        }
+      }}
     >
       <div className={styles['nft-image-wrapper']}>
         <img

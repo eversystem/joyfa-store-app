@@ -3,6 +3,8 @@ import { useAddress } from '@thirdweb-dev/react';
 import { Nft } from 'src/utils/alchemy';
 import { getCollectionNfts, getRequestedNfts } from 'src/utils/mystudio-api';
 import styles from './styles/collections.module.css';
+import { NftCard } from '../NftCard';
+import { NftEntity } from 'src/utils/data';
 
 enum CollectionsStatus {
   init,
@@ -33,5 +35,35 @@ export const Collections: React.FC = () => {
     }
   }, [address, status]);
   console.log(nfts);
-  return null;
+  return (
+    <div className={styles['']}>
+      {nfts
+        .map((e) => {
+          const id: NftEntity['id'] = `${e.contract.address.toLowerCase()}/${
+            e.id.tokenId
+          }`;
+          const metadata: NftEntity['metadata'] =
+            e.metadata as NftEntity['metadata'];
+          const creator: NftEntity['creator'] = {
+            address: '',
+            admin: false,
+            creator: true,
+            name: '',
+          };
+          const supply: NftEntity['supply'] = {
+            id: -1,
+            price: -1,
+            amount: -1,
+            createdAt: '',
+            updatedAt: '',
+          };
+          const createdAt = '';
+          const updatedAt = '';
+          return { id, metadata, creator, supply, createdAt, updatedAt };
+        })
+        .map((e, i) => (
+          <NftCard key={i} {...e} />
+        ))}
+    </div>
+  );
 };
