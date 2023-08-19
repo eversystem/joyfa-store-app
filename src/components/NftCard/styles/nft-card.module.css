@@ -35,13 +35,14 @@
   font-family: 'Mont';
   font-size: 20px;
   color: #0D0F08;
+  margin-bottom:5px;
 }
 
 .sales-info {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  padding-top: 16px;
+  padding-top: 10px;
   flex: none;
   order: 1;
   align-self: stretch;
