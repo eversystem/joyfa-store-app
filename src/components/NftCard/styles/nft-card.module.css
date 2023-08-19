@@ -1,16 +1,16 @@
 .wrapper {
   display: flex;
   flex-flow: row wrap;
-  margin: 0 20px 40px 0;
-  width: 243px;
+  margin: 0 0 40px 0;
+  width: calc(33.3333% - 30px);
   background: #FFFFFF;
   border: 1px solid #F3F3F3;
   cursor: pointer;
 }
 
 .nft-image-wrapper {
-  width: 243px;
-  height: 243px;
+  width: 326.66px;
+  height: 326.66px;
   overflow: hidden;
   background-color: #F3F3F3;
   display: flex;
@@ -29,35 +29,28 @@
   display: flex;
   flex-direction: column;
   padding: 16px;
+  width:100%;
 }
 
 .nft-name {
   font-family: 'Mont';
-  font-size: 20px;
+  font-size: 24px;
   color: #0D0F08;
-  margin-bottom:5px;
+  margin-bottom:10px;
 }
 
 .sales-info {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding-top: 10px;
-  flex: none;
-  order: 1;
-  align-self: stretch;
-  flex-grow: 0;
+  margin-top: 15px;
 }
 
 .sold-for {
-  width: 100px;
-  line-height: 140%;
+  width: 75px;
   text-align: left;
 }
 
 .nft-price {
-  width: 89px;
-  line-height: 140%;
+  width: 75px;
   text-align: left;
 }
 
@@ -71,12 +64,18 @@
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  margin-right: 8px;
+  margin-right: 10px;
   object-fit: cover;
+  border:1px solid #F3F3F3;
 }
 
 @media screen and (max-width: 768px) {
   .wrapper {
+    width:300px;
     margin: 20px 0px 20px 0px;
+  }
+  .nft-image-wrapper {
+    width: 300px;
+    height: 300px;
   }
 }

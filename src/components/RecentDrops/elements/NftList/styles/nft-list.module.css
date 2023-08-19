@@ -1,13 +1,23 @@
 .wrapper {
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   width: 100%;
   max-width: 1400px;
   margin: 0px auto;
 }
 
+.wrapper::after,
+.wrapper::first-line {
+  content: "";
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: calc(33.3333% - 30px);
+  visibility: hidden;
+}
+
 .nft-card {
+  flex: 0 0 calc(33.3333% - 30px);
   margin: 10px;
   line-height: 180px;
   text-align: center;
@@ -17,5 +27,11 @@
   .wrapper {
     flex-flow: column wrap;
     align-items: center;
+  }
+
+  .wrapper::before,
+  .wrapper::after,
+  .wrapper::first-line {
+    display: none;
   }
 }
