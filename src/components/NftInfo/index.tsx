@@ -45,7 +45,10 @@ export const NftInfo: React.FC<NftInfoProps> = (props) => {
         mintedNft.metadata.external_url ===
         `https://drops.joyfa.io/nft/${nft.metadata.id}`,
     );
-  const isMintable = (nft_id: number, token_id: number) => {
+  const isMintable = (nft_id: number | string, token_id: number) => {
+    if (Number.isNaN(Number(nft_id))) {
+      return false;
+    }
     const uid = `${nft_id}#${token_id}`;
     if (!mintedNftHasSameExternalUrl) {
       return true;

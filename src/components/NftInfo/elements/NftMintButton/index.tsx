@@ -12,7 +12,7 @@ export type NftMintStatus = 'loading' | 'mintable' | 'minted';
 export type NftMintingStatus = 'loading' | 'available' | 'minted';
 
 export type AvailableNftProps = {
-  nft_id: number;
+  nft_id: number | string;
   token_id: number;
   status: NftMintStatus;
   mintingStatus: NftMintingStatus;
@@ -43,7 +43,11 @@ export const NftMintButton: React.FC<AvailableNftProps> = (props) => {
       setMintingStatus('loading');
       setErrorMessage('');
       try {
-        const res = await mint(nft_id, token_id, address);
+        const nft_id_number = Number(nft_id);
+        if (Number.isNaN(nft_id_number)) {
+          throw new Error('invalid_token_number');
+        }
+        const res = await mint(nft_id_number, token_id, address);
         await nftCollection?.signature.mint(res.data);
         setMintingStatus('minted');
       } catch (error) {

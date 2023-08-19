@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GetNftsResponse } from './alchemy';
+import { GetNftsResponse, Nft } from './alchemy';
 import { MYSTUDIO_API_ENDPOINT } from './env';
 
 export const getCollectionNfts = async (address: string) => {
@@ -14,6 +14,12 @@ export const getEthereumNfts = async (address: string) => {
     `${MYSTUDIO_API_ENDPOINT}/alchemy/nfts/ethereum/free`,
     { params: { address } },
   );
+};
+
+export const getNftMetadata = async (contract: string, id: string) => {
+  return await axios.get<Nft>(`${MYSTUDIO_API_ENDPOINT}/alchemy/nft/metadata`, {
+    params: { contract, id },
+  });
 };
 
 export type RequestedNftsRes = {

@@ -26,7 +26,10 @@ const router = createBrowserRouter(
         <Route path=":id" element={<NftPage />} />
       </Route>
       {/* <Route path="mystudio/atelier" element={<AtelierPage />} /> */}
-      {/* <Route path="mystudio/collections" element={<CollectionsPage />} /> */}
+      <Route path="mystudio">
+        <Route path="collections" element={<CollectionsPage />} />
+        <Route path="nft/:contract/:id" element={<NftPage />} />
+      </Route>
     </Route>,
   ),
 );

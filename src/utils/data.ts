@@ -43,7 +43,7 @@ export type SupplyEntity = {
 };
 
 export type NftEntity = {
-  id: number;
+  id: number | string;
   metadata: MetadataEntity;
   creator: UserEntity;
   supply: SupplyEntity;
