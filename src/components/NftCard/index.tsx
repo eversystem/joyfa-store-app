@@ -40,10 +40,14 @@ export const NftCard: React.FC<NftCardProps> = (props) => {
           <div className={styles['nft-creator-name']}>{props.creator.name}</div>
         </div>
         <div className={styles['sales-info']}>
-          <div className={styles['sold-for']}>Sold for</div>
-          <div className={styles['nft-price']}>
-            {props.supply.price}&nbsp;ETH
-          </div>
+          {props.supply.price !== -1 ? (
+            <>
+              <div className={styles['sold-for']}>Sold for</div>
+              <div className={styles['nft-price']}>
+                {props.supply.price}&nbsp;ETH
+              </div>
+            </>
+          ) : null}
         </div>
       </div>
     </div>

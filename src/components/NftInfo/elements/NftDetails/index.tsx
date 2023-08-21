@@ -29,7 +29,7 @@ export const NftDetails: React.FC<NftDetailsProps> = (props) => {
       alt="nft-image"
       src={resolveIpfsUri(image)}
     />,
-    glb_l.endsWith('.glb') ? <Model {...props} /> : null,
+    glb_l && glb_l.endsWith('.glb') ? <Model {...props} /> : null,
     animation_url && animation_url.endsWith('.mp4') ? (
       <Movie {...props} />
     ) : null,
@@ -52,17 +52,21 @@ export const NftDetails: React.FC<NftDetailsProps> = (props) => {
         >
           Image
         </button>
-        <button
-          className={
-            contents === ContentsType.MODEL
-              ? styles['contents-button-selected']
-              : styles['contents-button']
-          }
-          onClick={() => startTransition(() => setContents(ContentsType.MODEL))}
-        >
-          3D
-        </button>
-        {animation_url && (
+        {glb_l && glb_l.endsWith('.glb') ? (
+          <button
+            className={
+              contents === ContentsType.MODEL
+                ? styles['contents-button-selected']
+                : styles['contents-button']
+            }
+            onClick={() =>
+              startTransition(() => setContents(ContentsType.MODEL))
+            }
+          >
+            3D
+          </button>
+        ) : null}
+        {animation_url && animation_url.endsWith('.mp4') && (
           <button
             className={
               contents === ContentsType.VIDEO
@@ -110,27 +114,44 @@ export const NftDetails: React.FC<NftDetailsProps> = (props) => {
           <div className={styles['description']}>Ethereum</div>
         </div>
         <div className={styles['info-right']}>
-          <div className={styles['price_supply']}>
-            <span className={styles['price_supply-prefix']}>Price&nbsp;</span>
-            <span className={styles['price_supply-content']}>
-              {props.supply.price} ETH
-            </span>
-          </div>
-          <div className={styles['price_supply']}>
-            <span className={styles['price_supply-prefix']}>Supply&nbsp;</span>
-            <span className={styles['price_supply-content']}>
-              {props.mintedNfts === -1
-                ? '--'
-                : props.supply.amount - props.mintedNfts}{' '}
-              / {props.supply.amount}
-            </span>
-          </div>
-          <button
-            className={styles['button']}
-            onClick={handleCollectButtonClick}
-          >
-            Collect
-          </button>
+          {props.supply.price && props.supply.amount ? (
+            <>
+              <div className={styles['price_supply']}>
+                <span className={styles['price_supply-prefix']}>
+                  Price&nbsp;
+                </span>
+                <span className={styles['price_supply-content']}>
+                  {props.supply.price} ETH
+                </span>
+              </div>
+              <div className={styles['price_supply']}>
+                <span className={styles['price_supply-prefix']}>
+                  Supply&nbsp;
+                </span>
+                <span className={styles['price_supply-content']}>
+                  {props.mintedNfts === -1
+                    ? '--'
+                    : props.supply.amount - props.mintedNfts}{' '}
+                  / {props.supply.amount}
+                </span>
+              </div>
+              <button
+                className={styles['button']}
+                onClick={handleCollectButtonClick}
+              >
+                Collect
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className={styles['button']}
+                onClick={handleCollectButtonClick}
+              >
+                Wear in AR
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>

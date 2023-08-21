@@ -10,8 +10,8 @@ import { CreatePage } from './pages/_create';
 import { ProfilePage } from './pages/_profile';
 import { ProfileEditPage } from './pages/_profile_edit';
 import { UserProfilePage } from './pages/_user_profile';
-import { AtelierPage } from './pages/_atelier';
-import { CollectionsPage } from './pages/_collections';
+// import { AtelierPage } from './pages/_atelier';
+// import { CollectionsPage } from './pages/_collections';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,11 +25,11 @@ const router = createBrowserRouter(
       <Route path="nft">
         <Route path=":id" element={<NftPage />} />
       </Route>
-      {/* <Route path="mystudio/atelier" element={<AtelierPage />} /> */}
-      <Route path="mystudio">
+      {/* <Route path="mystudio">
+        <Route path="atelier" element={<AtelierPage />} />
         <Route path="collections" element={<CollectionsPage />} />
         <Route path="nft/:contract/:id" element={<NftPage />} />
-      </Route>
+      </Route> */}
     </Route>,
   ),
 );
