@@ -22,9 +22,10 @@ export const Collections: React.FC = () => {
   useEffect(() => {
     if (status === CollectionsStatus.init && address) {
       setStatus(CollectionsStatus.loading);
-      const _address =
-        '0xccA4Ba7Eb2181c03Ed041C76f9F815F16E8aF5E1'.toLowerCase();
-      void getCollectionNfts(_address)
+      // [TODO]
+      // const _address =
+      //   '0xccA4Ba7Eb2181c03Ed041C76f9F815F16E8aF5E1'.toLowerCase();
+      void getCollectionNfts(address)
         .then((res) => {
           setNfts(res.data.ownedNfts);
           setStatus(CollectionsStatus.success);
@@ -36,34 +37,39 @@ export const Collections: React.FC = () => {
   }, [address, status]);
   console.log(nfts);
   return (
-    <div className={styles['']}>
-      {nfts
-        .map((e) => {
-          const id: NftEntity['id'] = `${e.contract.address.toLowerCase()}/${
-            e.id.tokenId
-          }`;
-          const metadata: NftEntity['metadata'] =
-            e.metadata as NftEntity['metadata'];
-          const creator: NftEntity['creator'] = {
-            address: '',
-            admin: false,
-            creator: true,
-            name: '',
-          };
-          const supply: NftEntity['supply'] = {
-            id: -1,
-            price: -1,
-            amount: -1,
-            createdAt: '',
-            updatedAt: '',
-          };
-          const createdAt = '';
-          const updatedAt = '';
-          return { id, metadata, creator, supply, createdAt, updatedAt };
-        })
-        .map((e, i) => (
-          <NftCard key={i} {...e} />
-        ))}
+    <div className={styles['wrapper']}>
+      <div className={styles['collected']}>
+        <div className={styles['cntents-label']}>My Collections</div>
+        <div className={styles['nft-list']}>
+          {nfts
+            .map((e) => {
+              const id: NftEntity['id'] = `${e.contract.address.toLowerCase()}/${
+                e.id.tokenId
+              }`;
+              const metadata: NftEntity['metadata'] =
+                e.metadata as NftEntity['metadata'];
+              const creator: NftEntity['creator'] = {
+                address: '',
+                admin: false,
+                creator: true,
+                name: '',
+              };
+              const supply: NftEntity['supply'] = {
+                id: -1,
+                price: -1,
+                amount: -1,
+                createdAt: '',
+                updatedAt: '',
+              };
+              const createdAt = '';
+              const updatedAt = '';
+              return { id, metadata, creator, supply, createdAt, updatedAt };
+            })
+            .map((e, i) => (
+              <NftCard key={i} {...e} />
+            ))}
+        </div>
+      </div>
     </div>
   );
 };

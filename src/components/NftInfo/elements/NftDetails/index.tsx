@@ -5,6 +5,8 @@ import { NftEntity } from 'src/utils/data';
 import styles from './styles/nft-details.module.css';
 import { Model } from './elements/Model';
 import { Movie } from './elements/Movie';
+import { useAddress } from '@thirdweb-dev/react';
+
 enum ContentsType {
   IMAGE,
   MODEL,
@@ -13,6 +15,7 @@ enum ContentsType {
 
 export type NftDetailsProps = NftEntity & {
   mintedNfts: number;
+  owner?: string;
   handleCollectButtonClick: () => void;
 };
 
@@ -21,6 +24,7 @@ export const NftDetails: React.FC<NftDetailsProps> = (props) => {
     metadata: { image, glb_l, animation_url },
     handleCollectButtonClick,
   } = props;
+  const address = useAddress();
   const navigate = useNavigate();
   const [contents, setContents] = useState<ContentsType>(ContentsType.IMAGE);
   const ContentsElements = [

@@ -16,9 +16,13 @@ export const getEthereumNfts = async (address: string) => {
   );
 };
 
-export const getNftMetadata = async (contract: string, id: string) => {
+export const getOwnedNftMetadata = async (
+  owner: string,
+  contract: string,
+  id: string,
+) => {
   return await axios.get<Nft>(`${MYSTUDIO_API_ENDPOINT}/alchemy/nft/metadata`, {
-    params: { contract, id },
+    params: { owner, contract, id },
   });
 };
 
