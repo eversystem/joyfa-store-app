@@ -1,11 +1,11 @@
 import { useState, startTransition } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { resolveIpfsUri } from 'src/utils/resolve-ipfs-uri';
 import { NftEntity } from 'src/utils/data';
 import styles from './styles/nft-details.module.css';
 import { Model } from './elements/Model';
 import { Movie } from './elements/Movie';
-import { useAddress } from '@thirdweb-dev/react';
+// import { useAddress } from '@thirdweb-dev/react';
 
 enum ContentsType {
   IMAGE,
@@ -24,8 +24,8 @@ export const NftDetails: React.FC<NftDetailsProps> = (props) => {
     metadata: { image, glb_l, animation_url },
     handleCollectButtonClick,
   } = props;
-  const address = useAddress();
-  const navigate = useNavigate();
+  // const address = useAddress();
+  // const navigate = useNavigate();
   const [contents, setContents] = useState<ContentsType>(ContentsType.IMAGE);
   const ContentsElements = [
     <img
@@ -87,15 +87,16 @@ export const NftDetails: React.FC<NftDetailsProps> = (props) => {
       </div>
       <div className={styles['info']}>
         <div className={styles['name']}>{props.metadata.name}</div>
-        <div
+        <a
           className={styles['creator']}
-          onClick={() => {
-            navigate(`/user/${props.creator.address}`);
-          }}
+          href={`/user/${props.creator.address}`}
+          // onClick={() => {
+          //   navigate(`/user/${props.creator.address}`);
+          // }}
         >
           <img className={styles['creator-icon']} src={props.creator.icon} />
           <div className={styles['creator-name']}>{props.creator.name}</div>
-        </div>
+        </a>
         <div className={styles['info-left']}>
           <div className={styles['info-title']}>Story</div>
           <div className={styles['description']}>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAddress } from '@thirdweb-dev/react';
 import { Nft } from 'src/utils/alchemy';
-import { getCollectionNfts, getRequestedNfts } from 'src/utils/mystudio-api';
+import { getCollectionNfts } from 'src/utils/mystudio-api';
 import styles from './styles/collections.module.css';
 import { NftCard } from '../NftCard';
 import { NftEntity } from 'src/utils/data';

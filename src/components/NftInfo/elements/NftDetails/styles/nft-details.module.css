@@ -65,11 +65,13 @@
   flex-direction: row;
   cursor: pointer;
   align-items: center;
+  text-decoration: none;
 }
 
 .creator-name {
   font-size: 18px;
   letter-spacing: 0.01em;
+  text-decoration: none;
 }
 
 .creator-icon {
