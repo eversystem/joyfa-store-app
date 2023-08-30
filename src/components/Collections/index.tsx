@@ -23,9 +23,9 @@ export const Collections: React.FC = () => {
     if (status === CollectionsStatus.init && address) {
       setStatus(CollectionsStatus.loading);
       // [TODO]
-      // const _address =
-      //   '0xccA4Ba7Eb2181c03Ed041C76f9F815F16E8aF5E1'.toLowerCase();
-      void getCollectionNfts(address)
+      const _address =
+        '0xccA4Ba7Eb2181c03Ed041C76f9F815F16E8aF5E1'.toLowerCase();
+      void getCollectionNfts(_address)
         .then((res) => {
           setNfts(res.data.ownedNfts);
           setStatus(CollectionsStatus.success);
@@ -37,10 +37,10 @@ export const Collections: React.FC = () => {
   }, [address, status]);
   console.log(nfts);
   return (
-    <div className={styles['wrapper']}>
+    <div className={styles['']}>
       <div className={styles['collected']}>
         <div className={styles['cntents-label']}>My Collections</div>
-        <div className={styles['nft-list']}>
+        <div className={styles['wrapper']}>
           {nfts
             .map((e) => {
               const id: NftEntity['id'] = `${e.contract.address.toLowerCase()}/${

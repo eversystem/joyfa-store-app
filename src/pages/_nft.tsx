@@ -26,10 +26,10 @@ export const NftPage: React.FC = () => {
       if (address) {
         console.log('fetch');
         // [TODO]
-        // const _address =
-        //   '0xccA4Ba7Eb2181c03Ed041C76f9F815F16E8aF5E1'.toLowerCase();
+        const _address =
+          '0xccA4Ba7Eb2181c03Ed041C76f9F815F16E8aF5E1'.toLowerCase();
         setStatus('loading');
-        void getOwnedNftMetadata(address, contract, id)
+        void getOwnedNftMetadata(_address, contract, id)
           .then((res) => res.data)
           .then((_nft) => {
             setStatus('fetched');
