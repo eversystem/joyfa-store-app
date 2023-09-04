@@ -87,16 +87,19 @@ export const NftDetails: React.FC<NftDetailsProps> = (props) => {
       </div>
       <div className={styles['info']}>
         <div className={styles['name']}>{props.metadata.name}</div>
-        <a
-          className={styles['creator']}
-          href={`/user/${props.creator.address}`}
-          // onClick={() => {
-          //   navigate(`/user/${props.creator.address}`);
-          // }}
-        >
-          <img className={styles['creator-icon']} src={props.creator.icon} />
-          <div className={styles['creator-name']}>{props.creator.name}</div>
-        </a>
+        {/* [TODO] */}
+        {props.creator.name && props.creator.icon && (
+          <a
+            className={styles['creator']}
+            href={`/user/${props.creator.address}`}
+            // onClick={() => {
+            //   navigate(`/user/${props.creator.address}`);
+            // }}
+          >
+            <img className={styles['creator-icon']} src={props.creator.icon} />
+            <div className={styles['creator-name']}>{props.creator.name}</div>
+          </a>
+        )}
         <div className={styles['info-left']}>
           <div className={styles['info-title']}>Story</div>
           <div className={styles['description']}>

@@ -139,7 +139,7 @@
   padding: 0 20px;
 }
 
-.cntents-label {
+.contents-label {
   font-family: 'Mont';
   font-style: normal;
   font-size: 32px;
@@ -192,8 +192,8 @@
     padding:0px;
   }
 
-  .collected .cntents-label,
-  .created .cntents-label {
+  .collected .contents-label,
+  .created .contents-label {
     margin-top: 50px;
   }
 

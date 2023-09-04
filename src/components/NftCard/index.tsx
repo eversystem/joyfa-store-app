@@ -32,13 +32,18 @@ export const NftCard: React.FC<NftCardProps> = (props) => {
           {props.metadata.name}
           {props.tokenId ? ` #${props.tokenId}/${props.supply.amount}` : ''}
         </div>
-        <div className={styles['nft-creator']}>
-          <img
-            className={styles['nft-creator-icon']}
-            src={props.creator.icon}
-          />
-          <div className={styles['nft-creator-name']}>{props.creator.name}</div>
-        </div>
+        {/* [TODO] */}
+        {props.creator.name && props.creator.icon && (
+          <div className={styles['nft-creator']}>
+            <img
+              className={styles['nft-creator-icon']}
+              src={props.creator.icon}
+            />
+            <div className={styles['nft-creator-name']}>
+              {props.creator.name}
+            </div>
+          </div>
+        )}
         <div className={styles['sales-info']}>
           {props.supply.price !== -1 ? (
             <>
